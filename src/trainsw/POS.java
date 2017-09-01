@@ -24,10 +24,13 @@ public class POS {
     private Tessera tessera_corrente;
     private List<Biglietto> biglietti_venduti=new ArrayList<>();
     private List<Abbonamento> abbonamenti_venduti=new ArrayList<>();
-    private PromoStandard pstandard;
+    /*private PromoStandard pstandard;
     private PromoSoglia psoglia;
     private AllInclusivePromo pallinclusive;
+    */
     private int punti;
+    private Promozione promozione;
+    private Promozione promozione_corrente;
 
     public POS() {
     }
@@ -131,35 +134,17 @@ public class POS {
         biglietti_venduti.add(biglietto_corrente);
         return this.tessera_corrente;
     }
+          
   public double associaPromozione(Promozione promozione){
-      /*Promozione pro = new AllInclusivePromo("AllInclusive",promozione.getPunti());
-      for (int i=0; i <pro.size(); )
-		pro.add(PromoStandard);
-		pro.add(PromoSoglia);
-		*/
       
-   //   pstandard = new PromoStandard("Standard", tessera_corrente.getPunti());
-    //  psoglia = new PromoSoglia("Soglia", tessera_corrente.getPunti());
-      double prezzo_scontato=biglietto_corrente.getPrezzo();
-      switch(promozione.nome){
-          case "PromoSoglia":
-              prezzo_scontato=psoglia.calcolaPromozione(prezzo_scontato,tessera_corrente.getPunti());
-              this.punti = 100;  
-          case "PromoStandard":
-              prezzo_scontato=pstandard.calcolaPromozione(prezzo_scontato,tessera_corrente.getPunti());
-              this.punti = 250;  
-          case "AllInclusivePromo":
-              prezzo_scontato=pallinclusive.calcolaPromozione(prezzo_scontato,tessera_corrente.getPunti());
-              this.punti = 350;  
-          default:
-              JOptionPane.showMessageDialog(new JFrame(), "Errore elenco promozioni");
-      }  
+      double prezzo_scontato = biglietto_corrente.getPrezzo();
+             prezzo_scontato = promozione.calcolaPromozione(prezzo_scontato,tessera_corrente.getPunti());
       return prezzo_scontato;
   }
  public Biglietto ConfermaAcquistoPunti(double prezzo_scontato){
      int punti;
      biglietto_corrente.setPrezzo(prezzo_scontato);
-     //punti=promozione_corrente.getPunti();
+     punti=promozione_corrente.getSogliaPunti();
      tessera_corrente.aggiornaSaldo(this.punti);
      biglietti_venduti.add(biglietto_corrente);
      return biglietto_corrente;
