@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-ago-2017 21.22.17 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="trainsw.Deposito" table="deposito" catalog="trainsw" optimistic-lock="version">
+        <id name="id_dep" type="int">
+            <column name="id_dep" />
+            <generator class="increment" />
+        </id>
+        <many-to-one name="stazione" class="trainsw.Stazione" not-null="true" cascade="all" unique="true">
+            <column name="id_stazione" />
+        </many-to-one>
+    
+        <property name="numPosti" type="java.lang.Integer">
+            <column name="num_posti" />
+        </property>
+    
+        <bag name="treni" table="deposito" inverse="true" lazy="false" fetch="join">  
+            <key column="id_dep"></key>  
+            <one-to-many class="trainsw.Treno" />  
+        </bag>  
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="trainsw.Fermata" table="fermata">
+       <id name="id_fer" type="int">
+            <column name="id_fermata" />
+            <generator class="increment" />
+        </id>
+         <property name="distanza_p" column="distanzaparziale" not-null="true">   </property>
+        <many-to-one name="stazione" class="trainsw.Stazione" not-null="true" cascade="all"  >
+            <column name="id_stazione" />
+        </many-to-one>
+        <many-to-one name="percorso" class="trainsw.Percorso" not-null="true" cascade="all" lazy="false">
+        <column name="id_per" />
+    </many-to-one>       
+  </class>
+   <class name="trainsw.FermataOrario" table="fermataorario" catalog="trainsw" optimistic-lock="version">
+    <id name="id" type="int">
+            <column name="id" />
+            <generator class="increment" />
+        </id>       
+     <property name="orario" column="orario" not-null="false"/> 
+        <many-to-one name="fermata" class="trainsw.Fermata"  not-null="true" lazy="false" fetch="join">
+            <column name="id_fermata" />
+        </many-to-one>
+        <many-to-one name="tratta" class="trainsw.Tratta"  not-null="true"  insert="false" fetch="join" lazy="false">
+            <column name="id_tratta" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
+    

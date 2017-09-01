@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="trainsw.Percorso" table="percorso">
+       
+            <id name="id_per" type="java.lang.Integer">
+            <column name="id_per" />
+            <generator class="increment"></generator>
+        </id>
+            <property name="staz_par" column="staz_par" not-null="true"/>
+            <property name="staz_arr" column="staz_arr" not-null="true"/>
+            <bag name="collegamenti" table="percorsocollegamento" inverse="false" lazy="true" fetch="select">  
+                <key column="id_per"></key>  
+                <many-to-many column="id_collegamento" class="trainsw.Collegamento" />  
+            </bag>  
+            
+            <bag name="fermate" table="fermatapercorso" inverse="false" lazy="true" fetch="select" cascade="save-update, delete">  
+                <key column="id_per"></key>  
+                <one-to-many  class="trainsw.Fermata" />  
+            </bag>    
+           <bag name="tratte" table="tratte"  inverse="false" lazy="true" fetch="select" cascade="save-update,delete">  
+                <key column="id_per"></key>  
+                <one-to-many  class="trainsw.Tratta" />  
+            </bag>  
+        </class>
+</hibernate-mapping>

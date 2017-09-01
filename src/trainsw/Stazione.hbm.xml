@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-ago-2017 21.17.24 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="trainsw.Stazione" table="stazione" catalog="trainsw">
+        <id name="id_stazione" type="java.lang.Integer">
+            <column name="id_stazione" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="num_bin" type="java.lang.Integer">
+            <column name="num_bin" />
+        </property>
+        <property name="locazione" type="string">
+            <column name="locazione" length="50" />
+        </property>
+        <property name="nome_stazione" type="string">
+            <column name="nome_stazione" length="50" not-null="true" />
+        </property>
+   
+            
+       
+    
+    </class>
+</hibernate-mapping>

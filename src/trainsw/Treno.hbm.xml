@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="trainsw.Treno" table="treno">
+   <id name="id_tr" type="int">
+            <column name="id_tr" />
+            <generator class="increment" />
+        </id>
+       <many-to-one name="tt" class="trainsw.TipoTreno" not-null="true" cascade="all" lazy="proxy" fetch="join">
+        <column name="id_tt" />
+    </many-to-one>
+ <many-to-one name="deposito" class="trainsw.Deposito"  fetch="join">
+<column name="id_dep" not-null="false" />
+</many-to-one>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="trainsw.Tratta" table="tratta">
+        <id name="id_tratta"  column="id_tratta">
+        <generator class="increment"/>
+    </id>
+    <property name="data_p" column="data_p"/>
+    <property name="data_a" column="data_a"/>
+    <many-to-one name="treno" class="trainsw.Treno" not-null="true" cascade="all" unique="true">
+            <column name="id_treno" />
+        </many-to-one>
+         <many-to-one name="percorso" class="trainsw.Percorso" not-null="true" cascade="all" >
+            <column name="id_per" />
+        </many-to-one>
+        <bag name="fermate" table="fermatatratta"  inverse="false" lazy="false" fetch="join" cascade="all">  
+                <key column="id_tratta"></key>  
+                <one-to-many  class="trainsw.FermataOrario" />  
+            </bag> 
+  </class>
+  
+</hibernate-mapping>

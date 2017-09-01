@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="trainsw.TipoTreno" table="tipotreno">
+      <id name="id_tt" type="java.lang.Integer">
+            <column name="id_tt" />
+            <generator class="increment"></generator>
+        </id>
+        <property name="tt_name" type="string">
+            <column name="tt_name" length="50" />
+        </property>
+          <property name="posti_letto" type="java.lang.Short">
+            <column name="posti_letto"/>
+        </property>
+          
+        <property name="np_1c" type="java.lang.Short">
+            <column name="np_1c"/>
+        </property>
+           <property name="np_2c" type="java.lang.Short">
+            <column name="np_2c"/>
+        </property>
+           <property name="velocita" type="java.lang.Double">
+            <column name="velocita"/>
+        </property>
+          <bag name="treni" table="tipotreno" inverse="true" lazy="false" fetch="join">  
+            <key column="id_tt"></key>  
+            <one-to-many class="trainsw.Treno" />  
+        </bag>  
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="trainsw.Collegamento" table="collegamento">
+        <id name="id_collegamento" column="id_collegamento">
+            <generator class="increment"/>
+        </id>
+        <many-to-one name="stazione_a" class="trainsw.Stazione" not-null="true" cascade="all" >
+            <column name="id_stazione_a" />
+        </many-to-one>
+        <many-to-one name="stazione_b" class="trainsw.Stazione" not-null="true" cascade="all" >
+            <column name="id_stazione_b" />
+        </many-to-one>
+        <property name="distanza" column="distanza">
+        </property>
+  
+  
+    </class>
+</hibernate-mapping>
