@@ -58,7 +58,7 @@ private int id_ta = 0;
         jLabel1 = new javax.swing.JLabel();
         radio_trenOrf = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         radio_sett.setText("Regionale");
 

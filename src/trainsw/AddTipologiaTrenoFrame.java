@@ -57,7 +57,7 @@ Treno treno;
         txt_prezzo1c = new javax.swing.JTextField();
         prezzo_2c = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Inserisci Tipologia Treno ");

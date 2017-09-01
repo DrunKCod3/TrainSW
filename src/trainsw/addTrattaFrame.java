@@ -47,7 +47,7 @@ private List<Percorso> listper2;
         next_buttonTratta = new javax.swing.JButton();
         back_buttonTratta = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inserisci Tratta");
 
         jLabel1.setText("Inserisci id stazione partenza");

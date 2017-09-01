@@ -22,9 +22,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import javax.swing.JTable;
-import javax.swing.JTextArea;
+
 import javax.swing.JTextField;
-import javax.swing.ListModel;
+
 import javax.swing.ListSelectionModel;
 
 import javax.swing.table.DefaultTableModel;
@@ -400,7 +400,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
+      
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void gestisciStActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciStActionPerformed

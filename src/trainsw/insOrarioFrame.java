@@ -56,7 +56,7 @@ public class insOrarioFrame extends javax.swing.JFrame {
         annulla_orarioButton = new javax.swing.JButton();
         txt_Orario = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Inserisci Data e Orario");
 

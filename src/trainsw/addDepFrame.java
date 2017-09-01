@@ -47,7 +47,7 @@ public class addDepFrame extends javax.swing.JFrame {
         addDepButton = new javax.swing.JToggleButton();
         annullaDepButton = new javax.swing.JToggleButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Aggiungi un Deposito");
 
         jLabel1.setText("Inserisci l'id del deposito ");
