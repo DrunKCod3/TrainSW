@@ -21,6 +21,11 @@ public class TipoTreno {
         return treno;
     }
 
+    @Override
+    public String toString() {
+        return "TipoTreno{" + "id_tt=" + id_tt + ", tt_name=" + tt_name + ", posti_letto=" + posti_letto + ", np_2c=" + np_2c + ", np_1c=" + np_1c + ", velocita=" + velocita + ", prezzo_prima=" + prezzo_prima + ", prezzo_seconda=" + prezzo_seconda + ", treno=" + treno + '}';
+    }
+
     public TipoTreno(int id_tt, String tt_name, short posti_letto, short np_2c, short np_1c, double velocita, double prezzo_prima, double prezzo_seconda) {
         this.id_tt = id_tt;
         this.tt_name = tt_name;

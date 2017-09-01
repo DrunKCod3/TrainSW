@@ -18,6 +18,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import javax.swing.JPanel;
 
@@ -282,6 +283,50 @@ public class GUI extends javax.swing.JFrame {
         });
 
 
+        viewDp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                  JFrame viewObj = new JFrame("Visualizza Depositi");
+                JPanel pan = new JPanel(new FlowLayout());
+                Ferrovia ferrovia = trainSw.getFerrovia();
+                DefaultListModel demod = new DefaultListModel();
+                JList viewList = new JList(demod);
+                boolean lock = false;
+
+                viewObj.add(pan);
+                pan.add(viewList);
+
+                viewObj.setSize(500, 400);
+                viewObj.setVisible(true);
+
+                      Session session= new NewHibernateUtil().getSessionFactory().openSession();
+                      session.beginTransaction();
+                      
+                
+                for (Stazione stazione : ferrovia.getStazioni()) {
+                 stazione = (Stazione) session.load(Stazione.class, stazione.getId_stazione());
+                 
+                  
+                   
+                    if(stazione.getDeposito()!=null && lock==false) {
+                     
+                     lock = true;
+                    System.out.println(stazione.getDeposito().toString());
+                    demod.addElement(stazione.getDeposito().toString());
+                 }
+                    if(lock== false && stazione.getDeposito() == null) {
+                        lock = true;
+                     JOptionPane.showMessageDialog(new JFrame(), "Nessun Deposito presente", "Errore", JOptionPane.ERROR_MESSAGE);
+                    }
+                    }
+                session.getTransaction().commit();
+                session.close();
+            }
+        });
+        
+        
+        
     }//GEN-LAST:event_gestisciDepActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -499,11 +544,17 @@ public class GUI extends javax.swing.JFrame {
                 viewObj.setSize(300, 400);
                 viewObj.setVisible(true);
 
+                  Session session= new NewHibernateUtil().getSessionFactory().openSession();
+                      session.beginTransaction();
+                
+                
                 for (Collegamento collegamento : ferrovia.getCollegamenti()) {
                     demoList.addElement(collegamento.toString());
                     ;
 
                 }
+                 session.getTransaction().commit();
+                session.close();
             }
         });
 

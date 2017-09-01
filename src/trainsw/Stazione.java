@@ -133,6 +133,10 @@ public class Stazione {
     }
     
 
- 
+ public boolean hasDeposito(){
+     if(getDeposito() == null)
+         return false;
+     return true;
+ }
  
 }

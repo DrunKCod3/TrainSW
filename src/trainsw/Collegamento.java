@@ -8,8 +8,16 @@ private Integer distanza;
 private Stazione stazione_a;
 private Stazione stazione_b;
 
+
+
     public Collegamento() {
     }
+
+    @Override
+    public String toString() {
+        return "Collegamento{" + "id_collegamento=" + id_collegamento + ", id_stazione_a=" + id_stazione_a + ", id_stazione_b=" + id_stazione_b + ", distanza=" + distanza + ", stazione_a=" + stazione_a.getNome_stazione() + ", stazione_b=" + stazione_b.getNome_stazione() + '}';
+    }
+    
 
     public Collegamento(Integer id_collegamento, Integer id_stazione_a, Integer id_stazione_b, Integer distanza) {
         this.id_collegamento = id_collegamento;

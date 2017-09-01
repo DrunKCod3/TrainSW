@@ -261,6 +261,12 @@ Treno treno;
      pan3.add(insTDep);
      pan3.add(backAddT);
          
+     backAddT.addActionListener(new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 gst3.dispose();
+             }
+         });
      
      insTDep.addActionListener(new ActionListener() {
              @Override

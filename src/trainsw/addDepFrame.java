@@ -148,7 +148,6 @@ final JFrame confFrame = new JFrame("Conferma Deposito");
             public void actionPerformed(ActionEvent e) {
                 trainsw.ConfermaDepostio(dep);
                confFrame.dispose();
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
       
