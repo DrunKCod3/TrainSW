@@ -24,6 +24,8 @@ public class TrainSW {
   private List<Tessera> tessere_registrate;
   private Tessera tessera_corrente;
   private static TrainSW singleton;
+  private Promozione promozione;
+  private TipoAbbonamento tipoabbonamento;
        
   
   
@@ -203,8 +205,7 @@ public class TrainSW {
    public void ConfermaAbbonamento(){
        pos.confermaAbbonamento();
    }
-   
-   
+     
          /**
      * **********************************
      * UC9 Gestisci Tessera* ***********************************
@@ -259,7 +260,8 @@ public class TrainSW {
    public Biglietto ConfermaAcquistoPunti(double prezzo_scontato){
       return pos.ConfermaAcquistoPunti(prezzo_scontato);
    }
-
-           
-           
-           }
+   
+    public void addPromozione(Promozione p){
+	promozione.addPromotion(p);
+    }
+}
