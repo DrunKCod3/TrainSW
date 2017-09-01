@@ -210,9 +210,9 @@ trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.ge
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer id_staPAbb , id_staAAbb;
-                id_staPAbb = new Integer(txt_idStP.getText());
-                id_staAAbb = new Integer(txt_idStA.getText());
+                String id_staPAbb , id_staAAbb;
+                id_staPAbb = txt_idStP.getText();
+                id_staAAbb = txt_idStA.getText();
                 trainSW.InserisciStazioniAbbonamento(id_staPAbb,id_staAAbb);
 
                 insTipoAbbonamentoFrame inAbbonamentoFrame = new insTipoAbbonamentoFrame();

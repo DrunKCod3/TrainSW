@@ -144,10 +144,10 @@ private void caricaDati(){
      * **********************************
      * UC1 Gestisci Stazione * ***********************************
      */
-    public boolean isPresent(int id_staz) {
+    public boolean isPresent(int id_staz,String nome) {
       List<Stazione> stazioni=getStazioni();
         for (Stazione staz : stazioni) {
-            if (staz.getId_stazione() == id_staz) {
+            if (staz.getId_stazione() == id_staz && staz.getNome_stazione().toLowerCase().equals(nome.toLowerCase()) ) {
                 return true;
             }
         }
@@ -157,7 +157,7 @@ private void caricaDati(){
 
     public Stazione inserisciStazione(int id_st, int num_bin, String locazione, String nome_st) {
          Stazione stazione= null;
-        if (isPresent(id_st) == false) {
+        if (isPresent(id_st,nome_st) == false) {
          stazione = new Stazione(id_st, num_bin, locazione, nome_st);
         }
         this.st=stazione;
@@ -179,13 +179,9 @@ private void caricaDati(){
      * **********************************
      * UC3 Gestisci Deposito * ***********************************
      */
-    public Deposito inserisciDeposito(int id_dep, int id_st, int num_posti) {
+    public Deposito inserisciDeposito(int id_dep, String id_st, int num_posti) {
        List<Stazione> stazioni=getStazioni();
-        for (Stazione staz : stazioni) {
-            if (staz.getId_stazione() == id_st) {
-                st = staz;
-            }
-        }
+        st=getStazione(id_st);
 
         return st.creaDeposito(id_dep, num_posti);
 
@@ -200,7 +196,7 @@ private void caricaDati(){
      * **********************************
      * UC3 Gestisci Collegamento * ***********************************
      */
-    public Collegamento InserisciCollegamento(int id_collegamento, int id_staA, int id_staB, int distanza) {
+    public Collegamento InserisciCollegamento(int id_collegamento, String id_staA, String id_staB, int distanza) {
         Stazione staA, staB;
         Collegamento col = null;
         staA = getStazione(id_staA);
@@ -221,11 +217,11 @@ private void caricaDati(){
         session.close();
     }
 
-    public Stazione getStazione(int id_sta) {
+    public Stazione getStazione(String id_sta) {
         Stazione st = null;
         List<Stazione> stazioni=getStazioni();
         for (Stazione staz : stazioni) {
-            if (staz.getId_stazione() == id_sta) {
+            if (staz.getNome_stazione().toLowerCase().equals(id_sta.toLowerCase())) {
                 st = staz;
             }
         }
@@ -239,17 +235,17 @@ private void caricaDati(){
      */
     public TipoTreno InserisciTipologiaTreno(int id_tt, String tt_name, short posti_letto, short np_2c, short np_1c, double velocita, double prezzo_prima, double prezzo_seconda) {
         TipoTreno tipo = null;
-        if (isPresentTipo(id_tt) == false) {
+        if (isPresentTipo(id_tt,tt_name) == false) {
             tipo = new TipoTreno(id_tt, tt_name, posti_letto, np_2c, np_1c, velocita, prezzo_prima, prezzo_seconda);
         }
         this.tt = tipo;
         return tipo;
     }
 
-    public boolean isPresentTipo(int id_tt) {
+    public boolean isPresentTipo(int id_tt , String tt_name) {
       List<TipoTreno> tipoTreno=getTipoTreno();
         for (TipoTreno tipo : tipoTreno) {
-            if (tipo.getId_tt() == id_tt) {
+            if (tipo.getId_tt() == id_tt && tipo.getTt_name().toLowerCase().equals(tt_name.toLowerCase())) {
                 return true;
             }
         }
@@ -272,7 +268,7 @@ private void caricaDati(){
 
     }
 
-    public void InserisciNelDeposito(int id_st, Treno tr) {
+    public void InserisciNelDeposito(String id_st, Treno tr) {
         Stazione stazione;
         stazione = getStazione(id_st);
        
@@ -292,7 +288,7 @@ private void caricaDati(){
         pr = percorso;
     }
 
-    public List<Fermata> InserisciStazione(int id_staA, int id_staB) {
+    public List<Fermata> InserisciStazione(String id_staA, String id_staB) {
         List<Collegamento> collegamenti=getCollegamenti();
    
         
@@ -327,12 +323,14 @@ private void caricaDati(){
      * **********************************
      * UC6 Gestisci Tratta * ***********************************
      */
-    public List<Percorso> findPercorso(int idstaA, int idstaB) {
+    public List<Percorso> findPercorso(String idstaA,String idstaB) {
         List<Percorso> percorsi = new ArrayList();
         List<Percorso> per=getPercorsi();
         for (Percorso pr : per) {
-            if (pr.getStaz_par() == idstaA && pr.getStaz_arr() == idstaB) {
+             System.out.println("sono nel pr"+pr.getId_per()+pr.getStaz_arr().toLowerCase());
+            if (pr.getStaz_par().toLowerCase().equals(idstaA.toLowerCase()) && pr.getStaz_arr().toLowerCase().equals(idstaB.toLowerCase())) {
                 percorsi.add(pr);
+                
             }
         }
         return percorsi;
@@ -345,7 +343,7 @@ private void caricaDati(){
 
     public List<Treno> InserisciOrario(Date data) {
         pr.InserisciOrario(data);
-        int id_sta = pr.getStaz_par();
+        String id_sta = pr.getStaz_par();
            
         Stazione st = getStazione(id_sta);
         
@@ -362,7 +360,7 @@ private void caricaDati(){
         pr.ConfermaTratta();
     }
 
-    public List<Tratta> InserisciStazioneArrivo(int id_sta_par, int id_sta_arrivo) {
+    public List<Tratta> InserisciStazioneArrivo(String id_sta_par, String id_sta_arrivo) {
         List<Tratta> tratte = new ArrayList<>();
         List<Percorso> per=getPercorsi();
        
@@ -376,7 +374,7 @@ private void caricaDati(){
         return tratte;
     }
 
-    public int getDistanza(int id_sta_par, int id_sta_arrivo) {
+    public int getDistanza(String id_sta_par, String id_sta_arrivo) {
         int distanza = 0;
         List<Percorso> per=getPercorsi();
         for (Percorso pr : per) {

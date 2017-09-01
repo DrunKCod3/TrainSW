@@ -22,10 +22,10 @@ public class PercorsoTest {
 
     @Test
     public void testcalcolapercorso() {
-        Percorso percorso = new Percorso(4, 5, 6);
-        System.out.println(percorso.getStaz_arr() + " " + percorso.getStaz_par());
-        Collegamento col = new Collegamento(3, 1, 2, 20, new Stazione(5, 2, "Catania", "catania_centrale"), new Stazione(6, 2, "pippo", "pippolandia"));
-        Collegamento col2 = new Collegamento(4, 2, 3, 20, new Stazione(8, 2, "pippo", "pippolandia"), new Stazione(7, 2, "pippo", "pippolandia"));
+        Percorso percorso = new Percorso(7, "roma", "venezia");
+        
+        Collegamento col = new Collegamento(3, "genova","milano", 20, new Stazione(5, 2,"catania_centrale","catania" ), new Stazione(6, 2,"pia","milano"));
+        Collegamento col2 = new Collegamento(4, "roma", "venezia", 20, new Stazione(8, 2, "ndia","roma" ), new Stazione(7, 2, "landia", "venezia"));
 
         percorso.addcollegamenti(col);
         percorso.addcollegamenti(col2);
@@ -38,11 +38,11 @@ public class PercorsoTest {
     }
   @Test 
   public void testricercaFermata(){
-        Percorso percorso = new Percorso(4, 1, 3);
-        percorso.addFermate(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
-         percorso.addFermate(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
-          percorso.addFermate(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
-         assertTrue("la fermata non è stata trovata",  percorso.RicercaFermata(1));
-         assertFalse("la fermata è stata trovata ",percorso.RicercaFermata(4));
+        Percorso percorso = new Percorso(4, "catania","palermo");
+        percorso.addFermate(new Fermata(3, 49,3,new Stazione(1, 2, "catania_centrale", "catania")));
+         percorso.addFermate(new Fermata(3, 49,3,new Stazione(2, 2, "catania_centrale", "messina")));
+          percorso.addFermate(new Fermata(3, 49,3,new Stazione(3, 2,  "catania_centrale","palermo")));
+         assertTrue("la fermata non è stata trovata",  percorso.RicercaFermata("catania"));
+         assertFalse("la fermata è stata trovata ",percorso.RicercaFermata("genova"));
   }
 }

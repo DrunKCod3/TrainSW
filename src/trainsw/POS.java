@@ -102,7 +102,7 @@ public class POS {
     public void calcolaPromozione(float prezzo){
         
     }
-    public  void inserisciStazioneArrivo(int id_sta_par,int id_sta_arr){
+    public  void inserisciStazioneArrivo(String id_sta_par,String id_sta_arr){
     biglietto_corrente.setStaz_arr(id_sta_arr);
     biglietto_corrente.setStaz_par(id_sta_par);
    
@@ -116,7 +116,7 @@ public class POS {
         return biglietto_corrente;
     }
     
-    public void creaAbbonamento(Integer staz_p, Integer staz_a, double distanza, Cliente cliente){
+    public void creaAbbonamento(String staz_p,String staz_a, double distanza, Cliente cliente){
         abbonamento_corrente=new Abbonamento(staz_p, staz_a, distanza, cliente);
     }
     public Abbonamento InserisciTipoAbbonamento(TipoAbbonamento tipo){

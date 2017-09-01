@@ -56,8 +56,8 @@ public class TrattaTest {
     public void testricercaFermata(){
         Tratta tratta=new Tratta();
         tratta.addFermata(new Fermata(1, 0,1,new Stazione(1, 2, "Catania", "catania_centrale")));
-        tratta.addFermata(new Fermata(2, 30,2,new Stazione(2, 2, "Catania", "catania_centrale")));
-        tratta.addFermata(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
+        tratta.addFermata(new Fermata(2, 30,2,new Stazione(2, 2, "catania_centrale", "messina")));
+        tratta.addFermata(new Fermata(3, 49,3,new Stazione(3, 2, "catania_centrale", "palermo")));
        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ITALIAN);
       Date data4=null;
         try {
@@ -71,10 +71,19 @@ public class TrattaTest {
         } catch (ParseException ex) {
           
         }
-       assertFalse("è stata trovata una fermata anche se l'orario è passato", tratta.ricercaFermata(1));
-       tratta.addFermata(new Fermata(3, 49,4,new Stazione(4, 2, "Catania", "catania_centrale")));
+       assertFalse("è stata trovata una fermata anche se l'orario è passato", tratta.ricercaFermata("catania"));
+       tratta.addFermata(new Fermata(3, 49,4,new Stazione(4, 2,  "catania_centrale","enna")));
         tratta.getFermate().get(3).setOrario(data4);
         
-       assertTrue("non è stata trovata una fermata",tratta.ricercaFermata(4)); 
+       assertTrue("non è stata trovata una fermata",tratta.ricercaFermata("enna")); 
+    }
+     @Test
+    public void testgetDistanza(){
+           Tratta tratta=new  Tratta();
+       
+       tratta.addFermata(new Fermata(1, 0,1,new Stazione(1, 2,"catania_centrale", "catania")));
+        tratta.addFermata(new Fermata(2, 30,2,new Stazione(2, 2, "catania_centrale", "messina")));
+        tratta.addFermata(new Fermata(3, 49,3,new Stazione(3, 2, "catania_centrale", "palermo")));
+        assertEquals("la distanzaa è sbagliata", 49,tratta.getDistanza("palermo"));
     }
 }

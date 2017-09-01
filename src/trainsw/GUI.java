@@ -355,8 +355,8 @@ public class GUI extends javax.swing.JFrame {
         nextSA_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer id_sta_PSA = new Integer(txt_idStaPSA.getText());
-                Integer id_sta_ASA = new Integer(txt_idStaASA.getText());
+                String id_sta_PSA = txt_idStaPSA.getText();
+                String id_sta_ASA = txt_idStaASA.getText();
                 listTrSA = trainSw.inserisciStazioneArrivo(id_sta_PSA, id_sta_ASA);
 
                 String[] columnNames = {"ID Tratta",
@@ -601,9 +601,9 @@ public class GUI extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.dispose();
-                int idStazA, idStazB;
-                idStazA = new Integer(txt_sta1.getText());
-                idStazB = new Integer(txt_sta2.getText());
+                String idStazA, idStazB;
+                idStazA = txt_sta1.getText();
+                idStazB = txt_sta2.getText();
 
                 //Caricare prima questa lista, importante : listSt e JTable devono essere sincronizzati
                 // stessi indici-->  -riga = index list 
@@ -722,8 +722,8 @@ public class GUI extends javax.swing.JFrame {
         nextSA_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer id_sta_PSA = new Integer(txt_idStaPSA.getText());
-                Integer id_sta_ASA = new Integer(txt_idStaASA.getText());
+                String id_sta_PSA = txt_idStaPSA.getText();
+                String id_sta_ASA = txt_idStaASA.getText();
                 listTrSA = trainSw.inserisciStazioneArrivo(id_sta_PSA, id_sta_ASA);
 
                 String[] columnNames = {"ID Tratta",
@@ -835,8 +835,8 @@ public class GUI extends javax.swing.JFrame {
         nextSA_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Integer id_sta_PSA = new Integer(txt_idStaPSA.getText());
-                Integer id_sta_ASA = new Integer(txt_idStaASA.getText());
+                String id_sta_PSA = txt_idStaPSA.getText();
+                String id_sta_ASA = txt_idStaASA.getText();
                 listTrSA = trainSw.inserisciStazioneArrivo(id_sta_PSA, id_sta_ASA);
 
                 String[] columnNames = {"ID Tratta",

@@ -9,8 +9,8 @@ public class Biglietto {
     private int id_b;
     private double prezzo;
     private int distanza;
-    private int staz_par;
-    private int staz_arr;
+    private String staz_par;
+    private String staz_arr;
     private Tratta tratta;
     private int classe;
     public Biglietto() {
@@ -20,7 +20,7 @@ public class Biglietto {
         this.tratta = tratta;
     }
 
-    public Biglietto(int staz_par, int staz_arr) {
+    public Biglietto(String staz_par, String staz_arr) {
 
         this.staz_par = staz_par;
         this.staz_arr = staz_arr;
@@ -50,19 +50,19 @@ public class Biglietto {
         this.distanza = distanza;
     }
 
-    public int getStaz_par() {
+    public String getStaz_par() {
         return staz_par;
     }
 
-    public void setStaz_par(int staz_par) {
+    public void setStaz_par(String staz_par) {
         this.staz_par = staz_par;
     }
 
-    public int getStaz_arr() {
+    public String getStaz_arr() {
         return staz_arr;
     }
 
-    public void setStaz_arr(int staz_arr) {
+    public void setStaz_arr(String staz_arr) {
         this.staz_arr = staz_arr;
     }
 
@@ -85,6 +85,7 @@ public class Biglietto {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(tr);
+    
         prezzo=distanza*0.5;
         if(classe==1)
         prezzo+= tratta.getTreno().getTt().getPrezzo_prima();

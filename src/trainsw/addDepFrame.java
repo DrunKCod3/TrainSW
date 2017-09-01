@@ -125,7 +125,7 @@ public class addDepFrame extends javax.swing.JFrame {
     private void addDepButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDepButtonActionPerformed
         // TODO add your handling code here:
         Integer id_dep = new Integer(txt_idDep.getText());
-        Integer id_st = new Integer(txt_depst_id.getText());
+        String id_st = txt_depst_id.getText();
         Integer num_post = new Integer(txt_numpost.getText());
      final Deposito dep =   trainsw.inserisciDeposito(id_dep, id_st, num_post);
 

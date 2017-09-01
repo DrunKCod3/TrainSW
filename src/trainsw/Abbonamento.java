@@ -6,8 +6,8 @@ public class Abbonamento {
 	private Integer id_abb;
     private Date data_inizio;
     private Date data_scadenza;  
-    private Integer staz_p;
-    private Integer staz_a;
+    private String staz_p;
+    private String staz_a;
     private double prezzo;
     private double distanza;
     private Cliente cliente;
@@ -17,7 +17,7 @@ public class Abbonamento {
     {
     }
 
-    public Abbonamento(Integer staz_p, Integer staz_a, double distanza, Cliente cliente) {
+    public Abbonamento(String staz_p, String staz_a, double distanza, Cliente cliente) {
         this.data_inizio=new Date();
         this.data_scadenza=new Date();
         this.data_scadenza.setTime(data_inizio.getTime()+(30*24*60*60*1000));
@@ -59,19 +59,19 @@ public class Abbonamento {
         this.data_scadenza = data_scadenza;
     }
 
-    public Integer getStaz_p() {
+    public String getStaz_p() {
         return staz_p;
     }
 
-    public void setStaz_p(Integer staz_p) {
+    public void setStaz_p(String staz_p) {
         this.staz_p = staz_p;
     }
 
-    public Integer getStaz_a() {
+    public String getStaz_a() {
         return staz_a;
     }
 
-    public void setStaz_a(Integer staz_a) {
+    public void setStaz_a(String staz_a) {
         this.staz_a = staz_a;
     }
 

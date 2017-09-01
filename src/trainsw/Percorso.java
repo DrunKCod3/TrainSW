@@ -7,8 +7,8 @@ import org.hibernate.Session;
 
 public class Percorso {
 
-    private Integer staz_par;
-    private Integer staz_arr;
+    private String staz_par;
+    private String staz_arr;
     private Integer id_per;
     private Integer distanzaparziale = 0;
     private List<Fermata> fermate= new ArrayList<>();
@@ -21,7 +21,7 @@ public class Percorso {
       
     }
 
-    public Percorso(Integer id_per, Integer staz_par, Integer staz_arr) {
+    public Percorso(Integer id_per,String staz_par, String staz_arr) {
         this.staz_par = staz_par;
         this.staz_arr = staz_arr;
         this.id_per = id_per;
@@ -33,24 +33,26 @@ public class Percorso {
         List<Collegamento>collegamenti=new ArrayList<>();
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        int staz_succ=this.staz_par;
+        String staz_succ=this.staz_par;
         for (Collegamento collegamento : this.collegamenti) {
          session.update(collegamento);
-        
-            if(collegamento.getStazione_a().getId_stazione()==staz_succ  && staz_succ != this.staz_arr){
+        System.out.println("sono nel percoros" +this.staz_par + collegamento.getStazione_a().getNome_stazione());
+            if(collegamento.getStazione_a().getNome_stazione().toLowerCase().equals(staz_succ.toLowerCase())  && !staz_succ.toLowerCase().equals(this.staz_arr.toLowerCase())){
+             System.out.println("collegamento.getStazione_a()"+collegamento.getStazione_a());
                collegamenti.add(collegamento);
                Fermata fermata=new Fermata();
                fermata.setId_stazione(collegamento.getStazione_a().getId_stazione());
                fermata.setStazione(collegamento.getStazione_a());
                fermata.setDistanza_p(this.distanzaparziale);
-               staz_succ=collegamento.getStazione_b().getId_stazione();
+               staz_succ=collegamento.getStazione_b().getNome_stazione();
             
                calcolaDistanzaParziale(collegamento.getDistanza());
                fermata.setPercorso(this);
                fermate_temp.add(fermata);
                 
                }
-            if(collegamento.getStazione_b().getId_stazione()==this.staz_arr ) {
+            if(collegamento.getStazione_b().getNome_stazione().toLowerCase().equals(this.staz_arr.toLowerCase()) ) {
+                
                 Fermata fermata=new Fermata();
                fermata.setId_stazione(collegamento.getStazione_b().getId_stazione());
                fermata.setStazione(collegamento.getStazione_b());
@@ -80,19 +82,19 @@ public class Percorso {
       
     }
 
-    public Integer getStaz_par() {
+    public String getStaz_par() {
         return staz_par;
     }
 
-    public void setStaz_par(Integer staz_par) {
+    public void setStaz_par(String staz_par) {
         this.staz_par = staz_par;
     }
 
-    public Integer getStaz_arr() {
+    public String getStaz_arr() {
         return staz_arr;
     }
 
-    public void setStaz_arr(Integer staz_arr) {
+    public void setStaz_arr(String staz_arr) {
         this.staz_arr = staz_arr;
     }
 
@@ -177,14 +179,14 @@ public class Percorso {
 
     }
 
-    public boolean RicercaFermata(int id_sta) {
+    public boolean RicercaFermata(String id_sta) {
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
-        session.update(this);
+     //   session.update(this);
         for (Fermata fermata : getFermate()) {
           
-            if (fermata.getStazione().getId_stazione() == id_sta) {
+            if (fermata.getStazione().getNome_stazione().toLowerCase().equals(id_sta.toLowerCase())) {
                   session.close();
                 return true;
             }
@@ -194,7 +196,7 @@ public class Percorso {
 
     }
 
-    public List<Tratta> RicercaTrattaOrario(int id_sta_par) {
+    public List<Tratta> RicercaTrattaOrario(String id_sta_par) {
         List<Tratta> tratte = new ArrayList<>();
             Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -212,7 +214,7 @@ public class Percorso {
         return tratte;
     }
 
-    public int DistanzaFermate(int id_sta_par,int id_sta_arrivo){
+    public int DistanzaFermate(String id_sta_par,String id_sta_arrivo){
     int distanza = 0;
         if (RicercaFermata(id_sta_par) && RicercaFermata(id_sta_arrivo)) {
             distanza = getDistanzaFermata(id_sta_arrivo) - getDistanzaFermata(id_sta_par);
@@ -220,14 +222,14 @@ public class Percorso {
         return distanza;
     }
 
-    public int getDistanzaFermata(int id_sta) {
+    public int getDistanzaFermata(String id_sta) {
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
         session.update(this);
       
         for (Fermata fermata : getFermate()) {
-            if (fermata.getStazione().getId_stazione() == id_sta) {
+            if (fermata.getStazione().getNome_stazione().toLowerCase().equals(id_sta.toLowerCase())) {
                   session.close();
                 return fermata.getDistanza_p();
             }

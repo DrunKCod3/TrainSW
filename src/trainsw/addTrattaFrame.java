@@ -111,8 +111,8 @@ private List<Percorso> listper2;
         
         this.dispose();
         
-        Integer id_stP = new Integer(txt_idstapTratta.getText());
-        Integer id_stA = new Integer(txt_idStaATratta.getText());
+        String id_stP = txt_idstapTratta.getText();
+        String id_stA = txt_idStaATratta.getText();
         listper2 = trainSW.InserisciPartenzaArrivo(id_stP, id_stA);
         
         //Prendi i percorsi da qui

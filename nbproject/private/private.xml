@@ -3,14 +3,34 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/AllInclusivePromo.java</file>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/POS.java</file>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/Promozioneframe.java</file>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/Promozione.java</file>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/PromoSoglia.java</file>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/GUI.java</file>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/PromoStandard.java</file>
-            <file>file:/C:/Users/Luciano%20Limina/Documents/Ingegneria%20del%20Software/Java/TrainSW/src/trainsw/Tessera.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/test/trainsw/FerroviaTest.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Promozioneframe.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/test/trainsw/PercorsoTest.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/GUI.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/AddTipologiaTrenoFrame.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/insOrarioFrame.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Abbonamento.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Deposito.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Ferrovia.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/TipoAbbonamento.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/TipoTreno.hbm.xml</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/POS.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Tratta.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/test/trainsw/AbbonamentoTest.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Percorso.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/test/trainsw/TrattaTest.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Promozione.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/TrainSW.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/test/trainsw/BigliettoTest.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Biglietto.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/AllInclusivePromo.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Deposito.hbm.xml</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/NewHibernateUtil.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/PromoSoglia.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/test/trainsw/POSTest.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/test/trainsw/DepositoTest.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/TipoTreno.java</file>
+            <file>file:/C:/Users/roberto/Documents/NetBeansProjects/TrainSW/TrainSW/src/trainsw/Stazione.java</file>
         </group>
     </open-files>
 </project-private>

@@ -282,7 +282,7 @@ Treno treno = new Treno();
              @Override
              public void actionPerformed(ActionEvent e) {
                  gst3.dispose();
-                 Integer id_st = new Integer(txt_idSt2.getText());
+                 String id_st = txt_idSt2.getText();
                  trainSW.InserisciNelDeposito(id_st, treno);
              }
          });

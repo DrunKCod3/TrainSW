@@ -70,7 +70,7 @@ public class TrainSW {
      * **********************************
      * UC2 Gestisci Deposito * ***********************************
      */
-     public Deposito inserisciDeposito(int id_dep,int id_staz,int num_posti){
+     public Deposito inserisciDeposito(int id_dep,String id_staz,int num_posti){
        Deposito dp=ferrovia.inserisciDeposito(id_dep, id_staz, num_posti);
          return dp;
      }
@@ -82,7 +82,7 @@ public class TrainSW {
      * UC3 Gestisci Collegamento * ***********************************
      */ 
      
-     public Collegamento inserisciCollegamento(int id_collegamento,int id_staA,int id_staB,int distanza){
+     public Collegamento inserisciCollegamento(int id_collegamento,String id_staA,String id_staB,int distanza){
            Collegamento col=ferrovia.InserisciCollegamento(id_collegamento, id_staA, id_staB, distanza);
            return col;
      }
@@ -109,7 +109,7 @@ public class TrainSW {
      public void confermaTreno(){
          ferrovia.confermaTreno();
      }
-     public void InserisciNelDeposito(int id_st,Treno tr){
+     public void InserisciNelDeposito(String id_st,Treno tr){
          ferrovia.InserisciNelDeposito(id_st, tr);
      }
        /**
@@ -119,7 +119,7 @@ public class TrainSW {
      public void GestisciPercorso(){
          ferrovia.creaPercorso();
      }
-    public List<Fermata> InserisciStazioni(int id_staA,int id_staB){
+    public List<Fermata> InserisciStazioni(String id_staA,String id_staB){
        
       List<Fermata> fermate  =ferrovia.InserisciStazione(id_staA, id_staB);
       return fermate;
@@ -136,7 +136,7 @@ public class TrainSW {
      * **********************************
      * UC6 Gestisci Tratta * ***********************************
      */ 
-    public List<Percorso> InserisciPartenzaArrivo(int idstaA,int idstaB){
+    public List<Percorso> InserisciPartenzaArrivo(String idstaA,String idstaB){
        List<Percorso> percorsi= ferrovia.findPercorso(idstaA, idstaB);
        return percorsi;
     }
@@ -164,7 +164,7 @@ public class TrainSW {
     public void gestisciSoloAndata(){
         pos.creaBiglietto();
     }
-    public List<Tratta> inserisciStazioneArrivo(int id_sta_par,int id_sta_arr){
+    public List<Tratta> inserisciStazioneArrivo(String id_sta_par,String id_sta_arr){
         pos.inserisciStazioneArrivo(id_sta_par, id_sta_arr);
      List<Tratta> tratte=  ferrovia.InserisciStazioneArrivo(id_sta_par, id_sta_arr);
           return tratte;
@@ -187,7 +187,7 @@ public class TrainSW {
       this.cliente_corrente = cliente;
 //  this.cliente_corrente=new Cliente(nome, cognome, cf, data_n, sesso);
   }
-   public void InserisciStazioniAbbonamento(int id_staz_p,int id_staz_a){
+   public void InserisciStazioniAbbonamento(String id_staz_p,String id_staz_a){
        int distanza=0;
        ferrovia.getDistanza(id_staz_p, id_staz_a);
        pos.creaAbbonamento(id_staz_p, id_staz_a, distanza, cliente_corrente);
