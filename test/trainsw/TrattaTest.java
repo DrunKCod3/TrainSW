@@ -5,8 +5,14 @@
  */
 package trainsw;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -47,14 +53,28 @@ public class TrattaTest {
         assertEquals(prova, fermata.getOrario());
     }
  @Test
-    public void testqualcosa(){
-        Session session = NewHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        TipoTreno tt=(TipoTreno) session.createQuery("From TipoTreno").list().get(0);
-
-        session.getTransaction().commit();
-        session.close();
-  
+    public void testricercaFermata(){
+        Tratta tratta=new Tratta();
+        tratta.addFermata(new Fermata(1, 0,1,new Stazione(1, 2, "Catania", "catania_centrale")));
+        tratta.addFermata(new Fermata(2, 30,2,new Stazione(2, 2, "Catania", "catania_centrale")));
+        tratta.addFermata(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
+       DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ITALIAN);
+      Date data4=null;
+        try {
+        Date data1 = format.parse("Maggio 2, 2017");
+        Date data2 = format.parse("Maggio 3, 2017");
+        Date data3 = format.parse("Maggio 4, 2017");
+        data4 = format.parse("Maggio 4, 2018");
+        tratta.getFermate().get(0).setOrario(data1);
+        tratta.getFermate().get(1).setOrario(data2);
+        tratta.getFermate().get(2).setOrario(data3);
+        } catch (ParseException ex) {
+          
+        }
+       assertFalse("è stata trovata una fermata anche se l'orario è passato", tratta.ricercaFermata(1));
+       tratta.addFermata(new Fermata(3, 49,4,new Stazione(4, 2, "Catania", "catania_centrale")));
+        tratta.getFermate().get(3).setOrario(data4);
         
+       assertTrue("non è stata trovata una fermata",tratta.ricercaFermata(4)); 
     }
 }

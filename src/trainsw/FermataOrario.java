@@ -22,6 +22,12 @@ public class FermataOrario {
 
     }
 
+    public FermataOrario(int id, Date orario, Fermata fermata) {
+        this.id = id;
+        this.orario = orario;
+        this.fermata = fermata;
+    }
+
     public Date getOrario() {
         return orario;
     }

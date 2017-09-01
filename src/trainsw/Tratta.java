@@ -151,13 +151,12 @@ public class Tratta {
  
             for (FermataOrario fermata : getFermate()) {
                 
-                if (fermata.getFermata().getId_fer() == id_sta_a && fermata.getOrario().getTime() > System.currentTimeMillis()) {
-                 System.out.println("sono la tratta aggiunta"+fermata.getOrario().toString());
+                if (fermata.getFermata().getStazione().getId_stazione() == id_sta_a && fermata.getOrario().getTime() > System.currentTimeMillis()) {
+              
                     return true;
                 }
             }
-      
-//session.close();
+ ;
         return false;
     }
 
