@@ -68,6 +68,11 @@ public class insOrarioFrame extends javax.swing.JFrame {
         });
 
         annulla_orarioButton.setText("Annulla");
+        annulla_orarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annulla_orarioButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -265,6 +270,11 @@ tabfram1.setVisible(true);
         
         
     }//GEN-LAST:event_next_orarioTrButtonActionPerformed
+
+    private void annulla_orarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annulla_orarioButtonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_annulla_orarioButtonActionPerformed
 
 
 /**

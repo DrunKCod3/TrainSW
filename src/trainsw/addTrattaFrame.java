@@ -62,6 +62,11 @@ private List<Percorso> listper2;
         });
 
         back_buttonTratta.setText("Annulla");
+        back_buttonTratta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                back_buttonTrattaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -189,6 +194,11 @@ nextButton.addActionListener(new ActionListener() {
 
 
     }//GEN-LAST:event_next_buttonTrattaActionPerformed
+
+    private void back_buttonTrattaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back_buttonTrattaActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_back_buttonTrattaActionPerformed
 
     /**
      * @param args the command line arguments

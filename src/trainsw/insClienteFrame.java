@@ -80,6 +80,11 @@ public class insClienteFrame extends javax.swing.JFrame {
         jLabel2.setText("Nome");
 
         annullaaddClient_button.setText("Annulla");
+        annullaaddClient_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                annullaaddClient_buttonActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Cognome");
 
@@ -205,6 +210,11 @@ JLabel ClienteLab = new JLabel();
        
 
     }//GEN-LAST:event_nextaddclient_buttonActionPerformed
+
+    private void annullaaddClient_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_annullaaddClient_buttonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_annullaaddClient_buttonActionPerformed
 
     /**
      * @param args the command line arguments

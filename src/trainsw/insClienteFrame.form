@@ -147,6 +147,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Annulla"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="annullaaddClient_buttonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
