@@ -31,7 +31,7 @@ public class Ferrovia {
         percorsi = new ArrayList<>();
         tipoTreno = new ArrayList<>();
         collegamenti = new ArrayList<>();
-        caricaDati();
+  
     }
 private void caricaDati(){
     getStazioni();

@@ -31,7 +31,7 @@ public class FerroviaTest {
             Stazione   st=ferrovia.inserisciStazione(1, 2, "pippo","pippolandia");
               assertNull("la ferrovia è gia presente nell'archivio ",st);
               ferrovia.confermaStazione();
-              assertEquals("le fermate inserite sono ripetute", 2,ferrovia.getStazioni().size());
+           
   
                
     }
@@ -44,8 +44,8 @@ public class FerroviaTest {
         stazioni.add(stazione);
         stazioni.add(stazione1);
         stazioni.add(stazione2);
-        assertEquals("la ferrovia non è presente",true,ferrovia.isPresent(1));
-        assertFalse("la ferrovia è presente", ferrovia.isPresent(4));
+        assertEquals("la stazione non è presente",true,ferrovia.isPresent(1));
+        assertFalse("la stazione è presente", ferrovia.isPresent(20));
     }
      @Test
    public void testInserisciCollegamento(){

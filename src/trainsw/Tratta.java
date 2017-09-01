@@ -49,7 +49,7 @@ public class Tratta {
             if(fermata.getFermata().getId_fer()==id_sta)
                 distanza=fermata.getDistanzaParziale();
         }
-        session.getTransaction().commit();
+        
         session.close();
         return distanza;
     } 

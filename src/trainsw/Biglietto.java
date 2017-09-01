@@ -90,7 +90,7 @@ public class Biglietto {
         prezzo+= tratta.getTreno().getTt().getPrezzo_prima();
         else    
         prezzo+=tratta.getTreno().getTt().getPrezzo_seconda();
-        session.getTransaction().commit();
+        
         session.close();
     }
     

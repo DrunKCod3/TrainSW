@@ -39,9 +39,9 @@ public class PercorsoTest {
   @Test 
   public void testricercaFermata(){
         Percorso percorso = new Percorso(4, 1, 3);
-        percorso.addFermate(new Fermata(1, 0, 1, new Stazione(1, 2, "pippo", "pippolandia")));
-         percorso.addFermate(new Fermata(2, 0, 1, new Stazione(2, 2, "pippo", "pippolandia")));
-          percorso.addFermate(new Fermata(3, 0, 1, new Stazione(3, 2, "pippo", "pippolandia")));
+        percorso.addFermate(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
+         percorso.addFermate(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
+          percorso.addFermate(new Fermata(3, 49,3,new Stazione(3, 2, "Catania", "catania_centrale")));
          assertTrue("la fermata non è stata trovata",  percorso.RicercaFermata(1));
          assertFalse("la fermata è stata trovata ",percorso.RicercaFermata(4));
   }

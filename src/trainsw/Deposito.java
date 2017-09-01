@@ -15,7 +15,7 @@ public class Deposito implements java.io.Serializable {
     private Integer id_stazione;
     private Integer numPosti;
     private Stazione stazione;
-    private List<Treno> treni;
+    private List<Treno> treni=new LinkedList<>();
 
     public Deposito() {
     }
@@ -82,7 +82,7 @@ public class Deposito implements java.io.Serializable {
         treni.add(tr);
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
-        session.update(tr);
+        session.saveOrUpdate(tr);
         session.getTransaction().commit();
         session.close();
      }

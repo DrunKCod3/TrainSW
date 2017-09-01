@@ -22,6 +22,12 @@
            <property name="velocita" type="java.lang.Double">
             <column name="velocita"/>
         </property>
+          <property name="prezzo_prima" type="java.lang.Double">
+            <column name="prezzo_prima"/>
+        </property>
+          <property name="prezzo_seconda" type="java.lang.Double">
+            <column name="prezzo_seconda"/>
+        </property>
           <bag name="treni" table="tipotreno" inverse="true" lazy="false" fetch="join">  
             <key column="id_tt"></key>  
             <one-to-many class="trainsw.Treno" />  

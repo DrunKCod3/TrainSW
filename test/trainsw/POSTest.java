@@ -19,7 +19,7 @@ public class POSTest {
 
     @Test
     public void testIsFull() {
-        Deposito dp= new Deposito(Integer.SIZE, Integer.MIN_VALUE, Integer.SIZE);
+        
     }
     
 }
