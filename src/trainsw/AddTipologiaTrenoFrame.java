@@ -20,7 +20,7 @@ import javax.swing.JTextField;
  */
 public class AddTipologiaTrenoFrame extends javax.swing.JFrame {
 TrainSW trainSW = TrainSW.getIstanza();
-Treno treno;
+Treno treno = new Treno();
     /**
      * Creates new form addTrenoFrame
      */
@@ -183,31 +183,28 @@ Treno treno;
      double prezzo1c = new Double(txt_prezzo1c.getText());
      double prezzo2c = new Double(prezzo_2c.getText());
      
-     TipoTreno tt;
+     TipoTreno tt = new TipoTreno();
      tt  = trainSW.InserisciTipologiaTreno(id_tt, txt_nomeTipo.getText(), post_let, np2c, np1c, velocita, prezzo1c, prezzo2c);
        
-       final JFrame confFrame = new JFrame("Visualizza Dati");
+       final JFrame confFrame = new JFrame("Conferma Tipologia Treno");
       JPanel pan1 = new JPanel(new FlowLayout());
-      JButton confButton = new JButton("Conferma");
+      JButton confButtonTipo = new JButton("Conferma Tipo");
     JLabel oblab = new JLabel(tt.toString());
         pan1.add(oblab);
-      pan1.add(confButton);
+      pan1.add(confButtonTipo);
       confFrame.add(pan1);
       confFrame.setVisible(true);
       confFrame.setSize(500, 100);        
      
       
       
-      confButton.addActionListener(new ActionListener() {
+      confButtonTipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 trainSW.confermaTipologiaTreno();
                confFrame.dispose();
-            }
-        });
-     
-     
-        final JFrame gst = new JFrame("Inserisci Treno");
+               
+               final JFrame gst = new JFrame("Inserisci Treno");
     gst.setVisible(true);
     gst.setSize(100, 200);
     JPanel pan = new JPanel(new FlowLayout());
@@ -231,101 +228,85 @@ Treno treno;
      nextAddT.addActionListener(new ActionListener() {
      @Override
      public void actionPerformed(ActionEvent e) {
+         Integer id_tS = new Integer(txt_idT.getText());
          
+        treno = trainSW.InserisciTreno(id_tS);
+     
          
-         gst.dispose();
+         final JFrame confT = new JFrame("Conferma Treno");
+         JPanel panCnT = new JPanel(new FlowLayout());
+         JLabel conTLab = new JLabel(treno.toString());
+         JButton confTbutton = new JButton("Conferma Treno");
+         panCnT.add(conTLab);
+         panCnT.add(confTbutton);
+         confT.add(panCnT);
          
+         confT.setSize(500, 150);
+         confT.setVisible(true);
          
-         
-         
-         final JFrame gst3 = new JFrame("Inserisci Treno nel Deposito");
+         confTbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                
+               trainSW.confermaTreno();
+               confT.dispose();
+               /* Inserisci Nel deposito */
+   
+               final JFrame gst3 = new JFrame("Inserisci Treno nel Deposito");
+    JButton nextIDST = new JButton("Fine");
+    JButton backIDST = new JButton("Annulla");
+    
     gst3.setVisible(true);
     gst3.setSize(60, 170);
     JPanel pan3 = new JPanel(new FlowLayout());
     pan3.setVisible(true);
   
-    JLabel insIdT = new JLabel("Inserisci id Stazione");
+    JLabel idST= new JLabel("Inserisci id Stazione");
     final JTextField txt_idSt2 = new JTextField(2);
-   
-  
-   
-    
-    JButton insTDep = new JButton("Fine");
-    JButton backAddT = new JButton("Annulla");
-    
-
     gst3.add(pan3);
-      pan3.add(insIdT);
+      pan3.add(idST);
      pan3.add(txt_idSt2);
      
-     pan3.add(insTDep);
-     pan3.add(backAddT);
+     pan3.add(nextIDST);
+     pan3.add(backIDST);
          
-     backAddT.addActionListener(new ActionListener() {
+       backIDST.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
                  gst3.dispose();
              }
          });
      
-     insTDep.addActionListener(new ActionListener() {
+     nextIDST.addActionListener(new ActionListener() {
              @Override
              public void actionPerformed(ActionEvent e) {
+                 gst3.dispose();
                  Integer id_st = new Integer(txt_idSt2.getText());
                  trainSW.InserisciNelDeposito(id_st, treno);
              }
          });
      
-     nextAddT.addActionListener(new ActionListener() {
-             @Override
-             public void actionPerformed(ActionEvent e) {
-                 Integer id_t = new Integer(txt_idT.getText());
-                 
-                  treno = trainSW.InserisciTreno(id_t);
-                 
-                 
-                 
-                  final JFrame confFrame = new JFrame("Visualizza Dati");
-      JPanel pan1 = new JPanel(new FlowLayout());
-      JButton confButton = new JButton("Conferma");
-    JLabel oblab = new JLabel(treno.toString());
-        pan1.add(oblab);
-      pan1.add(confButton);
-      confFrame.add(pan1);
-      confFrame.setVisible(true);
-      confFrame.setSize(500, 100);        
-     
-      
-      
-      confButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                trainSW.confermaTreno();
-               confFrame.dispose();
-               
-               
-               
-               
-               
-               
-               
-               
-               
+    
             }
         });
-                 
-                 //End code here
-               
-             }
-         });
-     
-     
+         
+         
+            }
+        });
+
+     backAddT.addActionListener( new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        
+                        gst.dispose();
+                    }
+                });
      
          
      }
  });
     
-     this.dispose();
      
     }//GEN-LAST:event_addTipoTreno_buttonActionPerformed
 

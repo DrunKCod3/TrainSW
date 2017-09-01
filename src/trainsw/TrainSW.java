@@ -20,8 +20,8 @@ public class TrainSW {
   private POS pos;
   private Ferrovia ferrovia;
   private Cliente cliente_corrente = new Cliente();
-  private List<Cliente> clienti_registrati;
-  private List<Tessera> tessere_registrate;
+  private List<Cliente> clienti_registrati = new ArrayList<Cliente>();
+  private List<Tessera> tessere_registrate = new ArrayList<Tessera>();
   private Tessera tessera_corrente;
   private static TrainSW singleton;
        
@@ -207,17 +207,20 @@ public class TrainSW {
    
          /**
      * **********************************
-     * UC9 Gestisci Tessera* ***********************************
+     * UC9 Gestisci Tessera* 
+     ***********************************
     
      */ 
-   public void InserisciCliente(String nome,String cognome,String cf,Date data_n,char sesso){
+   public Tessera InserisciCliente(String nome,String cognome,String cf,Date data_n,char sesso){
        if(!isPresentCliente(cf)) {
            cliente_corrente=new Cliente(nome, cognome, cf, data_n, sesso);
            Date data_rilascio = new Date();
             Date data_scadenza=new Date();
            data_scadenza.setTime(data_rilascio.getTime()+(30*24*60*60*1000));
            tessera_corrente=new Tessera(data_rilascio, data_scadenza, cliente_corrente);
+           return tessera_corrente;
        }
+       return null;
    }
    
    
@@ -232,7 +235,8 @@ public class TrainSW {
    
         /**
      * **********************************
-     * UC10 Gestisci Acquisto con tessera* ***********************************
+     * UC10 Gestisci Acquisto con tessera* 
+      ***********************************
     
      */  
    

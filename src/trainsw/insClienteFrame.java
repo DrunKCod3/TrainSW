@@ -61,6 +61,7 @@ public class insClienteFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        txt_datanascliente.setToolTipText("gg mm aaaa");
         txt_datanascliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_datanasclienteActionPerformed(evt);
@@ -172,26 +173,29 @@ public class insClienteFrame extends javax.swing.JFrame {
 
     private void nextaddclient_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextaddclient_buttonActionPerformed
         // TODO add your handling code here:
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("dd mmmm yyyy", Locale.ITALIAN);
         Date anno = null;
         try {
             anno = format.parse(txt_datanascliente.getText());
         } catch (ParseException ex) {
             Logger.getLogger(insOrarioFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        trainSW.InserisciCliente(txt_namecliente.getText(), txt_surnamecliente.getText(), txt_codfiscliente.getText(), anno, txt_sexcliente.getText().charAt(0));
+      //  System.out.println(txt_namecliente.getText() + txt_surnamecliente.getText() + txt_codfiscliente.getText()+ anno.toString() + txt_sexcliente.getText().charAt(0));
+     Tessera tessera =   trainSW.InserisciCliente(txt_namecliente.getText(), txt_surnamecliente.getText(), txt_codfiscliente.getText(), anno, txt_sexcliente.getText().charAt(0));
 
         this.dispose();
         
          final JFrame confCliente = new JFrame("Conferma Cliente");
       JPanel pan = new JPanel(new FlowLayout());
+    
       JButton confButton = new JButton("Conferma");
       
 // jlabel to string cliente... 
-JLabel ClienteLab = new JLabel();
+JLabel ClienteLab = new JLabel(tessera.toString());
         pan.add(ClienteLab);
-      pan.add(confButton);
+        
+        pan.add(confButton);
+     
       confCliente.add(pan);
       confCliente.setVisible(true);
       confCliente.setSize(500, 100);

@@ -9,7 +9,14 @@ public class Treno {
         private TipoTreno tt;
         private int id_dep;
         private Deposito deposito;
+
+    @Override
+    public String toString() {
+        return "Treno{" + "id_tr=" + id_tr + ", tt=" + tt + ", id_dep=" + id_dep +  '}';
+    }
        
+        
+        
     public Treno() {
     }
 

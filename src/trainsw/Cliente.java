@@ -25,6 +25,11 @@ public class Cliente {
     public Cliente() {
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" + "nome=" + nome + ", cognome=" + cognome + ", cf=" + cf + ", data_nascita=" + data_nascita + ", sesso=" + sesso + ", id_cliente=" + id_cliente + '}';
+    }
+
     
     
     public Cliente(String nome, String cognome, String cf, Date data_nascita, char sesso, int id_cliente) {

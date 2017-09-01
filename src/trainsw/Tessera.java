@@ -18,6 +18,22 @@ public class Tessera {
     private int punti;
     private Cliente cliente;
 
+    @Override
+    public String toString() {
+        return "Tessera{" + "id_tessera=" + id_tessera + ", d_rilascio=" + d_rilascio + ", d_scadenza=" + d_scadenza + ", punti=" + punti + '}' + 
+                 this.cliente.toString();
+    }
+
+    public Tessera(int id_tessera, Date d_rilascio, Date d_scadenza, int punti, Cliente cliente) {
+        this.id_tessera = id_tessera;
+        this.d_rilascio = d_rilascio;
+        this.d_scadenza = d_scadenza;
+        this.punti = punti;
+        this.cliente = cliente;
+    }
+
+
+    
     public Tessera(int id_tessera, Cliente cliente) {
         this.id_tessera = id_tessera;
         this.cliente = cliente;

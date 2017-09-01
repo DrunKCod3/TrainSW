@@ -376,13 +376,13 @@ public class GUI extends javax.swing.JFrame {
                 int index, i = 0;
                 index = listTrSA.size();
 
-                for( Tratta tratta:listTrSA){
-                    
+                for (Tratta tratta : listTrSA) {
+
                     dtm.addRow(new Object[]{
                         tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
 
                     });
-                    
+
                 }
 
                 frame.dispose();
@@ -695,7 +695,7 @@ public class GUI extends javax.swing.JFrame {
 
         Date data_n = new Date();
         Cliente cliente = new Cliente("Ajeje", "Brazorf", "AJJBRZF12JD34X", data_n, 'm');
-        tessera = new Tessera(1, cliente);
+        tessera = new Tessera(1, data_n, data_n, 0, cliente);
         trainSw.InserisciTessera(tessera);
 
         /**
@@ -704,7 +704,7 @@ public class GUI extends javax.swing.JFrame {
          * Acquisto Biglietto
          * ********************************************
          */
-        final JFrame frame = new JFrame();
+      final JFrame frame = new JFrame();
         JPanel pan = new JPanel();
         JLabel lab1 = new JLabel("Inserisci id stazioni");
         final JTextField txt_idStaPSA = new JTextField(2);
@@ -714,6 +714,7 @@ public class GUI extends javax.swing.JFrame {
         pan.add(txt_idStaPSA);
         pan.add(txt_idStaASA);
         pan.add(nextSA_button);
+        trainSw.gestisciSoloAndata();
         frame.add(pan);
         frame.setSize(100, 150);
         frame.setVisible(true);
@@ -742,13 +743,13 @@ public class GUI extends javax.swing.JFrame {
                 int index, i = 0;
                 index = listTrSA.size();
 
-                while (i <= index) {
-                    Tratta tratta = listTrSA.get(i);
+                for (Tratta tratta : listTrSA) {
+
                     dtm.addRow(new Object[]{
                         tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
 
                     });
-                    i = i + 1;
+
                 }
 
                 frame.dispose();
@@ -795,9 +796,9 @@ public class GUI extends javax.swing.JFrame {
                         confButtonBiglietto.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-
                                 trainSw.confermaBigliettoTessera();
                                 confBiglietto.dispose();
+                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                             }
                         });
 
