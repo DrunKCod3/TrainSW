@@ -19,7 +19,7 @@ import org.hibernate.Session;
 public class TrainSW {
   private POS pos;
   private Ferrovia ferrovia;
-  private Cliente cliente_corrente;
+  private Cliente cliente_corrente = new Cliente();
   private List<Cliente> clienti_registrati;
   private List<Tessera> tessere_registrate;
   private Tessera tessera_corrente;
@@ -181,7 +181,9 @@ public class TrainSW {
     
      */ 
   public void InserisciDatiAnagrafici(String nome,String cognome,String cf,Date data_n,char sesso){
-      this.cliente_corrente=new Cliente(nome, cognome, cf, data_n, sesso);
+      Cliente cliente = new Cliente(nome,cognome,cf,data_n,sesso);
+      this.cliente_corrente = cliente;
+//  this.cliente_corrente=new Cliente(nome, cognome, cf, data_n, sesso);
   }
    public void InserisciStazioniAbbonamento(int id_staz_p,int id_staz_a){
        int distanza=0;

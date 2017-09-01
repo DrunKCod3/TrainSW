@@ -65,6 +65,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_Data">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="gg mm aaaa"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="next_orarioTrButton">
       <Properties>
@@ -83,6 +86,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txt_Orario">
+      <Properties>
+        <Property name="toolTipText" type="java.lang.String" value="hh:ss"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

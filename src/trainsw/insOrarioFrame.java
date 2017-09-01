@@ -60,6 +60,8 @@ public class insOrarioFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Inserisci Data e Orario");
 
+        txt_Data.setToolTipText("gg mm aaaa");
+
         next_orarioTrButton.setText("Avanti");
         next_orarioTrButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +75,8 @@ public class insOrarioFrame extends javax.swing.JFrame {
                 annulla_orarioButtonActionPerformed(evt);
             }
         });
+
+        txt_Orario.setToolTipText("hh:ss");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,14 +117,14 @@ public class insOrarioFrame extends javax.swing.JFrame {
      
         
 String str = txt_Orario.getText();
- DateFormat formatter = new SimpleDateFormat("hh:mm:ss");
+ DateFormat formatter = new SimpleDateFormat("hh:mm");
         try {
             Date ora = formatter.parse(str);
         } catch (ParseException ex) {
             Logger.getLogger(insOrarioFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+DateFormat format = new SimpleDateFormat("dd mm yyyy", Locale.ITALIAN);
 Date anno = null;
         try {
             anno = format.parse(txt_Data.getText());

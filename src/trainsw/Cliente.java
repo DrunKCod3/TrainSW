@@ -11,6 +11,9 @@ import java.util.Date;
  *
  * @author Andrea
  */
+
+
+
 public class Cliente {
     private String nome;
     private String cognome;
@@ -19,6 +22,11 @@ public class Cliente {
     private char sesso;
     private int id_cliente;
 
+    public Cliente() {
+    }
+
+    
+    
     public Cliente(String nome, String cognome, String cf, Date data_nascita, char sesso, int id_cliente) {
         this.nome = nome;
         this.cognome = cognome;

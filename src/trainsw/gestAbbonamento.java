@@ -25,7 +25,7 @@ import javax.swing.JTextField;
  * @author Luciano Limina
  */
 public class gestAbbonamento extends javax.swing.JFrame {
-private TrainSW trainSW;
+private TrainSW trainSW = TrainSW.getIstanza();
     /**
      * Creates new form gestAbbonamento
      */
@@ -71,6 +71,7 @@ private TrainSW trainSW;
 
         jLabel6.setText("sesso");
 
+        txt_datanascliente.setToolTipText("gg mm aaaa");
         txt_datanascliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_datanasclienteActionPerformed(evt);
@@ -102,7 +103,7 @@ private TrainSW trainSW;
                         .addComponent(nextaddclient_button)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(annullaaddClient_button)
-                        .addGap(59, 59, 59))
+                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -168,16 +169,18 @@ private TrainSW trainSW;
     }//GEN-LAST:event_txt_datanasclienteActionPerformed
 
     private void nextaddclient_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextaddclient_buttonActionPerformed
-        // TODO add your handling code here:
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-Date anno = null;
+       
+        DateFormat format = new SimpleDateFormat("dddd mm yyyy", Locale.ITALIAN);
+        Date anno = null;
         try {
             anno = format.parse(txt_datanascliente.getText());
              
         } catch (ParseException ex) {
             Logger.getLogger(insOrarioFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-       trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.getText(), txt_codfiscliente.getText(), anno, txt_sexcliente.getText().charAt(0));
+     //   System.out.println(txt_namecliente.getText()+ txt_surnamecliente.getText() + txt_codfiscliente.getText()+ anno.toString()+ txt_sexcliente.getText().charAt(0));
+
+trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.getText(), txt_codfiscliente.getText(), anno, txt_sexcliente.getText().charAt(0));
     
       
         this.dispose();
@@ -215,7 +218,6 @@ Date anno = null;
                 insTipoAbbonamentoFrame inAbbonamentoFrame = new insTipoAbbonamentoFrame();
                 inAbbonamentoFrame.setVisible(true);
                 insStazAbb.dispose();
-                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
         
