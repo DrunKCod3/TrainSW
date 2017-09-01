@@ -693,7 +693,7 @@ public class GUI extends javax.swing.JFrame {
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
         Date data_n = new Date();
-        Cliente cliente = new Cliente("Giovanni", "Arribattuto", "GVNARB12AXDE", data_n, 'm');
+        Cliente cliente = new Cliente("Ajeje", "Brazorf", "AJJBRZF12JD34X", data_n, 'm');
         tessera = new Tessera(1, cliente);
         trainSw.InserisciTessera(tessera);
 
