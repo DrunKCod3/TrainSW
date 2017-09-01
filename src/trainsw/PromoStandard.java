@@ -13,23 +13,31 @@ import javax.swing.JOptionPane;
  * @author Luciano Limina
  */
 public class PromoStandard extends Promozione {
-    private int punti;
+    
+    private double scontostandard;
 
-    public PromoStandard(String nome, int punti) {
-        this.nome= nome;
-        this.punti = punti;
+    public PromoStandard(String nome, int sogliapunti, double scontostandard) {
+        this.nome = nome;
+        this.sogliapunti = sogliapunti;
+        this.scontostandard = scontostandard;
     }
 
     @Override
     public double calcolaPromozione(double prezzo, int punti) {
-        if(punti >= 100)
+        
+        if(punti >= sogliapunti)
         {
-        prezzo = prezzo - ((prezzo * 5)/100);
+        prezzo = prezzo - (prezzo * scontostandard);
         return prezzo;
         } else {
              JOptionPane.showMessageDialog(new JFrame(), "Saldo punti non sufficiente");
              return prezzo;
         }
     }
+    
+    @Override
+    public int getSogliaPunti() {
+                return this.sogliapunti;
+        }
     
 }

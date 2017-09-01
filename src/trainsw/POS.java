@@ -138,8 +138,8 @@ public class POS {
 		pro.add(PromoSoglia);
 		*/
       
-      pstandard = new PromoStandard("Standard", tessera_corrente.getPunti());
-      psoglia = new PromoSoglia("Soglia", tessera_corrente.getPunti());
+   //   pstandard = new PromoStandard("Standard", tessera_corrente.getPunti());
+    //  psoglia = new PromoSoglia("Soglia", tessera_corrente.getPunti());
       double prezzo_scontato=biglietto_corrente.getPrezzo();
       switch(promozione.nome){
           case "PromoSoglia":

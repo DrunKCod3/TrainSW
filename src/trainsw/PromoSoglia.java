@@ -14,19 +14,22 @@ import javax.swing.JOptionPane;
  * @author Luciano Limina
  */
 public class PromoSoglia extends Promozione{
-    private int punti;
-    public PromoSoglia(String nome, int punti) {
+    private double sogliaprezzo;
+    private double scontosoglia;
+    
+    public PromoSoglia(String nome, int sogliapunti, double sogliaprezzo, double scontosoglia) {
         this.nome= nome;
-        this.punti = punti;
+        this.sogliapunti = sogliapunti;
+        this.sogliaprezzo = sogliaprezzo;
+        this.scontosoglia = scontosoglia;
     }
 
     @Override
     public double calcolaPromozione(double prezzo, int punti) {
-       if(punti >= 250)
+       if(punti >= sogliapunti)
        {
-        
-        if(prezzo>60){
-            prezzo = prezzo - (prezzo * 40)/100 ;
+        if(prezzo > sogliaprezzo){
+            prezzo = prezzo - (prezzo * scontosoglia);
             return prezzo;
         }
         }
@@ -36,5 +39,11 @@ public class PromoSoglia extends Promozione{
        }
         return prezzo;
     }
+    
+    @Override
+    public int getSogliaPunti() {
+        return this.sogliapunti;
+    }
+
     
 }

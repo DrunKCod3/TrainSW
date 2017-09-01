@@ -3,28 +3,31 @@ package trainsw;
 public abstract class Promozione {
 	
 	String nome;
-        int punti;
+        int sogliapunti;
 
 	public abstract double calcolaPromozione(double prezzo, int punti);
-/*        public String getNome() {
+
+        public String getNome() {
 		return nome;
 	}
 	
-        public int getPunti() {
-        return punti;
-    }
+        public int getSogliaPunti() {
+                return sogliapunti;
+        }
 	
 	public Promozione getPromozione(String nome)	{
 		return null;
 	}
 
-    public Promozione(String nome, int punti) {
-        this.nome = nome;
-        this.punti = punti;
-    }
-
-    public void setPunti(int punti) {
-        this.punti = punti;
-    }
-*/	
+        public void setSogliaPunti(int sogliapunti) {
+                this.sogliapunti = sogliapunti;
+        }
+       	public void addPromotion(Promozione p)	{
+		
+	}
+	
+	public void remove(Promozione p){
+		
+	}
+	
 }
