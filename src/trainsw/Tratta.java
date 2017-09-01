@@ -148,18 +148,16 @@ public class Tratta {
     }
 
     public boolean ricercaFermata(int id_sta_a) {
-            Session session = NewHibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
-        
-        session.update(this);
+ 
             for (FermataOrario fermata : getFermate()) {
+                
                 if (fermata.getFermata().getId_fer() == id_sta_a && fermata.getOrario().getTime() > System.currentTimeMillis()) {
-                    session.close();
+                 System.out.println("sono la tratta aggiunta"+fermata.getOrario().toString());
                     return true;
                 }
             }
       
-session.close();
+//session.close();
         return false;
     }
 

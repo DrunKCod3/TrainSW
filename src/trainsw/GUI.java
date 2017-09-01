@@ -302,6 +302,7 @@ public class GUI extends javax.swing.JFrame {
         pan.add(txt_idStaPSA);
         pan.add(txt_idStaASA);
         pan.add(nextSA_button);
+        trainSw.gestisciSoloAndata();
         frame.add(pan);
         frame.setSize(100, 150);
         frame.setVisible(true);
@@ -330,13 +331,13 @@ public class GUI extends javax.swing.JFrame {
                 int index, i = 0;
                 index = listTrSA.size();
 
-                while (i <= index) {
-                    Tratta tratta = listTrSA.get(i);
+                for( Tratta tratta:listTrSA){
+                    
                     dtm.addRow(new Object[]{
                         tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
 
                     });
-                    i = i + 1;
+                    
                 }
 
                 frame.dispose();

@@ -6,6 +6,7 @@
 package trainsw;
 
 //import java.util.ArrayList;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -18,11 +19,11 @@ public class POS {
    
     private Biglietto biglietto_corrente;
     private Abbonamento abbonamento_corrente;
-    private List<Promozione> promozioni;
-    private List<TipoAbbonamento> tipiabbonamento;
+    private List<Promozione> promozioni=new ArrayList<>();
+    private List<TipoAbbonamento> tipiabbonamento=new ArrayList<>();
     private Tessera tessera_corrente;
-    private List<Biglietto> biglietti_venduti;
-    private List<Abbonamento> abbonamenti_venduti;
+    private List<Biglietto> biglietti_venduti=new ArrayList<>();
+    private List<Abbonamento> abbonamenti_venduti=new ArrayList<>();
     private PromoStandard pstandard;
     private PromoSoglia psoglia;
     private AllInclusivePromo pallinclusive;

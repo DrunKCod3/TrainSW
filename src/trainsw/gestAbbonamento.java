@@ -168,12 +168,13 @@ private TrainSW trainSW;
 Date anno = null;
         try {
             anno = format.parse(txt_datanascliente.getText());
+             
         } catch (ParseException ex) {
             Logger.getLogger(insOrarioFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.getText(), txt_codfiscliente.getText(), anno, txt_sexcliente.getText().charAt(0));
-        
+       trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.getText(), txt_codfiscliente.getText(), anno, txt_sexcliente.getText().charAt(0));
+    
+      
         this.dispose();
         
         

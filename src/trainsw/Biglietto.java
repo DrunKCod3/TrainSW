@@ -82,13 +82,16 @@ public class Biglietto {
         tratta=tr;
         this.distanza=tr.getDistanza(staz_arr)-tr.getDistanza(staz_par);
         this.classe=classe;
- 
+        Session session = NewHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        session.update(tr);
         prezzo=distanza*0.5;
         if(classe==1)
         prezzo+= tratta.getTreno().getTt().getPrezzo_prima();
         else    
         prezzo+=tratta.getTreno().getTt().getPrezzo_seconda();
-        
+        session.getTransaction().commit();
+        session.close();
     }
     
 }

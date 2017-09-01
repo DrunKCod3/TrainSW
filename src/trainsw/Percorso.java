@@ -183,6 +183,7 @@ public class Percorso {
         
         session.update(this);
         for (Fermata fermata : getFermate()) {
+          
             if (fermata.getStazione().getId_stazione() == id_sta) {
                   session.close();
                 return true;
@@ -194,16 +195,19 @@ public class Percorso {
     }
 
     public List<Tratta> RicercaTrattaOrario(int id_sta_par) {
-        List<Tratta> tratte = null;
+        List<Tratta> tratte = new ArrayList<>();
             Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
         session.update(this);
+       
         for (Tratta tratta : getTratte()) {
+          
             if (tratta.ricercaFermata(id_sta_par)) {
                 tratte.add(tratta);
             }
         }
+         System.out.println("sono la tratta aggiunta"+tratte.get(0).getId_tra());
         session.close();
         return tratte;
     }

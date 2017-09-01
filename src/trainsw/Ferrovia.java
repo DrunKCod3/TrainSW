@@ -365,12 +365,14 @@ private void caricaDati(){
     public List<Tratta> InserisciStazioneArrivo(int id_sta_par, int id_sta_arrivo) {
         List<Tratta> tratte = new ArrayList<>();
         List<Percorso> per=getPercorsi();
+       
         for (Percorso pr : per) {
+            System.out.println(pr.getId_per());
             if (pr.RicercaFermata(id_sta_par) && pr.RicercaFermata(id_sta_arrivo)) {
                 tratte.addAll(pr.RicercaTrattaOrario(id_sta_par));
             }
         }
-
+       
         return tratte;
     }
 
