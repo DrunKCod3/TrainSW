@@ -445,7 +445,8 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-      
+        insClienteFrame inClienteframe = new insClienteFrame();
+        inClienteframe.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void gestisciStActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciStActionPerformed
