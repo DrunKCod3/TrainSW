@@ -23,6 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 
 import javax.swing.JTextField;
 
@@ -42,12 +43,8 @@ public class GUI extends javax.swing.JFrame {
     List<Fermata> listSt = new ArrayList<Fermata>();
     List<Tratta> listTrSA = new ArrayList<Tratta>();
     List<Promozione> promoList = new ArrayList<Promozione>();
-    
+
     Tessera tessera;
-
-
-
-
 
     /**
      * Creates new form GUI
@@ -278,12 +275,11 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-
         viewDp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                  JFrame viewObj = new JFrame("Visualizza Depositi");
+
+                JFrame viewObj = new JFrame("Visualizza Depositi");
                 JPanel pan = new JPanel(new FlowLayout());
                 Ferrovia ferrovia = trainSw.getFerrovia();
                 DefaultListModel demod = new DefaultListModel();
@@ -296,33 +292,29 @@ public class GUI extends javax.swing.JFrame {
                 viewObj.setSize(500, 400);
                 viewObj.setVisible(true);
 
-                      Session session= new NewHibernateUtil().getSessionFactory().openSession();
-                      session.beginTransaction();
-                      
-                
+                Session session = new NewHibernateUtil().getSessionFactory().openSession();
+                session.beginTransaction();
+
                 for (Stazione stazione : ferrovia.getStazioni()) {
-                 stazione = (Stazione) session.load(Stazione.class, stazione.getId_stazione());
-                 
-                  
-                   
-                    if(stazione.getDeposito()!=null && lock==false) {
-                     
-                     lock = true;
-                    System.out.println(stazione.getDeposito().toString());
-                    demod.addElement(stazione.getDeposito().toString());
-                 }
-                    if(lock== false && stazione.getDeposito() == null) {
+                    stazione = (Stazione) session.load(Stazione.class, stazione.getId_stazione());
+
+                    if (stazione.getDeposito() != null && lock == false) {
+
                         lock = true;
-                     JOptionPane.showMessageDialog(new JFrame(), "Nessun Deposito presente", "Errore", JOptionPane.ERROR_MESSAGE);
+                        System.out.println(stazione.getDeposito().toString());
+                        demod.addElement(stazione.getDeposito().toString());
                     }
+                    if (lock == false && stazione.getDeposito() == null) {
+                        lock = true;
+                        JOptionPane.showMessageDialog(new JFrame(), "Nessun Deposito presente", "Errore", JOptionPane.ERROR_MESSAGE);
                     }
+                }
                 session.getTransaction().commit();
                 session.close();
             }
         });
-        
-        
-        
+
+
     }//GEN-LAST:event_gestisciDepActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -347,8 +339,6 @@ public class GUI extends javax.swing.JFrame {
         frame.add(pan);
         frame.setSize(250, 150);
         frame.setVisible(true);
-
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -454,16 +444,15 @@ public class GUI extends javax.swing.JFrame {
                 viewObj.setSize(300, 400);
                 viewObj.setVisible(true);
 
-                  Session session= new NewHibernateUtil().getSessionFactory().openSession();
-                      session.beginTransaction();
-                
-                
+                Session session = new NewHibernateUtil().getSessionFactory().openSession();
+                session.beginTransaction();
+
                 for (Collegamento collegamento : ferrovia.getCollegamenti()) {
                     demoList.addElement(collegamento.toString());
                     ;
 
                 }
-                 session.getTransaction().commit();
+                session.getTransaction().commit();
                 session.close();
             }
         });
@@ -506,8 +495,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
-        
-
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
@@ -521,117 +508,133 @@ public class GUI extends javax.swing.JFrame {
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-        Date data_n = new Date();
-        Cliente cliente = new Cliente("Ajeje", "Brazorf", "AJJBRZF12JD34X", data_n, 'm');
-        tessera = new Tessera(1, data_n, data_n, 0, cliente);
-        trainSw.InserisciTessera(tessera);
+        JFrame insTess = new JFrame("Inserimento Tessera");
+        JPanel panTess = new JPanel(new FlowLayout());
+        JLabel labtess = new JLabel("Inserisci id Tessera");
+        final JTextArea txt_tess = new JTextArea();
+        txt_tess.setColumns(3);
+        JButton buttonTess = new JButton("Esegui");
 
-        /**
-         * **********************************************
-         *
-         * Acquisto Biglietto
-         * ********************************************
-         */
-      final JFrame frame = new JFrame();
-        JPanel pan = new JPanel();
-        JLabel lab1 = new JLabel("Inserisci id stazioni");
-        final JTextField txt_idStaPSA = new JTextField(10);
-        final JTextField txt_idStaASA = new JTextField(10);
-        JButton nextSA_button = new JButton("Avanti");
-        pan.add(lab1);
-        pan.add(txt_idStaPSA);
-        pan.add(txt_idStaASA);
-        pan.add(nextSA_button);
-        trainSw.gestisciSoloAndata();
-        frame.add(pan);
-        frame.setSize(150, 200);
-        frame.setVisible(true);
+        panTess.add(labtess);
+        panTess.add(txt_tess);
+        panTess.add(buttonTess);
 
-        nextSA_button.addActionListener(new ActionListener() {
+        insTess.add(panTess);
+        insTess.setVisible(true);
+        insTess.setSize(200, 300);
+
+        buttonTess.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id_sta_PSA = txt_idStaPSA.getText();
-                String id_sta_ASA = txt_idStaASA.getText();
-                listTrSA = trainSw.inserisciStazioneArrivo(id_sta_PSA, id_sta_ASA);
+                Integer id_tessera;
+                id_tessera = new Integer(txt_tess.getText());
 
-                String[] columnNames = {"ID Tratta",
-                    "Data partenza",
-                    "Data arrivo",
-                    " Stazione partenza",
-                    "Stazione arrivo"
+                /**
+                 * **********************************************
+                 *
+                 * Acquisto Biglietto
+                 * ********************************************
+                 */
+                final JFrame frame = new JFrame();
+                JPanel pan = new JPanel();
+                JLabel lab1 = new JLabel("Inserisci id stazioni");
+                final JTextField txt_idStaPSA = new JTextField(10);
+                final JTextField txt_idStaASA = new JTextField(10);
+                JButton nextSA_button = new JButton("Avanti");
+                pan.add(lab1);
+                pan.add(txt_idStaPSA);
+                pan.add(txt_idStaASA);
+                pan.add(nextSA_button);
+                trainSw.gestisciSoloAndata();
+                frame.add(pan);
+                frame.setSize(150, 200);
+                frame.setVisible(true);
 
-                };
-
-                final JTable perTab = new JTable();
-                final DefaultTableModel dtm = new DefaultTableModel(0, 0);
-
-                dtm.setColumnIdentifiers(columnNames);
-                perTab.setModel(dtm);
-
-     
-
-                for (Tratta tratta : listTrSA) {
-
-                    dtm.addRow(new Object[]{
-                        tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
-
-                    });
-
-                }
-
-                frame.dispose();
-
-                final JFrame tabfram = new JFrame("Inserisci la classe e scegli la tratta");
-                tabfram.setSize(500, 200);
-
-                perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-                JButton nextSAButton = new JButton("Avanti");
-                JButton endButton = new JButton("Fine");
-                final JTextField txt_class = new JTextField(2);
-
-                JPanel panst = new JPanel(new FlowLayout());
-                panst.add(txt_class);
-                panst.add(perTab);
-                panst.add(nextSAButton);
-                panst.add(endButton);
-                tabfram.add(panst);
-                tabfram.setVisible(true);
-
-                nextSAButton.addActionListener(new ActionListener() {
+                nextSA_button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        String id_sta_PSA = txt_idStaPSA.getText();
+                        String id_sta_ASA = txt_idStaASA.getText();
+                        listTrSA = trainSw.inserisciStazioneArrivo(id_sta_PSA, id_sta_ASA);
 
-                        tabfram.dispose();
-                        Tratta trattasx;
-                        trattasx = listTrSA.get((int) perTab.getSelectedRow());
-                        int classe;
-                        classe = new Integer(txt_class.getText());
-                        Biglietto biglietto;
-                        biglietto = trainSw.scegliTratta(trattasx, classe);
+                        String[] columnNames = {"ID Tratta",
+                            "Data partenza",
+                            "Data arrivo",
+                            " Stazione partenza",
+                            "Stazione arrivo"
 
-                        final JFrame confBiglietto = new JFrame("Visualizza Biglietto");
-                        JPanel pan = new JPanel(new FlowLayout());
-                        JButton confButtonBiglietto = new JButton("Conferma");
-                        JLabel bigliettoLab = new JLabel(biglietto.toString());
-                        pan.add(bigliettoLab);
-                        pan.add(confButtonBiglietto);
-                        confBiglietto.add(pan);
-                        confBiglietto.setVisible(true);
-                        confBiglietto.setSize(500, 100);
+                        };
 
-                        confButtonBiglietto.addActionListener(new ActionListener() {
+                        final JTable perTab = new JTable();
+                        final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+
+                        dtm.setColumnIdentifiers(columnNames);
+                        perTab.setModel(dtm);
+
+                        for (Tratta tratta : listTrSA) {
+
+                            dtm.addRow(new Object[]{
+                                tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
+
+                            });
+
+                        }
+
+                        frame.dispose();
+
+                        final JFrame tabfram = new JFrame("Inserisci la classe e scegli la tratta");
+                        tabfram.setSize(500, 200);
+
+                        perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+                        JButton nextSAButton = new JButton("Avanti");
+                        JButton endButton = new JButton("Fine");
+                        final JTextField txt_class = new JTextField(2);
+
+                        JPanel panst = new JPanel(new FlowLayout());
+                        panst.add(txt_class);
+                        panst.add(perTab);
+                        panst.add(nextSAButton);
+                        panst.add(endButton);
+                        tabfram.add(panst);
+                        tabfram.setVisible(true);
+
+                        nextSAButton.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
-                                trainSw.confermaBigliettoTessera();
-                                confBiglietto.dispose();
-                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+                                tabfram.dispose();
+                                Tratta trattasx;
+                                trattasx = listTrSA.get((int) perTab.getSelectedRow());
+                                int classe;
+                                classe = new Integer(txt_class.getText());
+                                Biglietto biglietto;
+                                biglietto = trainSw.scegliTratta(trattasx, classe);
+
+                                final JFrame confBiglietto = new JFrame("Visualizza Biglietto");
+                                JPanel pan = new JPanel(new FlowLayout());
+                                JButton confButtonBiglietto = new JButton("Conferma");
+                                JLabel bigliettoLab = new JLabel(biglietto.toString());
+                                pan.add(bigliettoLab);
+                                pan.add(confButtonBiglietto);
+                                confBiglietto.add(pan);
+                                confBiglietto.setVisible(true);
+                                confBiglietto.setSize(500, 100);
+
+                                confButtonBiglietto.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        trainSw.confermaBigliettoTessera();
+                                        confBiglietto.dispose();
+                                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                                    }
+                                });
+
                             }
                         });
 
                     }
                 });
-
             }
         });
 
@@ -640,218 +643,221 @@ public class GUI extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        
-        /* Inserimento Cliente Fittizio per simulare inserimento tessera */
-        Date data_n = new Date();
-           Cliente cliente = new Cliente("Ajeje", "Brazorf", "JJBRZF23FXCVW", new Date(), 'm');
-     
-      Tessera  tessera = new Tessera(1, new Date(), new Date(), 10000, cliente);
-        trainSw.InserisciTessera(tessera);
-  
-          final JFrame frame = new JFrame("Acquista biglietto");
-         JLabel lab1 = new JLabel("Inserisci nome stazioni");
-         JPanel pan = new JPanel(new FlowLayout());
-        final JTextField txt_idStaPSA = new JTextField(10);
-        final JTextField txt_idStaASA = new JTextField(10);
-        JButton nextSA_button = new JButton("Avanti");
-        pan.add(lab1);
-        pan.add(txt_idStaPSA);
-        pan.add(txt_idStaASA);
-        pan.add(nextSA_button);
-        trainSw.gestisciSoloAndata();
-        frame.add(pan);
-        frame.setSize(250, 150);
-        frame.setVisible(true);
 
-        nextSA_button.addActionListener(new ActionListener() {
+        /* Inserimento Cliente Fittizio per simulare inserimento tessera */
+        JFrame insTess = new JFrame("Inserisci id tessera");
+        JPanel panTess = new JPanel(new FlowLayout());
+        JLabel labTess = new JLabel("Inserisci id tessera");
+        final JTextArea txtTess = new JTextArea();
+        txtTess.setColumns(3);
+        JButton buttonTess = new JButton("Esegui");
+
+        panTess.add(labTess);
+        panTess.add(txtTess);
+        panTess.add(buttonTess);
+
+        insTess.add(panTess);
+        insTess.setSize(200, 150);
+        insTess.setVisible(true);
+
+        buttonTess.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String id_sta_PSA = txt_idStaPSA.getText();
-                String id_sta_ASA = txt_idStaASA.getText();
-                listTrSA = trainSw.inserisciStazioneArrivo(id_sta_PSA, id_sta_ASA);
+                Tessera tex1 = null;
+                Integer id_tessera = new Integer(txtTess.getText());
+                for (Tessera tex : trainSw.getTessere_registrate()) {
+                    if (tex.getId_tessera() == id_tessera) {
+                        tex1 = tex;
+                    }
+                }
+                if (tex1 != null) {
+                    trainSw.InserisciTessera(tex1);
 
-                String[] columnNames = {"ID Tratta",
-                    "Data partenza",
-                    "Data arrivo",
-                    " Stazione partenza",
-                    "Stazione arrivo"
+                    final JFrame frame = new JFrame("Acquista biglietto");
+                    JLabel lab1 = new JLabel("Inserisci nome stazioni");
+                    JPanel pan = new JPanel(new FlowLayout());
+                    final JTextField txt_idStaPSA = new JTextField(10);
+                    final JTextField txt_idStaASA = new JTextField(10);
+                    JButton nextSA_button = new JButton("Avanti");
+                    pan.add(lab1);
+                    pan.add(txt_idStaPSA);
+                    pan.add(txt_idStaASA);
+                    pan.add(nextSA_button);
+                    trainSw.gestisciSoloAndata();
+                    frame.add(pan);
+                    frame.setSize(250, 150);
+                    frame.setVisible(true);
 
-                };
+                    nextSA_button.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            String id_sta_PSA = txt_idStaPSA.getText();
+                            String id_sta_ASA = txt_idStaASA.getText();
+                            listTrSA = trainSw.inserisciStazioneArrivo(id_sta_PSA, id_sta_ASA);
 
-                final JTable perTab = new JTable();
-                final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+                            String[] columnNames = {"ID Tratta",
+                                "Data partenza",
+                                "Data arrivo",
+                                " Stazione partenza",
+                                "Stazione arrivo"
 
-                dtm.setColumnIdentifiers(columnNames);
-                perTab.setModel(dtm);
+                            };
 
+                            final JTable perTab = new JTable();
+                            final DefaultTableModel dtm = new DefaultTableModel(0, 0);
 
+                            dtm.setColumnIdentifiers(columnNames);
+                            perTab.setModel(dtm);
 
-                for (Tratta tratta : listTrSA) {
+                            for (Tratta tratta : listTrSA) {
 
-                    dtm.addRow(new Object[]{
-                        tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
+                                dtm.addRow(new Object[]{
+                                    tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
 
+                                });
+
+                            }
+
+                            frame.dispose();
+
+                            final JFrame tabfram = new JFrame("Scegli la tratta e inserisci la classe desiderata");
+                            tabfram.setSize(600, 140);
+
+                            perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+                            JButton nextSAButton = new JButton("Avanti");
+                            JButton endButton = new JButton("Fine");
+                            final JTextField txt_class = new JTextField(2);
+                            txt_class.setName("classe");
+
+                            JPanel panst = new JPanel(new FlowLayout());
+                            panst.add(txt_class);
+                            panst.add(perTab);
+                            panst.add(nextSAButton);
+                            panst.add(endButton);
+                            tabfram.add(panst);
+                            tabfram.setVisible(true);
+
+                            nextSAButton.addActionListener(new ActionListener() {
+                                @Override
+                                public void actionPerformed(ActionEvent e) {
+
+                                    tabfram.dispose();
+                                    Tratta trattasx;
+                                    trattasx = listTrSA.get((int) perTab.getSelectedRow());
+                                    int classe;
+                                    classe = new Integer(txt_class.getText());
+                                    Biglietto biglietto;
+                                    biglietto = trainSw.scegliTratta(trattasx, classe);
+
+                                    final JFrame confBiglietto = new JFrame("Visualizza Biglietto");
+                                    JPanel pan = new JPanel(new FlowLayout());
+                                    JButton confButtonBiglietto = new JButton("Conferma");
+                                    JLabel bigliettoLab = new JLabel(biglietto.toString());
+                                    pan.add(bigliettoLab);
+                                    pan.add(confButtonBiglietto);
+                                    confBiglietto.add(pan);
+                                    confBiglietto.setVisible(true);
+                                    confBiglietto.setSize(560, 100);
+
+                                    confButtonBiglietto.addActionListener(new ActionListener() {
+                                        @Override
+                                        public void actionPerformed(ActionEvent e) {
+                                            promoList = trainSw.visualizzaPromozioni();
+                                            confBiglietto.dispose();
+                                            /*Visualizzare le promozioni */
+
+                                            String[] columnNames = {
+                                                "Nome promozione",
+                                                "Punti"
+
+                                            };
+
+                                            final JTable promoTab = new JTable();
+                                            final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+
+                                            dtm.setColumnIdentifiers(columnNames);
+                                            promoTab.setModel(dtm);
+
+                                            for (Promozione promo : promoList) {
+
+                                                dtm.addRow(new Object[]{
+                                                    promo.getNome(), promo.getSogliaPunti()
+
+                                                });
+
+                                            }
+
+                                            final JFrame tabframPromo = new JFrame("Scegli la promozione");
+
+                                            promoTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+                                            JButton nextButtonPromo = new JButton("Avanti");
+                                            JButton endButtonPromo = new JButton("Fine");
+                                            JPanel panPromo = new JPanel(new FlowLayout());
+                                            panPromo.add(promoTab);
+                                            panPromo.add(nextButtonPromo);
+                                            panPromo.add(endButtonPromo);
+                                            tabframPromo.add(panPromo);
+                                            tabframPromo.setVisible(true);
+                                            tabframPromo.setSize(500, 200);
+
+                                            endButtonPromo.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    tabframPromo.dispose();
+                                                }
+                                            });
+
+                                            nextButtonPromo.addActionListener(new ActionListener() {
+                                                @Override
+                                                public void actionPerformed(ActionEvent e) {
+                                                    tabframPromo.dispose();
+                                                    Promozione promo2;
+                                                    promo2 = promoList.get((int) perTab.getSelectedRow());
+
+                                                    final Double prezzoScont;
+                                                    prezzoScont = trainSw.AssociaPromozione(promo2);
+
+                                                    final JFrame confPrezzo = new JFrame("Conferma Prezzo");
+                                                    JPanel panPrezzo = new JPanel(new FlowLayout());
+                                                    JLabel prezzoLab = new JLabel(prezzoScont.toString());
+                                                    JButton confPrezzoScont;
+                                                    confPrezzoScont = new JButton("Conferma");
+
+                                                    panPrezzo.add(prezzoLab);
+                                                    panPrezzo.add(confPrezzoScont);
+                                                    confPrezzo.add(panPrezzo);
+                                                    confPrezzo.setVisible(true);
+                                                    confPrezzo.setSize(200, 250);
+
+                                                    confPrezzoScont.addActionListener(new ActionListener() {
+                                                        @Override
+                                                        public void actionPerformed(ActionEvent e) {
+                                                            Biglietto biglietto;
+                                                            biglietto = trainSw.ConfermaAcquistoPunti(prezzoScont);
+                                                            JOptionPane.showMessageDialog(confPrezzo, biglietto.toString());
+                                                            confPrezzo.dispose();
+                                                        }
+                                                    });
+
+                                                }
+                                            });
+
+                                        }
+                                    });
+
+                                }
+                            });
+
+                        }
                     });
 
                 }
-
-                frame.dispose();
-
-                final JFrame tabfram = new JFrame("Scegli la tratta e inserisci la classe desiderata");
-                tabfram.setSize(600, 140);
-
-                perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-
-                JButton nextSAButton = new JButton("Avanti");
-                JButton endButton = new JButton("Fine");
-                final JTextField txt_class = new JTextField(2);
-                txt_class.setName("classe");
-
-                JPanel panst = new JPanel(new FlowLayout());
-                panst.add(txt_class);
-                panst.add(perTab);
-                panst.add(nextSAButton);
-                panst.add(endButton);
-                tabfram.add(panst);
-                tabfram.setVisible(true);
-
-                nextSAButton.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                        tabfram.dispose();
-                        Tratta trattasx;
-                        trattasx = listTrSA.get((int) perTab.getSelectedRow());
-                        int classe;
-                        classe = new Integer(txt_class.getText());
-                        Biglietto biglietto;
-                        biglietto = trainSw.scegliTratta(trattasx, classe);
-
-                        final JFrame confBiglietto = new JFrame("Visualizza Biglietto");
-                        JPanel pan = new JPanel(new FlowLayout());
-                        JButton confButtonBiglietto = new JButton("Conferma");
-                        JLabel bigliettoLab = new JLabel(biglietto.toString());
-                        pan.add(bigliettoLab);
-                        pan.add(confButtonBiglietto);
-                        confBiglietto.add(pan);
-                        confBiglietto.setVisible(true);
-                        confBiglietto.setSize(560, 100);
-
-                        confButtonBiglietto.addActionListener(new ActionListener() {
-                            @Override
-                            public void actionPerformed(ActionEvent e) {
-                            promoList =    trainSw.visualizzaPromozioni();
-                                   confBiglietto.dispose();
-                                /*Visualizzare le promozioni */
-                                
-                                
-                                 String[] columnNames = {
-                                     
-                        "Nome promozione",
-                        "Punti"
-                        
-                       };
-                
-                final JTable promoTab = new JTable();
-                final DefaultTableModel dtm = new DefaultTableModel(0,0);
-                
-                dtm.setColumnIdentifiers(columnNames);
-                promoTab.setModel(dtm);
-                
-              
-               
-               for(Promozione promo :promoList){
-                   
-                dtm.addRow(new Object[] {
-                    promo.getNome(), promo.getSogliaPunti()
-                   
-                   
-                   
-                });
-              
-                }
-                
-           final JFrame tabframPromo = new JFrame("Scegli la promozione");
- 
-      
-                                      
-          promoTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-       
-
-JButton nextButtonPromo = new JButton("Avanti");
-JButton endButtonPromo = new JButton("Fine");
-JPanel panPromo = new JPanel(new FlowLayout());
-panPromo.add(promoTab);
-panPromo.add(nextButtonPromo);
-panPromo.add(endButtonPromo);
-tabframPromo.add(panPromo);
-tabframPromo.setVisible(true);
-tabframPromo.setSize(500, 200);
-                                
-
-endButtonPromo.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                    tabframPromo.dispose();
-                                }
-                            });
- 
-nextButtonPromo.addActionListener(new ActionListener() {
-                                @Override
-                                public void actionPerformed(ActionEvent e) {
-                                     tabframPromo.dispose();
-                                      Promozione promo2;
-                          promo2 = promoList.get((int) perTab.getSelectedRow());
-                       
-                          
-                          final Double prezzoScont;
-                         prezzoScont = trainSw.AssociaPromozione(promo2);
-                         
-                         final JFrame confPrezzo = new JFrame("Conferma Prezzo");
-                         JPanel panPrezzo = new JPanel(new FlowLayout());
-                         JLabel prezzoLab = new JLabel(prezzoScont.toString());
-                         JButton confPrezzoScont;
-                          confPrezzoScont = new JButton("Conferma");
-                          
-                          panPrezzo.add(prezzoLab);
-                          panPrezzo.add(confPrezzoScont);
-                          confPrezzo.add(panPrezzo);
-                          confPrezzo.setVisible(true);
-                          confPrezzo.setSize(200,250);
-                          
-                          confPrezzoScont.addActionListener(new ActionListener() {
-                                         @Override
-                                         public void actionPerformed(ActionEvent e) {
-                                            Biglietto biglietto;
-                                            biglietto = trainSw.ConfermaAcquistoPunti(prezzoScont);
-                                             JOptionPane.showMessageDialog(confPrezzo,biglietto.toString() );
-                                              confPrezzo.dispose();
-                                         }
-                                     });
-                                
-                          
-                          
-                          
-                                     
-                                     
-                                }
-                            });
-
-                                
-                                
-                             
-                            }
-                        });
-
-                    }
-                });
-
-            }
-        });
-
-
+            } }
+        );
     }//GEN-LAST:event_jMenuItem6ActionPerformed
-
+                
     /**
      * @param args the command line arguments
      */
