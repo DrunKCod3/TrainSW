@@ -44,7 +44,7 @@ private JTable tAbbTab = new JTable();
         for (TipoAbbonamento tAbb : tabbList) {
 
             dtm.addRow(new Object[]{
-                tAbb.getId_tipoAbbonamento(), tAbb.getPrezzo_b()
+                tAbb.getId_tipoAbbonamento(), tAbb.getPrezzo()
             });
         }
 
