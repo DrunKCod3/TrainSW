@@ -24,12 +24,6 @@ public class POS {
     private Tessera tessera_corrente;
     private List<Biglietto> biglietti_venduti=new ArrayList<>();
     private List<Abbonamento> abbonamenti_venduti=new ArrayList<>();
-    /*private PromoStandard pstandard;
-    private PromoSoglia psoglia;
-    private AllInclusivePromo pallinclusive;
-    */
-    private int punti;
-    private Promozione promozione;
     private Promozione promozione_corrente;
 
     public POS() {
@@ -145,7 +139,7 @@ public class POS {
      int punti;
      biglietto_corrente.setPrezzo(prezzo_scontato);
      punti=promozione_corrente.getSogliaPunti();
-     tessera_corrente.aggiornaSaldo(this.punti);
+     tessera_corrente.aggiornaSaldo(punti);
      biglietti_venduti.add(biglietto_corrente);
      return biglietto_corrente;
              

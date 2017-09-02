@@ -45,7 +45,7 @@ public class FerroviaTest {
         stazioni.add(stazione1);
         stazioni.add(stazione2);
         assertEquals("la stazione non è presente",true,ferrovia.isPresent(1,"catania"));
-        assertFalse("la stazione è presente", ferrovia.isPresent(20,"palermo"));
+        assertFalse("la stazione è presente", ferrovia.isPresent(20,"genova"));
     }
      @Test
    public void testInserisciCollegamento(){
@@ -66,6 +66,12 @@ public class FerroviaTest {
        Percorso pr=new Percorso(1, "catania", "messina");
        Percorso pr1=new Percorso(2,"catania","messina");
        Percorso pr2=new Percorso(3,"catania","palermo");
-       
+       List<Percorso> percorsi=ferrovia.getPercorsi();
+       percorsi.add(pr);
+       percorsi.add(pr1);
+       percorsi.add(pr2);
+       assertEquals("il valore non è corretto",2,ferrovia.findPercorso("catania" ,"messina").size());
+        assertEquals("il valore non è corretto",1,ferrovia.findPercorso("catania" ,"palermo").size());
+        assertEquals("il valore non è corretto",0,ferrovia.findPercorso("roma" ,"palermo").size()); 
    }
 }

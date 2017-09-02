@@ -84,7 +84,7 @@ public class Tessera {
     }
     
     public void CalcolaPunti(float prezzo){
-        this.punti=(int) (prezzo*2);
+        this.punti+=(int) ((prezzo/10)*4);
     }
     
     public boolean verificaTessera(){
