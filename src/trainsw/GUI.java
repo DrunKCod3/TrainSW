@@ -10,7 +10,7 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 import javax.swing.DefaultListModel;
 
@@ -526,8 +526,17 @@ public class GUI extends javax.swing.JFrame {
         buttonTess.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                Tessera tex1 = null;
+                
                 Integer id_tessera;
                 id_tessera = new Integer(txt_tess.getText());
+                
+                for(Tessera tex : trainSw.getTessere_registrate()) {
+                    if(tex.getId_tessera() == id_tessera) {
+                        tex1 = tex;
+                    }
+                }
+                if(tex1 != null){
 
                 /**
                  * **********************************************
@@ -535,6 +544,7 @@ public class GUI extends javax.swing.JFrame {
                  * Acquisto Biglietto
                  * ********************************************
                  */
+                trainSw.InserisciTessera(tex1);
                 final JFrame frame = new JFrame();
                 JPanel pan = new JPanel();
                 JLabel lab1 = new JLabel("Inserisci id stazioni");
@@ -635,6 +645,7 @@ public class GUI extends javax.swing.JFrame {
 
                     }
                 });
+            }
             }
         });
 
