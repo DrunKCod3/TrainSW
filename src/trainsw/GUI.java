@@ -339,9 +339,9 @@ public class GUI extends javax.swing.JFrame {
 
         final JFrame frame = new JFrame();
         JPanel pan = new JPanel();
-        JLabel lab1 = new JLabel("Inserisci id stazioni");
-        final JTextField txt_idStaPSA = new JTextField(2);
-        final JTextField txt_idStaASA = new JTextField(2);
+        JLabel lab1 = new JLabel("Inserisci nome stazioni");
+        final JTextField txt_idStaPSA = new JTextField(10);
+        final JTextField txt_idStaASA = new JTextField(10);
         JButton nextSA_button = new JButton("Avanti");
         pan.add(lab1);
         pan.add(txt_idStaPSA);
@@ -349,7 +349,7 @@ public class GUI extends javax.swing.JFrame {
         pan.add(nextSA_button);
         trainSw.gestisciSoloAndata();
         frame.add(pan);
-        frame.setSize(100, 150);
+        frame.setSize(250, 150);
         frame.setVisible(true);
 
         nextSA_button.addActionListener(new ActionListener() {
@@ -387,14 +387,15 @@ public class GUI extends javax.swing.JFrame {
 
                 frame.dispose();
 
-                final JFrame tabfram = new JFrame("Scegli la tratta");
-                tabfram.setSize(300, 450);
+                final JFrame tabfram = new JFrame("Scegli la tratta e inserisci la classe desiderata");
+                tabfram.setSize(600, 140);
 
                 perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
                 JButton nextSAButton = new JButton("Avanti");
                 JButton endButton = new JButton("Fine");
                 final JTextField txt_class = new JTextField(2);
+                txt_class.setName("classe");
 
                 JPanel panst = new JPanel(new FlowLayout());
                 panst.add(txt_class);
@@ -424,14 +425,13 @@ public class GUI extends javax.swing.JFrame {
                         pan.add(confButtonBiglietto);
                         confBiglietto.add(pan);
                         confBiglietto.setVisible(true);
-                        confBiglietto.setSize(500, 100);
+                        confBiglietto.setSize(560, 100);
 
                         confButtonBiglietto.addActionListener(new ActionListener() {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 trainSw.ConfermaBiglietto();
                                 confBiglietto.dispose();
-                                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                             }
                         });
 
@@ -488,7 +488,7 @@ public class GUI extends javax.swing.JFrame {
                 viewObj.add(pan);
                 pan.add(viewList);
 
-                viewObj.setSize(500, 400);
+                viewObj.setSize(600, 350);
                 viewObj.setVisible(true);
 
                 for (Stazione stazione : ferrovia.getStazioni()) {
@@ -577,8 +577,8 @@ public class GUI extends javax.swing.JFrame {
         JLabel lab = new JLabel("Inserisci id stazioni partenza e arrivo");
         final JTextField txt_sta1;
         final JTextField txt_sta2;
-        txt_sta1 = new JTextField(2);
-        txt_sta2 = new JTextField(2);
+        txt_sta1 = new JTextField(10);
+        txt_sta2 = new JTextField(10);
         JButton nextButton = new JButton("Prosegui");
         JButton annullaButton = new JButton("Annulla");
         pan.add(lab);
@@ -605,8 +605,7 @@ public class GUI extends javax.swing.JFrame {
                 idStazA = txt_sta1.getText();
                 idStazB = txt_sta2.getText();
 
-                //Caricare prima questa lista, importante : listSt e JTable devono essere sincronizzati
-                // stessi indici-->  -riga = index list 
+     
                 listSt = trainSw.InserisciStazioni(idStazA, idStazB);
 
                 String[] columnNames = {"ID Fermata",
@@ -620,8 +619,8 @@ public class GUI extends javax.swing.JFrame {
 
                 dtm.setColumnIdentifiers(columnNames);
                 stTab.setModel(dtm);
-                int index = listSt.size();
-
+      
+               
                 //Aggiungere elementi lista nella tabella
               
                 Session session = NewHibernateUtil.getSessionFactory().openSession();
@@ -707,8 +706,8 @@ public class GUI extends javax.swing.JFrame {
       final JFrame frame = new JFrame();
         JPanel pan = new JPanel();
         JLabel lab1 = new JLabel("Inserisci id stazioni");
-        final JTextField txt_idStaPSA = new JTextField(2);
-        final JTextField txt_idStaASA = new JTextField(2);
+        final JTextField txt_idStaPSA = new JTextField(10);
+        final JTextField txt_idStaASA = new JTextField(10);
         JButton nextSA_button = new JButton("Avanti");
         pan.add(lab1);
         pan.add(txt_idStaPSA);

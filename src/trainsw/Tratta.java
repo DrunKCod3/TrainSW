@@ -29,6 +29,16 @@ public class Tratta {
 
     }
 
+    @Override
+    public String toString() {
+        return "Tratta{" + "id_tratta=" +
+                id_tratta + ", id_per" + id_per +
+                ", data_p=" + data_p + ", data_a=" + 
+                data_a + ", stazione partenza="+ this.percorso.getStaz_par()+
+                ", stazione arrivo=" +this.percorso.getStaz_par()+ '}';
+    }
+
+    
 
     public void addFermata(Fermata fermata) {
             

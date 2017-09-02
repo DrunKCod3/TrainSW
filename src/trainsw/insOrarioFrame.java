@@ -165,11 +165,11 @@ Date anno = null;
                 
                 }
            final JFrame tabfram = new JFrame("Scegli un treno");
-           tabfram.setSize(200, 400);
+           tabfram.setSize(400, 150);
       
                                       
           stTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-          stTab.setSize(200, 500);
+ 
 
 JButton nextButton = new JButton("Avanti");
 JButton endButton = new JButton("Fine");
@@ -208,9 +208,8 @@ nextButton.addActionListener(new ActionListener() {
                
                    
                 
-                String[] columnNames = {"ID FERMATA",
-                        "Orario",
-                        "DISTANZA"
+                String[] columnNames = {"ID FERMATA"
+                     
                        
                        };
                 
@@ -219,15 +218,15 @@ nextButton.addActionListener(new ActionListener() {
                 
                 dtm1.setColumnIdentifiers(columnNames);
                 stTab1.setModel(dtm);
+                stTab.setSize(500, 300);
                  Session session = NewHibernateUtil.getSessionFactory().openSession();
                  session.beginTransaction();
-                int index,i=0;
-                index = listFerm.size();
                 for(FermataOrario fermOr :listFerm){
                 System.out.println(fermOr.getOrario().toString());
                 dtm1.addRow(new Object[] {
                   //Aggiungi fermate alla lista
-                    fermOr.getId(),fermOr.getOrario().toString(),fermOr.getDistanzaParziale()
+                    fermOr.getId()
+                    
                 });
            
                 }

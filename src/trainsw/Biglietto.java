@@ -16,6 +16,11 @@ public class Biglietto {
     public Biglietto() {
     }
 
+    @Override
+    public String toString() {
+        return "Biglietto{" + "id_b=" + id_b + ", prezzo=" + prezzo + ", distanza=" + distanza + ", staz_par=" + staz_par + ", staz_arr=" + staz_arr + '}';
+    }
+
     public Biglietto(Tratta tratta) {
         this.tratta = tratta;
     }

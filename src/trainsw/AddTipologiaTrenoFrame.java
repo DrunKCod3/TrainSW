@@ -211,7 +211,7 @@ Treno treno = new Treno();
     pan.setVisible(true);
   
     JLabel insIdT = new JLabel("Inserisci id treno");
-    final JTextField txt_idT = new JTextField("             ");
+    final JTextField txt_idT = new JTextField(2);
   
     
     final JButton nextAddT = new JButton("Avanti");
@@ -258,12 +258,12 @@ Treno treno = new Treno();
     JButton backIDST = new JButton("Annulla");
     
     gst3.setVisible(true);
-    gst3.setSize(60, 170);
+    gst3.setSize(90, 170);
     JPanel pan3 = new JPanel(new FlowLayout());
     pan3.setVisible(true);
   
-    JLabel idST= new JLabel("Inserisci id Stazione");
-    final JTextField txt_idSt2 = new JTextField(2);
+    JLabel idST= new JLabel("Inserisci nome Stazione");
+    final JTextField txt_idSt2 = new JTextField(10);
     gst3.add(pan3);
       pan3.add(idST);
      pan3.add(txt_idSt2);

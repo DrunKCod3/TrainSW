@@ -183,7 +183,7 @@ public class Percorso {
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
-     //   session.update(this);
+      session.update(this);
         for (Fermata fermata : getFermate()) {
           
             if (fermata.getStazione().getNome_stazione().toLowerCase().equals(id_sta.toLowerCase())) {
@@ -209,7 +209,6 @@ public class Percorso {
                 tratte.add(tratta);
             }
         }
-         System.out.println("sono la tratta aggiunta"+tratte.get(0).getId_tra());
         session.close();
         return tratte;
     }

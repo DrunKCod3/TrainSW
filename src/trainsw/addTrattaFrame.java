@@ -50,9 +50,9 @@ private List<Percorso> listper2;
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Inserisci Tratta");
 
-        jLabel1.setText("Inserisci id stazione partenza");
+        jLabel1.setText("Inserisci stazione partenza");
 
-        jLabel2.setText("Inserisci id stazione arrivo");
+        jLabel2.setText("Inserisci  stazione arrivo");
 
         next_buttonTratta.setText("Avanti");
         next_buttonTratta.addActionListener(new java.awt.event.ActionListener() {
@@ -75,15 +75,18 @@ private List<Percorso> listper2;
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_idStaATratta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_idstapTratta, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
+                    .addComponent(txt_idStaATratta)
+                    .addComponent(txt_idstapTratta)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(next_buttonTratta)
-                        .addGap(18, 18, 18)
-                        .addComponent(back_buttonTratta)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(next_buttonTratta)
+                                .addGap(18, 18, 18)
+                                .addComponent(back_buttonTratta)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +176,7 @@ nextButton.addActionListener(new ActionListener() {
                            
                            
                            
-                     //      System.out.println(perc.toString());
+            
                            
                    insOrarioFrame insOraframe = new insOrarioFrame();
                    insOrarioframe.setVisible(true);
