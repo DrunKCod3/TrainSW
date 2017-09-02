@@ -188,11 +188,11 @@ trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.ge
         
         final JFrame insStazAbb = new JFrame("Inserisci Stazioni Partenza e Arrivo");
         JPanel insStaAbbPan = new JPanel();
-        JLabel labinsst = new JLabel("Inserisci id stazioni");
+        JLabel labinsst = new JLabel("Inserisci nomi stazioni");
         final JTextField txt_idStP;
         final JTextField txt_idStA;
-        txt_idStP = new JTextField(2);
-        txt_idStA = new JTextField(2);
+        txt_idStP = new JTextField(10);
+        txt_idStA = new JTextField(10);
         JButton next = new JButton("Avanti");
          insStaAbbPan.add(labinsst);
          insStaAbbPan.add(txt_idStP);

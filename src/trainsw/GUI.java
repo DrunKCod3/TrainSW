@@ -715,7 +715,7 @@ public class GUI extends javax.swing.JFrame {
         pan.add(nextSA_button);
         trainSw.gestisciSoloAndata();
         frame.add(pan);
-        frame.setSize(100, 150);
+        frame.setSize(150, 200);
         frame.setVisible(true);
 
         nextSA_button.addActionListener(new ActionListener() {
@@ -739,8 +739,7 @@ public class GUI extends javax.swing.JFrame {
                 dtm.setColumnIdentifiers(columnNames);
                 perTab.setModel(dtm);
 
-                int index, i = 0;
-                index = listTrSA.size();
+     
 
                 for (Tratta tratta : listTrSA) {
 
@@ -753,8 +752,8 @@ public class GUI extends javax.swing.JFrame {
 
                 frame.dispose();
 
-                final JFrame tabfram = new JFrame("Scegli la tratta");
-                tabfram.setSize(300, 450);
+                final JFrame tabfram = new JFrame("Inserisci la classe e scegli la tratta");
+                tabfram.setSize(500, 200);
 
                 perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
@@ -813,7 +812,7 @@ public class GUI extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         Date data_n = new Date();
-        Cliente cliente = new Cliente("Giovanni", "Arribattuto", "GVNARB12AXDE", data_n, 'm');
+        Cliente cliente = new Cliente("Ajeje", "Brazorf", "JJBRZF23FXCVW", data_n, 'm');
         tessera = new Tessera(1, cliente);
         trainSw.InserisciTessera(tessera);
 

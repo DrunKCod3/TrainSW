@@ -20,10 +20,47 @@ public class Tessera {
 
     @Override
     public String toString() {
-        return "Tessera{" + "id_tessera=" + id_tessera + ", d_rilascio=" + d_rilascio + ", d_scadenza=" + d_scadenza + ", punti=" + punti + '}' + 
-                 this.cliente.toString();
+        return "Tessera{" + "id_tessera=" + id_tessera +
+                ", d_rilascio=" + d_rilascio +
+                ", d_scadenza=" + d_scadenza +
+                ", punti=" + punti + '}'  ;
+                
+                 
     }
 
+    public int getId_tessera() {
+        return id_tessera;
+    }
+
+    public void setId_tessera(int id_tessera) {
+        this.id_tessera = id_tessera;
+    }
+
+    public Date getD_rilascio() {
+        return d_rilascio;
+    }
+
+    public void setD_rilascio(Date d_rilascio) {
+        this.d_rilascio = d_rilascio;
+    }
+
+    public Date getD_scadenza() {
+        return d_scadenza;
+    }
+
+    public void setD_scadenza(Date d_scadenza) {
+        this.d_scadenza = d_scadenza;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    
     public Tessera(int id_tessera, Date d_rilascio, Date d_scadenza, int punti, Cliente cliente) {
         this.id_tessera = id_tessera;
         this.d_rilascio = d_rilascio;

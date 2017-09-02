@@ -191,14 +191,16 @@ public class insClienteFrame extends javax.swing.JFrame {
       JButton confButton = new JButton("Conferma");
       
 // jlabel to string cliente... 
-JLabel ClienteLab = new JLabel(tessera.toString());
-        pan.add(ClienteLab);
+JLabel tesseraLab = new JLabel(tessera.toString());
+JLabel clienteLab = new JLabel(tessera.getCliente().toString());
+        pan.add(clienteLab);
+        pan.add(tesseraLab);
         
         pan.add(confButton);
      
       confCliente.add(pan);
       confCliente.setVisible(true);
-      confCliente.setSize(500, 100);
+      confCliente.setSize(800, 200);
       
       
      this.dispose();
