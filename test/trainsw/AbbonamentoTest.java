@@ -5,6 +5,7 @@
  */
 package trainsw;
 
+import java.util.Date;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,7 +19,14 @@ public class AbbonamentoTest {
     }
 
     @Test
-    public void testSomeMethod() {
-    }
+    public void testcalcolaAbbonamento() {
+        TipoAbbonamento tipo=new AbbonamentoAnnuale("Abbonamento Annuale gold", 365, 150);
+         TipoAbbonamento tipo2=new AbbonamentoMensile("Abbonamento Mensile gold", 30 , 150);  
+          Abbonamento abbonamento= new Abbonamento("catania", "messina",40, new Cliente("Marco", "Antonio","sdkjughlaksch",new Date(), 'm'));
+          abbonamento.setTipo(tipo);
+          abbonamento.calcolaPrezzo();
+          
+          assertEquals("il risultato è diverso", 3070, abbonamento.getPrezzo(), 0.1);
+    }     
     
 }

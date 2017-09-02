@@ -20,7 +20,7 @@ public class Abbonamento {
     public Abbonamento(String staz_p, String staz_a, double distanza, Cliente cliente) {
         this.data_inizio=new Date();
         this.data_scadenza=new Date();
-        this.data_scadenza.setTime(data_inizio.getTime()+(30*24*60*60*1000));
+       
         this.staz_p = staz_p;
         this.staz_a = staz_a;
         this.distanza = distanza;
@@ -30,8 +30,10 @@ public class Abbonamento {
    
     
     public void calcolaPrezzo(){
-    	prezzo=distanza*0.5;
-        prezzo+=tipo.getPrezzo_b();
+        this.data_scadenza=new Date();
+    	this.data_scadenza.setTime(tipo.getDurata()+this.getData_inizio().getTime());
+        
+        prezzo=tipo.calcolaPrezzo( distanza);
        
   	}
 

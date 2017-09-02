@@ -5,34 +5,66 @@
  */
 package trainsw;
 
+
+
 /**
  *
  * @author Andrea
  */
-public class TipoAbbonamento {
-    private int id_tipoAbbonamento;
-    private float prezzo_b;
+public abstract class TipoAbbonamento {
+    private String id_tipoAbbonamento;
+    private int durata;
+    private double prezzo;
 
-    public TipoAbbonamento(int id_tipoAbbonamento, float prezzo_b) {
+    public TipoAbbonamento(String id_tipoAbbonamento) {
         this.id_tipoAbbonamento = id_tipoAbbonamento;
-        this.prezzo_b = prezzo_b;
     }
 
-    public int getId_tipoAbbonamento() {
+    public TipoAbbonamento(String id_tipoAbbonamento, int durata, double prezzo) {
+        this.id_tipoAbbonamento = id_tipoAbbonamento;
+        this.durata = durata;
+        this.prezzo = prezzo;
+    }
+
+    public double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
+    }
+
+
+ 
+
+    public int getDurata() {
+        return durata;
+    }
+
+    public void setDurata(int durata) {
+        this.durata = durata;
+    }
+    
+
+    
+    
+    
+    
+    
+    public String getId_tipoAbbonamento() {
         return id_tipoAbbonamento;
     }
 
-    public float getPrezzo_b() {
-        return prezzo_b;
-    }
-
-    public void setId_tipoAbbonamento(int id_tipoAbbonamento) {
+    public void setId_tipoAbbonamento(String id_tipoAbbonamento) {
         this.id_tipoAbbonamento = id_tipoAbbonamento;
     }
 
-    public void setPrezzo_b(float prezzo_b) {
-        this.prezzo_b = prezzo_b;
-    }
+   
+
+    
+    public abstract double calcolaPrezzo(double distanza);
+
+
     
     
 }
