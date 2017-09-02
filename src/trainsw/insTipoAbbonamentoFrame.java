@@ -6,38 +6,50 @@
 package trainsw;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ButtonGroup;
-
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Luciano Limina
  */
 public class insTipoAbbonamentoFrame extends javax.swing.JFrame {
-private TrainSW trainSW = TrainSW.getIstanza();
-private TipoAbbonamento tipoAbb;
-private final ButtonGroup grup;
-private int id_ta = 0;
+
+    private TrainSW trainSW = TrainSW.getIstanza();
+    private TipoAbbonamento tipoAbb;
+    private List<TipoAbbonamento> tabbList = new ArrayList<TipoAbbonamento>();
+private JTable tAbbTab = new JTable();
+    private int id_ta = 0;
+
     /**
      * Creates new form insTipoAbbonamentoFrame
      */
     public insTipoAbbonamentoFrame() {
         initComponents();
-        grup = new ButtonGroup();
-        grup.add(radio_sett);
-        grup.add(radio_mens);
-        grup.add(radio_ann);
-        grup.add(radio_trenOrf);
-        
-        radio_sett.setMnemonic(KeyEvent.VK_C);
-        radio_sett.setMnemonic(KeyEvent.VK_M);
-        radio_ann.setMnemonic(KeyEvent.VK_P);
-        radio_trenOrf.setMnemonic(KeyEvent.VK_A);
-        
+        tabbList = trainSW.getPos().getTipiabbonamento();
+          String[] columnNames = {"ID Tipo abbonamento",
+            "Prezzo"
+        };
+
+       
+        final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+
+        dtm.setColumnIdentifiers(columnNames);
+        tAbbTab.setModel(dtm);
+
+        for (TipoAbbonamento tAbb : tabbList) {
+
+            dtm.addRow(new Object[]{
+                tAbb.getId_tipoAbbonamento(), tAbb.getPrezzo_b()
+            });
+        }
+
         
 
-
-        
     }
 
     /**
@@ -50,21 +62,12 @@ private int id_ta = 0;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        radio_sett = new javax.swing.JRadioButton();
-        radio_mens = new javax.swing.JRadioButton();
-        radio_ann = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        radio_trenOrf = new javax.swing.JRadioButton();
+        panTabAbbonamenti = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        radio_sett.setText("Regionale");
-
-        radio_mens.setText("Premium");
-
-        radio_ann.setText("InterCity");
 
         jButton1.setText("Avanti");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -83,7 +86,16 @@ private int id_ta = 0;
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Scegli un tipo abbonamento");
 
-        radio_trenOrf.setText("TrenOrfeo");
+        javax.swing.GroupLayout panTabAbbonamentiLayout = new javax.swing.GroupLayout(panTabAbbonamenti);
+        panTabAbbonamenti.setLayout(panTabAbbonamentiLayout);
+        panTabAbbonamentiLayout.setHorizontalGroup(
+            panTabAbbonamentiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panTabAbbonamentiLayout.setVerticalGroup(
+            panTabAbbonamentiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 137, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -93,35 +105,25 @@ private int id_ta = 0;
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(panTabAbbonamenti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2)
                         .addGap(45, 45, 45))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(radio_mens)
-                            .addComponent(radio_ann)
-                            .addComponent(radio_sett)
-                            .addComponent(jLabel1))
-                        .addGap(29, 86, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(radio_trenOrf)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel1)
+                        .addGap(29, 86, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(10, 10, 10)
-                .addComponent(radio_sett)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radio_mens)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radio_ann)
+                .addComponent(panTabAbbonamenti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(radio_trenOrf)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -148,45 +150,22 @@ private int id_ta = 0;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-   
-    int choose;
-    choose = grup.getSelection().getMnemonic();
-System.out.println(choose);
-    float prezzo = 0;
-    
-    
-    switch(choose) {
-        case 77:
-            prezzo = 1;
-            break;
-        case 0:
-            prezzo = 80;
-            break;
-        case 80:
-            prezzo = 15;
-            break;
-        case 65:
-            prezzo = 50;
-            break;
-            
-    }
-     
-     //Settimanale 77
-     //Mensile    0
-     // Annuale 80
-     
-     tipoAbb = new TipoAbbonamento(id_ta, prezzo);
-     id_ta++;
-     
-     trainSW.InserisciTipoAbbonamento(tipoAbb);
-     trainSW.ConfermaAbbonamento();
-     this.dispose();
-     /* Come lo mostro abbonamento ? */
-     
+
+     TipoAbbonamento tipoAbbonamento;
+                          tipoAbbonamento = tabbList.get((int) tAbbTab.getSelectedRow());
+                          trainSW.InserisciTipoAbbonamento(tipoAbbonamento);
+                          
+                          Abbonamento abb = new Abbonamento();
+                          abb = trainSW.ConfermaAbbonamento();
+                          
+                          JOptionPane.showMessageDialog(this, abb.toString());
+                          this.dispose();
+                          
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -198,10 +177,7 @@ System.out.println(choose);
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
-        
-        
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -220,13 +196,11 @@ System.out.println(choose);
         }
         //</editor-fold>
 
-        
-        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new insTipoAbbonamentoFrame().setVisible(true);
-                
+
             }
         });
     }
@@ -236,9 +210,6 @@ System.out.println(choose);
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton radio_ann;
-    private javax.swing.JRadioButton radio_mens;
-    private javax.swing.JRadioButton radio_sett;
-    private javax.swing.JRadioButton radio_trenOrf;
+    private javax.swing.JPanel panTabAbbonamenti;
     // End of variables declaration//GEN-END:variables
 }

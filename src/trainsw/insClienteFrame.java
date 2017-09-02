@@ -185,7 +185,7 @@ public class insClienteFrame extends javax.swing.JFrame {
 
         this.dispose();
         
-         final JFrame confCliente = new JFrame("Conferma Cliente");
+      final JFrame confCliente = new JFrame("Conferma Cliente");
       JPanel pan = new JPanel(new FlowLayout());
     
       JButton confButton = new JButton("Conferma");

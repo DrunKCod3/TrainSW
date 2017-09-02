@@ -208,8 +208,9 @@ public class TrainSW {
    public  List<TipoAbbonamento> getTipoAbbonamento(){
        return pos.getTipiabbonamento();
    } 
-   public void ConfermaAbbonamento(){
+   public Abbonamento ConfermaAbbonamento(){
        pos.confermaAbbonamento();
+       return(pos.getAbbonamento_corrente());
    }
      
          /**
@@ -227,7 +228,7 @@ public class TrainSW {
            Date data_rilascio = new Date();
             Date data_scadenza=new Date();
            data_scadenza.setTime(data_rilascio.getTime()+(30*24*60*60*1000));
-           tessera_corrente=new Tessera(data_rilascio, data_scadenza, cliente_corrente);
+           tessera_corrente=new Tessera(tessere_registrate.size() + 1, data_rilascio, data_scadenza, 0, cliente_corrente);
            return tessera_corrente;
        }
        return null;
@@ -276,6 +277,23 @@ public class TrainSW {
    public Biglietto ConfermaAcquistoPunti(double prezzo_scontato){
       return pos.ConfermaAcquistoPunti(prezzo_scontato);
    }
+
+    public List<Tessera> getTessere_registrate() {
+        return tessere_registrate;
+    }
+
+    public void setTessere_registrate(List<Tessera> tessere_registrate) {
+        this.tessere_registrate = tessere_registrate;
+    }
+
+    public Tessera getTessera_corrente() {
+        return tessera_corrente;
+    }
+
+    public void setTessera_corrente(Tessera tessera_corrente) {
+        this.tessera_corrente = tessera_corrente;
+    }
+   
    
  
 }
