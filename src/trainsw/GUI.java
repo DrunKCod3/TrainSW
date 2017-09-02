@@ -45,22 +45,16 @@ public class GUI extends javax.swing.JFrame {
     
     Tessera tessera;
 
-    public Stazione creaStazione(int id_st, int num_bin, String locazione, String nome_stazione) {
-        Stazione stazione = new Stazione(id_st, num_bin, locazione, nome_stazione);
-        return stazione;
-    }
 
-    /*
-     public boolean isPresentSt(int id_st) {
-        
-     }
 
-     */
+
+
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
+        Startup startup = new Startup(trainSw);
     }
 
     /**
@@ -649,10 +643,11 @@ public class GUI extends javax.swing.JFrame {
         
         /* Inserimento Cliente Fittizio per simulare inserimento tessera */
         Date data_n = new Date();
-        Cliente cliente = new Cliente("Ajeje", "Brazorf", "JJBRZF23FXCVW", data_n, 'm');
-        tessera = new Tessera(1, data_n, data_n, 100, cliente);
+           Cliente cliente = new Cliente("Ajeje", "Brazorf", "JJBRZF23FXCVW", new Date(), 'm');
+     
+      Tessera  tessera = new Tessera(1, new Date(), new Date(), 10000, cliente);
         trainSw.InserisciTessera(tessera);
-
+  
           final JFrame frame = new JFrame("Acquista biglietto");
          JLabel lab1 = new JLabel("Inserisci nome stazioni");
          JPanel pan = new JPanel(new FlowLayout());

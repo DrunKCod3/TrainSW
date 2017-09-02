@@ -44,6 +44,12 @@ public class TrainSW {
         return ferrovia;
     }
 
+    public POS getPos() {
+        return pos;
+    }
+    
+    
+
     public void setFerrovia(Ferrovia ferrovia) {
         this.ferrovia = ferrovia;
     }
@@ -212,6 +218,9 @@ public class TrainSW {
      ***********************************
     
      */ 
+   
+   
+   
    public Tessera InserisciCliente(String nome,String cognome,String cf,Date data_n,char sesso){
        if(!isPresentCliente(cf)) {
            cliente_corrente=new Cliente(nome, cognome, cf, data_n, sesso);
@@ -234,6 +243,9 @@ public class TrainSW {
        tessere_registrate.add(tessera_corrente);
    }
    
+   public void addTessera(Tessera t) {
+       tessere_registrate.add(t);
+   }
         /**
      * **********************************
      * UC10 Gestisci Acquisto con tessera* 
@@ -265,7 +277,5 @@ public class TrainSW {
       return pos.ConfermaAcquistoPunti(prezzo_scontato);
    }
    
-    public void addPromozione(Promozione p){
-	promozione.addPromotion(p);
-    }
+ 
 }

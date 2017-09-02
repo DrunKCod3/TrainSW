@@ -29,6 +29,11 @@ public class POS {
     public POS() {
     }
 
+    
+    public void addPromozione(Promozione p){
+        promozioni.add(p);
+    }
+    
     public Biglietto getBiglietto_corrente() {
         return biglietto_corrente;
     }
@@ -52,6 +57,8 @@ public class POS {
     public void setPromozioni(List<Promozione> promozioni) {
         this.promozioni = promozioni;
     }
+    
+    
 
     public List<TipoAbbonamento> getTipiabbonamento() {
         return tipiabbonamento;
@@ -130,7 +137,7 @@ public class POS {
     }
           
   public double associaPromozione(Promozione promozione){
-      
+            this.promozione_corrente = promozione;
       double prezzo_scontato = biglietto_corrente.getPrezzo();
              prezzo_scontato = promozione.calcolaPromozione(prezzo_scontato,tessera_corrente.getPunti());
       return prezzo_scontato;
