@@ -62,5 +62,10 @@ public class FerroviaTest {
         assertNull("inserimento riuscito",collegamento);
                 
    }
-   
+   public void testFindPercorso(){
+       Percorso pr=new Percorso(1, "catania", "messina");
+       Percorso pr1=new Percorso(2,"catania","messina");
+       Percorso pr2=new Percorso(3,"catania","palermo");
+       
+   }
 }

@@ -40,13 +40,13 @@ public class Tratta {
     }
 
 
-    public int getDistanza(int id_sta){
+    public int getDistanza(String id_sta){
         int distanza=0;
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(this);
         for(FermataOrario fermata : getFermate()){
-            if(fermata.getFermata().getId_fer()==id_sta)
+            if(fermata.getFermata().getStazione().getNome_stazione().toLowerCase().equals(id_sta.toLowerCase()))
                 distanza=fermata.getDistanzaParziale();
         }
         
@@ -147,11 +147,11 @@ public class Tratta {
        
     }
 
-    public boolean ricercaFermata(int id_sta_a) {
+    public boolean ricercaFermata(String id_sta_a) {
  
             for (FermataOrario fermata : getFermate()) {
                 
-                if (fermata.getFermata().getStazione().getId_stazione() == id_sta_a && fermata.getOrario().getTime() > System.currentTimeMillis()) {
+                if (fermata.getFermata().getStazione().getNome_stazione().toLowerCase().equals(id_sta_a.toLowerCase()) && fermata.getOrario().getTime() > System.currentTimeMillis()) {
               
                     return true;
                 }
@@ -160,13 +160,13 @@ public class Tratta {
         return false;
     }
 
-    public boolean isPresent(int id_sta) {
+    public boolean isPresent(String id_sta) {
             Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
         session.update(this);
         for (FermataOrario fermata : getFermate()) {
-            if (fermata.getFermata().getId_fer() == id_sta) {
+            if (fermata.getFermata().getStazione().getNome_stazione().toLowerCase().equals(id_sta.toLowerCase())) {
                 session.close();
                 return true;
             }
