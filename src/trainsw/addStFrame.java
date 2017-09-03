@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -168,9 +169,12 @@ private TrainSW trainSW = TrainSW.getIstanza();
         
         Integer id_st = new Integer(txt_idSt.getText());
         Integer num_bin = new Integer(txt_stNumBin.getText());
+    
         Stazione st = trainSW.inserisciStazione(id_st,num_bin,txt_StLocation.getText(),txt_stname.getText());
 
-      final JFrame confStaz = new JFrame("Conferma Stazione");
+ 
+     
+ final JFrame confStaz = new JFrame("Conferma Stazione");
       JPanel pan = new JPanel(new FlowLayout());
       JButton confButton = new JButton("Conferma");
     JLabel stazLab = new JLabel(st.toString());
@@ -178,7 +182,7 @@ private TrainSW trainSW = TrainSW.getIstanza();
       pan.add(confButton);
       confStaz.add(pan);
       confStaz.setVisible(true);
-      confStaz.setSize(500, 100);
+      confStaz.setSize(650, 100);
       
       
      this.dispose();
@@ -190,7 +194,9 @@ private TrainSW trainSW = TrainSW.getIstanza();
                 confStaz.dispose();
             }
         });
-     
+ 
+                  //     else  
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

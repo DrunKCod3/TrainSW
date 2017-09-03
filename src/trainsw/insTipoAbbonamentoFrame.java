@@ -5,10 +5,10 @@
  */
 package trainsw;
 
-import java.awt.event.KeyEvent;
+
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ButtonGroup;
+
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -30,26 +30,9 @@ private JTable tAbbTab = new JTable();
      */
     public insTipoAbbonamentoFrame() {
         initComponents();
-        tabbList = trainSW.getPos().getTipiabbonamento();
-          String[] columnNames = {"ID Tipo abbonamento",
-            "Prezzo"
-        };
-
-       
-        final DefaultTableModel dtm = new DefaultTableModel(0, 0);
-
-        dtm.setColumnIdentifiers(columnNames);
-        tAbbTab.setModel(dtm);
-
-        for (TipoAbbonamento tAbb : tabbList) {
-
-            dtm.addRow(new Object[]{
-                tAbb.getId_tipoAbbonamento(), tAbb.getPrezzo()
-            });
-        }
-
         
-
+        
+        
     }
 
     /**
@@ -65,7 +48,6 @@ private JTable tAbbTab = new JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        panTabAbbonamenti = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -86,17 +68,6 @@ private JTable tAbbTab = new JTable();
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Scegli un tipo abbonamento");
 
-        javax.swing.GroupLayout panTabAbbonamentiLayout = new javax.swing.GroupLayout(panTabAbbonamenti);
-        panTabAbbonamenti.setLayout(panTabAbbonamentiLayout);
-        panTabAbbonamentiLayout.setHorizontalGroup(
-            panTabAbbonamentiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panTabAbbonamentiLayout.setVerticalGroup(
-            panTabAbbonamentiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 137, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -104,9 +75,6 @@ private JTable tAbbTab = new JTable();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(panTabAbbonamenti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -121,9 +89,7 @@ private JTable tAbbTab = new JTable();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(panTabAbbonamenti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 154, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -210,6 +176,5 @@ private JTable tAbbTab = new JTable();
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel panTabAbbonamenti;
     // End of variables declaration//GEN-END:variables
 }

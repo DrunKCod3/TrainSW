@@ -258,7 +258,7 @@ Treno treno = new Treno();
     JButton backIDST = new JButton("Annulla");
     
     gst3.setVisible(true);
-    gst3.setSize(90, 170);
+    gst3.setSize(130, 250);
     JPanel pan3 = new JPanel(new FlowLayout());
     pan3.setVisible(true);
   

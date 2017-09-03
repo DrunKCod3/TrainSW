@@ -26,6 +26,11 @@ public class Abbonamento {
         this.distanza = distanza;
         this.cliente = cliente;
     }
+
+    @Override
+    public String toString() {
+        return "Abbonamento{" + "id_abb=" + id_abb + ", data_inizio=" + data_inizio + ", data_scadenza=" + data_scadenza + ", staz_p=" + staz_p + ", staz_a=" + staz_a + ", prezzo=" + prezzo + ", distanza=" + distanza + '}';
+    }
            
    
     

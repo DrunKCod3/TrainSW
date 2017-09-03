@@ -73,6 +73,10 @@ public class Startup {
       TipoAbbonamento tipoabb2 = new AbbonamentoSettimanale("Settimanale", 7, 300);
       TipoAbbonamento tipoabb3 = new AbbonamentoAnnuale("Annuale", 365, 500);
       
+      this.pos.addTipoAbbonamento(tipoabb3);
+      this.pos.addTipoAbbonamento(tipoabb2);
+      this.pos.addTipoAbbonamento(tipoabb1);
+      
     }
 
 }

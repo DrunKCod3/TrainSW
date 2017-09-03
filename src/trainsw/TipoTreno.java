@@ -33,6 +33,12 @@ public class TipoTreno {
         this.treni=new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return "TipoTreno{" + "id_tt=" + id_tt + ", tt_name=" + tt_name + ", posti_letto=" + posti_letto + ", np_2c=" + np_2c + ", np_1c=" + np_1c + ", velocita=" + velocita + ", prezzo_prima=" + prezzo_prima + ", prezzo_seconda=" + prezzo_seconda + '}';
+    }
+
+    
 
     
     public int getId_tt() {

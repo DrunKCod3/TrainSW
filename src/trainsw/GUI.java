@@ -340,7 +340,92 @@ public class GUI extends javax.swing.JFrame {
         frame.setSize(250, 150);
         frame.setVisible(true);
 
-        // TODO add your handling code here:
+  nextSA_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                listTrSA = trainSw.inserisciStazioneArrivo(txt_idStaPSA.getText(), txt_idStaASA.getText());
+
+                String[] columnNames = {"ID Tratta",
+                    "Data partenza",
+                    "Data arrivo",
+                    " Stazione partenza",
+                    "Stazione arrivo"
+
+                };
+
+                final JTable perTab = new JTable();
+                final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+
+                dtm.setColumnIdentifiers(columnNames);
+                perTab.setModel(dtm);
+
+
+               
+
+                for( Tratta tratta:listTrSA){
+                    
+                    dtm.addRow(new Object[]{
+                        tratta.getId_tratta(), tratta.getData_p().toString(), tratta.getData_a().toString(), tratta.getPercorso().getStaz_par(), tratta.getPercorso().getStaz_arr()
+
+                    });
+                    
+                }
+
+                frame.dispose();
+
+                final JFrame tabfram = new JFrame("Scegli la tratta");
+                tabfram.setSize(500, 350);
+
+                perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+                JButton nextSAButton = new JButton("Avanti");
+                JButton endButton = new JButton("Fine");
+                final JTextField txt_class = new JTextField(2);
+
+                JPanel panst = new JPanel(new FlowLayout());
+                panst.add(txt_class);
+                panst.add(perTab);
+                panst.add(nextSAButton);
+                panst.add(endButton);
+                tabfram.add(panst);
+                tabfram.setVisible(true);
+
+                nextSAButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        tabfram.dispose();
+                        Tratta trattasx;
+                        trattasx = listTrSA.get((int) perTab.getSelectedRow());
+                        int classe;
+                        classe = new Integer(txt_class.getText());
+                        Biglietto biglietto;
+                        biglietto = trainSw.scegliTratta(trattasx, classe);
+
+                        final JFrame confBiglietto = new JFrame("Visualizza Biglietto");
+                        JPanel pan = new JPanel(new FlowLayout());
+                        JButton confButtonBiglietto = new JButton("Conferma");
+                        JLabel bigliettoLab = new JLabel(biglietto.toString());
+                        pan.add(bigliettoLab);
+                        pan.add(confButtonBiglietto);
+                        confBiglietto.add(pan);
+                        confBiglietto.setVisible(true);
+                        confBiglietto.setSize(500, 100);
+
+                        confButtonBiglietto.addActionListener(new ActionListener() {
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                trainSw.ConfermaBiglietto();
+                                confBiglietto.dispose();
+                            }
+                        });
+
+                    }
+                });
+
+            }
+        });
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -474,7 +559,7 @@ public class GUI extends javax.swing.JFrame {
         frame.setVisible(true);
         JPanel pan = new JPanel(new FlowLayout());
 
-        JLabel lab = new JLabel("Inserisci id stazioni partenza e arrivo");
+        JLabel lab = new JLabel("Inserisci nomi stazioni partenza e arrivo");
         final JTextField txt_sta1;
         final JTextField txt_sta2;
         txt_sta1 = new JTextField(10);
@@ -504,10 +589,11 @@ public class GUI extends javax.swing.JFrame {
                 idStazA = txt_sta1.getText();
                 idStazB = txt_sta2.getText();
 
-                //Caricare prima questa lista, importante : listSt e JTable devono essere sincronizzati
-                // stessi indici-->  -riga = index list 
                 listSt = trainSw.InserisciStazioni(idStazA, idStazB);
 
+                if(listSt == null)
+                    JOptionPane.showMessageDialog(frame,"Stazioni non presenti" , "Errore", JOptionPane.ERROR_MESSAGE);
+                else {
                 String[] columnNames = {"ID Fermata",
                     "Nome Stazione",
                     "Locazione",
@@ -519,7 +605,7 @@ public class GUI extends javax.swing.JFrame {
 
                 dtm.setColumnIdentifiers(columnNames);
                 stTab.setModel(dtm);
-                int index = listSt.size();
+ 
 
                 //Aggiungere elementi lista nella tabella
               
@@ -538,10 +624,10 @@ public class GUI extends javax.swing.JFrame {
                session.close();
 
                 final JFrame tabfram = new JFrame("Scegli le fermate");
-                tabfram.setSize(300, 800);
+                tabfram.setSize(400, 200);
 
                 stTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                stTab.setSize(500, 400);
+
 
                 JButton nextButton = new JButton("Avanti");
                 JButton endButton = new JButton("Fine");
@@ -558,10 +644,10 @@ public class GUI extends javax.swing.JFrame {
 
                         Fermata sts;
                         sts = listSt.get((int) stTab.getSelectedRow());
-                     //   listSt.remove((int) stTab.getSelectedRow());
+
                         trainSw.InserisciFermata(sts);
 
-                   //        System.out.println(sts.toString());
+
                     }
                 });
 
@@ -572,25 +658,25 @@ public class GUI extends javax.swing.JFrame {
                        
                         tabfram.dispose();
                         
-                   //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                     }
                 });
 
-            }
+                } }
         });
 
-
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+           
+    }                                          
 
 
      
 
 
-    //GEN-LAST:event_jMenuItem2ActionPerformed
+//GEN-LAST:event_jMenuItem2ActionPerformed
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         /* Gestisci Abbonamento */
         gestAbbonamento gestAbbonamento1 = new gestAbbonamento();
         gestAbbonamento1.setVisible(true);
+        
 
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
@@ -725,7 +811,6 @@ public class GUI extends javax.swing.JFrame {
                                     public void actionPerformed(ActionEvent e) {
                                         trainSw.confermaBigliettoTessera();
                                         confBiglietto.dispose();
-                                        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
                                     }
                                 });
 

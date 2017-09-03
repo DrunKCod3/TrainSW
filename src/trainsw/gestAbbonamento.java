@@ -5,20 +5,27 @@
  */
 package trainsw;
 
+import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,6 +33,7 @@ import javax.swing.JTextField;
  */
 public class gestAbbonamento extends javax.swing.JFrame {
 private TrainSW trainSW = TrainSW.getIstanza();
+private List<TipoAbbonamento> tabbList = new ArrayList<TipoAbbonamento>();
     /**
      * Creates new form gestAbbonamento
      */
@@ -200,7 +208,7 @@ trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.ge
          insStaAbbPan.add(next);
          insStazAbb.add(insStaAbbPan);
          
-         insStazAbb.setSize(30, 150);
+         insStazAbb.setSize(500, 150);
          insStazAbb.setVisible(true);
          
          
@@ -210,15 +218,90 @@ trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.ge
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                insStazAbb.dispose();
                 String id_staPAbb , id_staAAbb;
                 id_staPAbb = txt_idStP.getText();
                 id_staAAbb = txt_idStA.getText();
                 trainSW.InserisciStazioniAbbonamento(id_staPAbb,id_staAAbb);
 
+              
+                /*
                 insTipoAbbonamentoFrame inAbbonamentoFrame = new insTipoAbbonamentoFrame();
                 inAbbonamentoFrame.setVisible(true);
                 insStazAbb.dispose();
-            }
+            
+                */
+                
+                /* Visualizzazione Abbonamenti */
+                
+                final JFrame insTipoAbb = new JFrame("Inserisci Tipo Abbonamento");
+            
+                JPanel jpan1 = new JPanel(new FlowLayout());
+                JLabel jlab1 = new JLabel("Scegli un tipo abbonamento");
+                JButton nextAddTipoAb = new JButton("Avanti");
+                JButton annullaAddTipoAb = new JButton("Annulla");
+                
+                
+                tabbList = trainSW.getPos().getTipiabbonamento();
+          String[] columnNames = {"ID Tipo abbonamento",
+            "Prezzo"
+        };
+
+       final JTable tAbbTab = new JTable();
+       tAbbTab.setSize(300, 300);
+        final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+
+        dtm.setColumnIdentifiers(columnNames);
+        tAbbTab.setModel(dtm);
+        tAbbTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
+        
+        for (TipoAbbonamento tAbb : tabbList) {
+            System.out.println(tAbb.toString());
+            dtm.addRow(new Object[]{
+               tAbb.getId_tipoAbbonamento(), tAbb.getPrezzo()
+       
+            });
+        }
+                
+                insTipoAbb.add(jpan1);
+                jpan1.add(jlab1);
+                jpan1.add(tAbbTab);
+                jpan1.add(nextAddTipoAb);
+                jpan1.add(annullaAddTipoAb);
+                
+                
+                insTipoAbb.setVisible(true);
+                insTipoAbb.setSize(400, 300);
+                
+                nextAddTipoAb.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        
+                        insTipoAbb.dispose();
+                        
+                        
+                        TipoAbbonamento tipoAbbonamento;
+                          tipoAbbonamento = tabbList.get((int) tAbbTab.getSelectedRow());
+                          trainSW.InserisciTipoAbbonamento(tipoAbbonamento);
+                          
+                          Abbonamento abb = new Abbonamento();
+                          abb = trainSW.ConfermaAbbonamento();
+                          
+                          JOptionPane.showMessageDialog(insTipoAbb, abb.toString() + abb.getCliente().toString());
+                    }
+                });
+                
+                annullaAddTipoAb.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                    insTipoAbb.dispose();
+                    }
+                });
+                
+                
+                }
+           
         });
         
         

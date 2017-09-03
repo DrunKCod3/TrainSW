@@ -30,6 +30,10 @@ public class POS {
     }
 
     
+    public void addTipoAbbonamento(TipoAbbonamento ta){
+        this.tipiabbonamento.add(ta);
+    }
+    
     public void addPromozione(Promozione p){
         promozioni.add(p);
     }
