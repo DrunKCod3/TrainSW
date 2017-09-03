@@ -29,32 +29,42 @@ public class Startup {
     public Startup(TrainSW trainsw) {
         
         
-        String string1  = "12 10 2010";
+        String string1  = "12 10 2017";
         String string2 = "14 12 2020";
-        String string3 = "25 12 2000";
+        String string3 = "25 12 2017";
         String string4 = "01 01 2018";
+        
+        String string5 = "01 01 2000";
+        String string6 = "01 01 2005";
+        
         this.trainsw = trainsw;
        pos = trainsw.getPos();
        
    DateFormat format = new SimpleDateFormat("dddd mm yyyy", Locale.ITALIAN);
         Date anno1 = null, anno2 = null, anno3 = null, anno4 = null;
+        Date anno5 = null, anno6 = null ;
         try {
             anno1 = format.parse(string1);
             anno2 = format.parse(string2);
             anno3 = format.parse(string3);
             anno4 = format.parse(string4);
+            anno5 = format.parse(string5);
+            anno6 = format.parse(string6);
              
         } catch (ParseException ex) {
             Logger.getLogger(insOrarioFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
        
        Cliente cliente = new Cliente("Ajeje", "Brazorf", "JJBRZF23FXCVW", new Date(), 'm');
-       Tessera tessera1 = new Tessera(1, anno1, anno2, 0, cliente);
+       Tessera tessera1 = new Tessera(1, anno1, anno2, 1000, cliente);
+
        
        Cliente cliente1 = new Cliente("Mario", "Rossi", "MRRS12A24DVDX", new Date(), 'm');
        Tessera tessera2 = new Tessera(2, anno3, anno4, 0, cliente1);
        
-        
+       Cliente cliente2 = new Cliente("Rosario","Farsaperla","RSRJIOSFVN2X", new Date(), 'm');
+       Tessera tessera3 = new Tessera(3,anno5 , anno6, 980,cliente2);
+       
       Promozione promoStandard = new PromoStandard("Standard",100, 0.05);
       Promozione promoSoglia = new PromoSoglia ("Soglia", 250, 80, 0.4);
       Promozione allInclusivePromo = new AllInclusivePromo("AllInclusive", 350);
@@ -68,6 +78,7 @@ public class Startup {
       
       this.trainsw.addTessera(tessera1);
       this.trainsw.addTessera(tessera2);
+      this.trainsw.addTessera(tessera3);
       
       TipoAbbonamento tipoabb1 = new AbbonamentoMensile("Mensile", 30, 100);
       TipoAbbonamento tipoabb2 = new AbbonamentoSettimanale("Settimanale", 7, 300);
