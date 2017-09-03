@@ -28,7 +28,10 @@ public class Tratta {
         fermate = new ArrayList<FermataOrario>();
 
     }
-
+    public Tratta(int id_tratta, Date data_p) {
+        this.id_tratta = id_tratta;
+        this.data_p = data_p;
+    }
     @Override
     public String toString() {
         return "Tratta{" + "id_tratta="
