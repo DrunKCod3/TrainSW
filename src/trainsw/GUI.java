@@ -496,10 +496,97 @@ public class GUI extends javax.swing.JFrame {
                 frame.dispose();
             }
         });
+           nextButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+                String idStazA, idStazB;
+                idStazA = txt_sta1.getText();
+                idStazB = txt_sta2.getText();
+
+                //Caricare prima questa lista, importante : listSt e JTable devono essere sincronizzati
+                // stessi indici-->  -riga = index list 
+                listSt = trainSw.InserisciStazioni(idStazA, idStazB);
+
+                String[] columnNames = {"ID Fermata",
+                    "Nome Stazione",
+                    "Locazione",
+                    "Numero Binari"
+                };
+
+                final JTable stTab = new JTable();
+                final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+
+                dtm.setColumnIdentifiers(columnNames);
+                stTab.setModel(dtm);
+                int index = listSt.size();
+
+                //Aggiungere elementi lista nella tabella
+              
+                Session session = NewHibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+                  
+           
+                   for(Fermata fer : listSt){
+                    Stazione st=(Stazione) session.load(Stazione.class, fer.getId_stazione());
+                    dtm.addRow(new Object[]{
+                    fer.getId_stazione(), st.getNome_stazione(),st.getLocazione()
+                    
+                    });
+               
+                }
+               session.close();
+
+                final JFrame tabfram = new JFrame("Scegli le fermate");
+                tabfram.setSize(300, 800);
+
+                stTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                stTab.setSize(500, 400);
+
+                JButton nextButton = new JButton("Avanti");
+                JButton endButton = new JButton("Fine");
+                JPanel panst = new JPanel(new FlowLayout());
+                panst.add(stTab);
+                panst.add(nextButton);
+                panst.add(endButton);
+                tabfram.add(panst);
+                tabfram.setVisible(true);
+
+                nextButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+
+                        Fermata sts;
+                        sts = listSt.get((int) stTab.getSelectedRow());
+                     //   listSt.remove((int) stTab.getSelectedRow());
+                        trainSw.InserisciFermata(sts);
+
+                   //        System.out.println(sts.toString());
+                    }
+                });
+
+                endButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        trainSw.ConfermaPercorso();
+                       
+                        tabfram.dispose();
+                        
+                   //     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    }
+                });
+
+            }
+        });
 
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
+
+     
+
+
+    //GEN-LAST:event_jMenuItem2ActionPerformed
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         /* Gestisci Abbonamento */
         gestAbbonamento gestAbbonamento1 = new gestAbbonamento();
