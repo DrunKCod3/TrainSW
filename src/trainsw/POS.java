@@ -115,6 +115,7 @@ public class POS {
     }
     public void creaBiglietto(){
         biglietto_corrente=new Biglietto();
+        biglietto_corrente.setId_b(this.biglietti_venduti.size() +1 );
     }    
     public Biglietto scegliTratta(Tratta tr,int classe){
         biglietto_corrente.calcolaBiglietto(tr, classe);
@@ -122,7 +123,7 @@ public class POS {
     }
     
     public void creaAbbonamento(String staz_p,String staz_a, double distanza, Cliente cliente){
-        abbonamento_corrente=new Abbonamento(staz_p, staz_a, distanza, cliente);
+        abbonamento_corrente=new Abbonamento(this.abbonamenti_venduti.size()+ 1,staz_p, staz_a, distanza, cliente);
     }
     public Abbonamento InserisciTipoAbbonamento(TipoAbbonamento tipo){
         abbonamento_corrente.setTipo(tipo);
@@ -141,9 +142,11 @@ public class POS {
     }
           
   public double associaPromozione(Promozione promozione){
-            this.promozione_corrente = promozione;
+      this.promozione_corrente = promozione;
       double prezzo_scontato = biglietto_corrente.getPrezzo();
-             prezzo_scontato = promozione.calcolaPromozione(prezzo_scontato,tessera_corrente.getPunti());
+      System.out.println(biglietto_corrente);
+     prezzo_scontato = promozione.calcolaPromozione(prezzo_scontato,tessera_corrente.getPunti());
+ 
       return prezzo_scontato;
   }
  public Biglietto ConfermaAcquistoPunti(double prezzo_scontato){

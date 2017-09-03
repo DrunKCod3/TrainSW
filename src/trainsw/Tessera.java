@@ -5,7 +5,12 @@
  */
 package trainsw;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -88,9 +93,9 @@ public class Tessera {
     }
     
     public boolean verificaTessera(){
-        if(d_scadenza.getTime()<System.currentTimeMillis())
-            return true;
-      return false;  
+Date now = new Date();
+            return now.before(d_scadenza);
+     
     }
     public void aggiornaSaldo(int punti){
         this.punti-=punti;

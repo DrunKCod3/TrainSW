@@ -25,6 +25,14 @@ public class Biglietto {
         this.tratta = tratta;
     }
 
+    public Biglietto(int id_b, String staz_par, String staz_arr) {
+        this.id_b = id_b;
+        this.staz_par = staz_par;
+        this.staz_arr = staz_arr;
+    }
+    
+    
+
     public Biglietto(String staz_par, String staz_arr) {
 
         this.staz_par = staz_par;

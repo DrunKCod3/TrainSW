@@ -12,6 +12,16 @@ public class Abbonamento {
     private double distanza;
     private Cliente cliente;
     private TipoAbbonamento tipo;
+
+    public Abbonamento(Integer id_abb, String staz_p, String staz_a, double distanza, Cliente cliente) {
+        this.id_abb = id_abb;
+        this.staz_p = staz_p;
+        this.staz_a = staz_a;
+        this.distanza = distanza;
+        this.cliente = cliente;
+    }
+    
+    
     
     public Abbonamento()
     {

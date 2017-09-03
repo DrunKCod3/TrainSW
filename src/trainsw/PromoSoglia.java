@@ -26,6 +26,7 @@ public class PromoSoglia extends Promozione{
 
     @Override
     public double calcolaPromozione(double prezzo, int punti) {
+         
        if(punti >= sogliapunti)
        {
         if(prezzo > sogliaprezzo){

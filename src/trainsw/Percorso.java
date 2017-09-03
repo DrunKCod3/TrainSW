@@ -187,7 +187,7 @@ public class Percorso {
     public boolean RicercaFermata(String id_sta) {
           Session session = NewHibernateUtil.getSessionFactory().openSession();
           session.beginTransaction();
-          session.update(this);
+//          session.update(this);
           for (Fermata fermata :getFermate()) {
           
               Stazione   stazione =(Stazione) session.load(Stazione.class,fermata.getStazione().getId_stazione()); 

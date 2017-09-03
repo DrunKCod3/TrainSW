@@ -14,7 +14,7 @@
                 <many-to-many column="id_collegamento" class="trainsw.Collegamento" />  
             </bag>  
             
-            <bag name="fermate" table="fermatapercorso" inverse="false" lazy="true" fetch="join" cascade="save-update, delete">  
+            <bag name="fermate" table="fermatapercorso" inverse="false" lazy="false" fetch="join" cascade="save-update, delete">  
                 <key column="id_per"></key>  
                 <one-to-many  class="trainsw.Fermata" />  
             </bag>    
