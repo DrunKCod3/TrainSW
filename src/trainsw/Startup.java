@@ -69,7 +69,10 @@ public class Startup {
       this.trainsw.addTessera(tessera1);
       this.trainsw.addTessera(tessera2);
       
-
+      TipoAbbonamento tipoabb1 = new AbbonamentoMensile("Mensile", 30, 100);
+      TipoAbbonamento tipoabb2 = new AbbonamentoSettimanale("Settimanale", 7, 300);
+      TipoAbbonamento tipoabb3 = new AbbonamentoAnnuale("Annuale", 365, 500);
+      
     }
 
 }
