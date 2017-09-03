@@ -859,9 +859,9 @@ public class GUI extends javax.swing.JFrame {
                     }
                 }
                 if (tex1 != null) {
-                    System.out.println(tex1.toString());
+               
                     trainSw.InserisciTessera(tex1);
-                   System.out.print(tex1);
+        
                 
 
                     final JFrame frame = new JFrame("Acquista biglietto");
