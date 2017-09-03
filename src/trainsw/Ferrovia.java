@@ -40,6 +40,23 @@ private void caricaDati(){
     getTipoTreno();
             
 }
+
+    public void addStazione(Stazione sta){
+        this.stazioni.add(sta);
+    }
+    
+    public void addPercorso(Percorso per){
+        this.percorsi.add(per);
+    }
+    
+    public void addCollegamento(Collegamento col){
+        this.collegamenti.add(col);
+    }
+     
+    public void addTipoTreno(TipoTreno tipot){
+        this.tipoTreno.add(tipot);
+    }
+
     public Stazione getSt() {
         return st;
     }
