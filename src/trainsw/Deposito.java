@@ -78,9 +78,11 @@ public class Deposito implements java.io.Serializable {
 
     public void addTrenoDeposito(Treno tr) {
      if(!isFull()){
-        tr.setDeposito(this);
-        treni.add(tr);
+         
+        
         try{
+            tr.setDeposito(this);
+        treni.add(tr);
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.saveOrUpdate(tr);

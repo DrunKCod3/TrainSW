@@ -89,12 +89,12 @@ private void caricaDati(){
         this.pr = pr;}
 
     public List<Stazione> getStazioni() {
-       
+        List<Stazione> stazioni=new ArrayList();
         Session session= new NewHibernateUtil().getSessionFactory().openSession();
         session.beginTransaction();
         List<Stazione> result=session.createQuery("from Stazione").list();
         for(Stazione stazione: result)
-        this.stazioni.add(stazione);
+        stazioni.add(stazione);
         session.getTransaction().commit();
         session.close();
         return stazioni;
@@ -301,8 +301,9 @@ private void caricaDati(){
     }
 
     public Treno InserisciTreno(int id_tr) {
+        if(tt!=null)
         return this.tt.InserisciTreno(id_tr);
-
+        return null;
     }
 
     public void InserisciNelDeposito(String id_st, Treno tr) {
@@ -313,6 +314,7 @@ private void caricaDati(){
     }
 
     public void confermaTreno() {
+        if(tt!=null)
         this.tt.confermaTreno();
     }
 

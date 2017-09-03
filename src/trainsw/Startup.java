@@ -42,7 +42,7 @@ public class Startup {
         
         this.trainsw = trainsw;
        pos = trainsw.getPos();
-       
+       ferrovia=trainsw.getFerrovia();
    DateFormat format = new SimpleDateFormat("dddd mm yyyy", Locale.ITALIAN);
         Date anno1 = null, anno2 = null, anno3 = null, anno4 = null;
         Date anno5 = null, anno6 = null ;
@@ -90,68 +90,82 @@ public class Startup {
       this.pos.addTipoAbbonamento(tipoabb3);
       this.pos.addTipoAbbonamento(tipoabb2);
       this.pos.addTipoAbbonamento(tipoabb1);
+     ferrovia.inserisciStazione(1, 6, "via Giulio", "Trumpitello");
+     ferrovia.confermaStazione();
+     ferrovia.inserisciStazione(2, 6, "via Cesare", "Mascali");
+     ferrovia.confermaStazione();
+     ferrovia.inserisciStazione(3, 6, "via Augusto", "Giarre");
+     ferrovia.confermaStazione();
+     ferrovia.inserisciStazione(4, 6, "via Treppello", "Acireale");
+     ferrovia.confermaStazione();
+     ferrovia.inserisciStazione(5, 6, "via Nuova", "Catania CLE");
+     ferrovia.confermaStazione();
+     ferrovia.inserisciStazione(6, 6, "via Vecchia", "Siracusa CLE");
+     ferrovia.confermaStazione();
       
-      Stazione sta1 = new Stazione(1, 6, "via Giulio", "Trumpitello");
-      Stazione sta2 = new Stazione(2, 6, "via Cesare", "Mascali");
-      Stazione sta3 = new Stazione(3, 6, "via Augusto", "Giarre");
-      Stazione sta4 = new Stazione(4, 6, "via Treppello", "Acireale");
-      Stazione sta5 = new Stazione(5, 6, "via Nuova", "Catania CLE");
-      Stazione sta6 = new Stazione(6, 6, "via Vecchia", "Siracusa CLE");
+     
       
-      this.ferrovia.addStazione(sta1);
-      this.ferrovia.addStazione(sta2);
-      this.ferrovia.addStazione(sta3);
-      this.ferrovia.addStazione(sta4);
-      this.ferrovia.addStazione(sta5);
-      this.ferrovia.addStazione(sta6);
-      
-      Collegamento col1 = new Collegamento(1, "Trumpitello", "Mascali", 9, sta1, sta2);
-      Collegamento col2 = new Collegamento(2, "Mascali", "Giarre", 9, sta2, sta3);
-      Collegamento col3 = new Collegamento(3, "Giarre", "Acireale", 9, sta3, sta4);
-      Collegamento col4 = new Collegamento(4, "Acireale", "Catania", 9, sta4, sta5);
-      Collegamento col5 = new Collegamento(5, "Catania", "Siracusa", 9, sta5, sta6);
-      
-      this.ferrovia.addCollegamento(col1);
-      this.ferrovia.addCollegamento(col2);
-      this.ferrovia.addCollegamento(col3);
-      this.ferrovia.addCollegamento(col4);
-      this.ferrovia.addCollegamento(col5);
 
-      Deposito dep1 = new Deposito(1, 1, 2);
-      Deposito dep2 = new Deposito(2, 4, 10);
-      Deposito dep3 = new Deposito(3, 6, 10);
+      ferrovia.InserisciCollegamento(1, "Trumpitello", "Mascali", 9 );
+      ferrovia.ConfermaCollegamento();
+      ferrovia.InserisciCollegamento(2, "Mascali", "Giarre", 14);
+       ferrovia.ConfermaCollegamento();
+     ferrovia.InserisciCollegamento(3, "Giarre", "Acireale", 23);
+      ferrovia.ConfermaCollegamento();
+      ferrovia.InserisciCollegamento(4, "Acireale", "Catania", 56);
+       ferrovia.ConfermaCollegamento();
+      ferrovia.InserisciCollegamento(5, "Catania", "Siracusa", 49);
       
-      this.stazione.addListDeposito(dep1);
-      this.stazione.addListDeposito(dep2);
-      this.stazione.addListDeposito(dep3);
+    
+Deposito dep;
+      dep =ferrovia.inserisciDeposito(1,"Trumpitello", 2);
+      ferrovia.confermaDeposito(dep);
+   dep = ferrovia.inserisciDeposito(2, "Acireale", 10);
+     ferrovia.confermaDeposito(dep);
+  dep= ferrovia.inserisciDeposito(3, "Siracusa CLE", 10);
+     ferrovia.confermaDeposito(dep);
+         Treno tr1;
+     
+      Treno tr2;
+     
+      Treno tr3; 
+      Treno tr4;
 
-      TipoTreno tipotr1 = new TipoTreno(1, "regionale", (short)0, (short)70, (short)90, 170, 20, 5);
-      TipoTreno tipotr2 = new TipoTreno(2, "Intercity", (short)40, (short)70, (short)90, 170, 20, 5);
-      TipoTreno tipotr3 = new TipoTreno(3, "Premium", (short)60, (short)20, (short)40, 170, 20, 5);
-      TipoTreno tipotr4 = new TipoTreno(4, "TrenOrfeo", (short)90, (short)45, (short)45, 170, 20, 5);
+      ferrovia.InserisciTipologiaTreno(1, "regionale", (short)0, (short)70, (short)90, 170, 20, 5);
+      ferrovia.ConfermaTipologiaTreno();
+     tr1=ferrovia.InserisciTreno(1);
+       ferrovia.confermaTreno();
+       ferrovia.InserisciNelDeposito("Trumpitello", tr1);
+      ferrovia.InserisciTipologiaTreno(2, "Intercity", (short)40, (short)70, (short)90, 170, 20, 5);
+      ferrovia.ConfermaTipologiaTreno();
+     
+     tr2=   ferrovia.InserisciTreno(2);
+       ferrovia.confermaTreno();
+       ferrovia.InserisciNelDeposito("Acireale", tr2);
+       ferrovia.InserisciTipologiaTreno(3, "Premium", (short)60, (short)20, (short)40, 170, 20, 5);
+       ferrovia.ConfermaTipologiaTreno();
+       tr3= ferrovia.InserisciTreno(3);
+       ferrovia.confermaTreno();
+       ferrovia.InserisciNelDeposito("Acireale", tr3);
+      ferrovia.InserisciTipologiaTreno(4, "TrenOrfeo", (short)90, (short)45, (short)45, 170, 20, 5);
+      ferrovia.ConfermaTipologiaTreno();
+      ferrovia.ConfermaTipologiaTreno();
+     tr4=   ferrovia.InserisciTreno(4);
+       ferrovia.confermaTreno();
+       ferrovia.InserisciNelDeposito("Siracusa CLE", tr4);
       
-      this.ferrovia.addTipoTreno(tipotr1);
-      this.ferrovia.addTipoTreno(tipotr2);
-      this.ferrovia.addTipoTreno(tipotr3);
-      this.ferrovia.addTipoTreno(tipotr4);
+     
       
-      Treno tr1 = new Treno(1, tipotr1);
-      Treno tr2 = new Treno(2, tipotr2);
-      Treno tr3 = new Treno(3, tipotr3);
-      Treno tr4 = new Treno(4, tipotr4);
+ 
+     
       
-      this.tipotreno.addListTreno(tr1);
-      this.tipotreno.addListTreno(tr2);
-      this.tipotreno.addListTreno(tr3);
-      this.tipotreno.addListTreno(tr4);
-      
-      Percorso pr1 = new Percorso(1,"Trumpitello", "Mascali");
-      Percorso pr2 = new Percorso(2,"Mascali", "Giarre");
-      Percorso pr3 = new Percorso(3,"Giarre", "Acireale");
-      
-      this.ferrovia.addPercorso(pr1);
-      this.ferrovia.addPercorso(pr2);
-      this.ferrovia.addPercorso(pr3);
+     if(ferrovia.getPercorsi().size()==0){
+      ferrovia.creaPercorso();
+    for(Fermata fer : ferrovia.InserisciStazione("Trumpitello", "Siracusa CLE"))
+       ferrovia.InserisciFermata(fer);
+      ferrovia.ConfermaPercorso();
+     }
+    
       
       Date trattaanno1 = null, trattaanno2 = null, trattaanno3 = null, trattaanno4 = null;
         try {
@@ -164,15 +178,11 @@ public class Startup {
             Logger.getLogger(insOrarioFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-      Tratta tratta1 = new Tratta(1, trattaanno1);
-      Tratta tratta2 = new Tratta(2, trattaanno2);
-      Tratta tratta3 = new Tratta(3, trattaanno3);
-      Tratta tratta4 = new Tratta(4, trattaanno4);
+    tr1=new Treno(1, new TipoTreno(1, "regionale", (short)0, (short)70, (short)90, 170, 20, 5));
+   
+
       
-      this.percorso.addTratta(tratta1);
-      this.percorso.addTratta(tratta2);
-      this.percorso.addTratta(tratta3);
-      this.percorso.addTratta(tratta4);
+    
 
       
     }

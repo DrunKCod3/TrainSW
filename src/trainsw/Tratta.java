@@ -132,9 +132,10 @@ public class Tratta {
     public void inserisciTreno(Treno tr) {
         this.treno = tr;
         for (FermataOrario fermata : getFermate()) {
+ System.out.println( " cacca"+fermata.getNp_1c());
             fermata.setNp_1c(tr.getTt().getNp_1c());
             fermata.setNp_2c(tr.getTt().getNp_2c());
-            System.out.println( " cacca"+fermata.getNp_1c());
+            
         }
     }
 
