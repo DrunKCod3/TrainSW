@@ -19,6 +19,8 @@ public class Abbonamento {
         this.staz_a = staz_a;
         this.distanza = distanza;
         this.cliente = cliente;
+            this.data_inizio=new Date();
+        this.data_scadenza=new Date();
     }
     
     
@@ -46,7 +48,7 @@ public class Abbonamento {
     
     public void calcolaPrezzo(){
         this.data_scadenza=new Date();
-    	this.data_scadenza.setTime(tipo.getDurata()+this.getData_inizio().getTime());
+    	this.data_scadenza.setTime((long)tipo.getDurata()+this.getData_inizio().getTime());
         
         prezzo=tipo.calcolaPrezzo( distanza);
        
