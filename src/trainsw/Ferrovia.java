@@ -290,9 +290,8 @@ private void caricaDati(){
 
     public List<Fermata> InserisciStazione(String id_staA, String id_staB) {
         List<Collegamento> collegamenti=getCollegamenti();
-   
-        
-        
+        List<Fermata> fermate=null;
+  if(getStazione(id_staB)!=null && getStazione(id_staA)!=null){
         pr.setStaz_arr(id_staB);
         pr.setStaz_par(id_staA);
         
@@ -300,8 +299,8 @@ private void caricaDati(){
             pr.addcollegamenti(col);
         }
         
-        List<Fermata> fermate= pr.calcolaPercorso();
-        
+        fermate= pr.calcolaPercorso();
+  }
         return fermate;
     }
 
