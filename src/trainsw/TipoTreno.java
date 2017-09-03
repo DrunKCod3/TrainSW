@@ -39,7 +39,9 @@ public class TipoTreno {
     }
 
     
-
+    public void addListTreno(Treno tr){
+        this.treni.add(tr);
+    }
     
     public int getId_tt() {
         return id_tt;
