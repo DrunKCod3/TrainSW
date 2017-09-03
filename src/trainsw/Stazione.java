@@ -26,6 +26,7 @@ public class Stazione {
     private String locazione;
     private String nome_stazione;
     private Deposito deposito;
+    private List<Deposito> dep;
 
     public Stazione() {
     }
@@ -39,6 +40,10 @@ public class Stazione {
 
     }
 
+     public void addListDeposito(Deposito deposito){
+        this.dep.add(deposito);
+    }
+     
     public int getId_stazione() {
         return id_stazione;
     }
