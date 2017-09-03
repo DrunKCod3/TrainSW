@@ -12,9 +12,11 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
+import org.hibernate.Session;
 
 /**
  *
@@ -121,8 +123,8 @@ private List<Percorso> listper2;
         //Prendi i percorsi da qui
          
                 String[] columnNames = {"ID Percorso",
-                        "id Stazione partenza",
-                        "id Stazione arrivo"
+                        "Nome Fermata"
+                       
                         
                        };
                 
@@ -132,29 +134,38 @@ private List<Percorso> listper2;
                 dtm.setColumnIdentifiers(columnNames);
                 perTab.setModel(dtm);
                 
-              
+               Session session = NewHibernateUtil.getSessionFactory().openSession();
+                 session.beginTransaction();
                
                for(Percorso per1 :listper2){
-                   
+                   per1=(Percorso) session.load(Percorso.class,per1.getId_per());
+                   for(Fermata fer :per1.getFermate()){
+                    fer=(Fermata) session.load(Fermata.class,fer.getId_fer());   
                 dtm.addRow(new Object[] {
-                    per1.getId_per(),per1.getStaz_par(),per1.getStaz_arr()
+                    per1.getId_per(),fer.getStazione().toString()
                    
                    
                 });
-              
+                   }
+                  
                 }
-                
+               
+               session.getTransaction().commit();
+                session.close();
            final JFrame tabfram = new JFrame("Scegli il percorso");
-           tabfram.setSize(300, 400);
-      
-                                      
+           tabfram.setSize(600, 600);
+        
+          perTab.getColumnModel().getColumn(1).setMinWidth(500);
+          perTab.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+          perTab.setMaximumSize(null);
           perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-          perTab.setSize(200, 300);
+         
 
 JButton nextButton = new JButton("Avanti");
 JButton endButton = new JButton("Fine");
 JPanel panst = new JPanel(new FlowLayout());
-panst.add(perTab);
+panst.add(new JScrollPane(perTab));
+
 panst.add(nextButton);
 panst.add(endButton);
 tabfram.add(panst);
@@ -165,10 +176,12 @@ nextButton.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                      
                         tabfram.dispose();
-                           Percorso perc;
-                          perc = listper2.get((int) perTab.getSelectedRow());
-                       
-                          trainSW.InserisciPercorso(perc);
+                          
+                           int i=(int) perTab.getValueAt((int)perTab.getSelectedRow(), 0);
+                           System.out.println(i);
+                          for (Percorso perc : listper2)                       
+                            if(perc.getId_per()==i)
+                              trainSW.InserisciPercorso(perc);
                           
                            insOrarioFrame insOrarioframe;
                            insOrarioframe = new insOrarioFrame();

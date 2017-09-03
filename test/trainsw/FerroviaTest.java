@@ -21,9 +21,9 @@ public class FerroviaTest {
 
 
     @Test
-    public void testconfermaStazione_4args() {
+    public void testconfermaStazione() {
                     
-                  ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"Catania");
+                  ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
                  
                   ferrovia.confermaStazione();
                   ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
@@ -37,28 +37,59 @@ public class FerroviaTest {
     }
     @Test
     public void testisPresent(){
-        List<Stazione> stazioni=ferrovia.getStazioni();
-    Stazione stazione=  new Stazione(1, 2,"catania_centrale", "Catania");
-     Stazione stazione1=    new Stazione(2, 2, "catania_centrale", "messina");
-     Stazione stazione2=   new Stazione(3, 2 , "catania_centrale","palermo");
-        stazioni.add(stazione);
-        stazioni.add(stazione1);
-        stazioni.add(stazione2);
+                 ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
+                 ferrovia.confermaStazione();
+                  ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
+                  ferrovia.confermaStazione();
         assertEquals("la stazione non è presente",true,ferrovia.isPresent(1,"catania"));
         assertFalse("la stazione è presente", ferrovia.isPresent(20,"genova"));
     }
+     @Test 
+       public void testInserisciTipoTreno(){
+        ferrovia.InserisciTipologiaTreno(1, "freccia rossa",(short) 1,(short) 1, (short)1, 1, 2, 3);
+        ferrovia.ConfermaTipologiaTreno();
+       TipoTreno tipo=  ferrovia.InserisciTipologiaTreno(1, "freccia rossa",(short) 1,(short) 1, (short)1, 1, 2, 3);
+        assertNull("la tipologia è stata inserita",tipo);
+       }
+     @Test 
+       public void testInserisciPercorso(){
+        ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
+        ferrovia.confermaStazione();
+        ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
+        ferrovia.confermaStazione();
+        ferrovia.inserisciStazione(3, 2, "catania_centrale", "palermo");
+        ferrovia.confermaStazione();
+         ferrovia.InserisciCollegamento(1,"catania" , "messina", 20);
+        ferrovia.ConfermaCollegamento();
+      ferrovia.InserisciCollegamento(2,"messina" , "palermo", 20);
+        ferrovia.ConfermaCollegamento();
+       
+       Deposito dep= ferrovia.inserisciDeposito(1, "catania", 20);
+       ferrovia.confermaDeposito(dep);
+        ferrovia.creaPercorso();
+       List<Fermata>fermata= ferrovia.InserisciStazione("catania", "messina");
+       assertEquals("le fermate non sono ",2,fermata.size());
+       fermata= ferrovia.InserisciStazione("messina", "palermo");
+         assertNull("la stazione non è deposito ",fermata);
+       fermata= ferrovia.InserisciStazione("catania", "genova");
+       assertNull("le fermate non sono ",fermata);
+
+     }
+     
      @Test
    public void testInserisciCollegamento(){
-        List<Stazione> stazioni=ferrovia.getStazioni();
-       Stazione stazione=new Stazione(1, 2,"cat", "catania");
-        Stazione stazione1=new Stazione(2, 2,"pip", "messina");
-       Stazione stazione2=new Stazione(3, 2,"par", "palermo");
-        stazioni.add(stazione);
-       stazioni.add(stazione1);
-        stazioni.add(stazione2);
+      
+      ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
+      ferrovia.confermaStazione();
+      ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
+      ferrovia.confermaStazione();
+      ferrovia.inserisciStazione(3, 2, "catania_centrale", "palermo");
+      
+      
         Collegamento collegamento=ferrovia.InserisciCollegamento(1,"catania" , "messina", 20);
-        assertNotNull("inserimento non riuscito",collegamento);
-        collegamento=ferrovia.InserisciCollegamento(1, "catania","genova", 20);
+        
+
+        collegamento=ferrovia.InserisciCollegamento(1, "catania","messina", 20);
         assertNull("inserimento riuscito",collegamento);
                 
    }

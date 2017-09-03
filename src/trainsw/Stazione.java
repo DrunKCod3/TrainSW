@@ -48,7 +48,16 @@ public class Stazione {
     }
 
     public Deposito getDeposito() {
-        return deposito;
+    Session session = NewHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        List<Deposito> depositi= session.createQuery("from Deposito").list();
+          for(Deposito dep: depositi)
+            if(dep.getStazione().getId_stazione()==this.id_stazione)
+                this.deposito=dep;
+                
+        session.getTransaction().commit();
+        session.close();
+        return this.deposito;
     }
 
     public void setDeposito(Deposito deposito) {
@@ -89,13 +98,14 @@ public class Stazione {
     public void addDeposito(Deposito deposito) {
         Session session = null;
         this.deposito=deposito;
+        if(deposito!=null){
         session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(deposito);
         session.update(this);
         session.getTransaction().commit();
         session.close();
-
+    }
     }
   
     

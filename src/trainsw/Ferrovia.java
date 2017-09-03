@@ -72,16 +72,14 @@ private void caricaDati(){
         this.pr = pr;}
 
     public List<Stazione> getStazioni() {
-         List<Stazione> stazioni=new ArrayList<>();
+       
         Session session= new NewHibernateUtil().getSessionFactory().openSession();
         session.beginTransaction();
         List<Stazione> result=session.createQuery("from Stazione").list();
         for(Stazione stazione: result)
-            stazioni.add(stazione);
-       this.stazioni=stazioni;
-    
-         session.getTransaction().commit();
-       session.close();
+        this.stazioni.add(stazione);
+        session.getTransaction().commit();
+        session.close();
         return stazioni;
     }
 
@@ -90,13 +88,13 @@ private void caricaDati(){
     }
 
     public List<Percorso> getPercorsi() {
-        List<Percorso> percorsi=new ArrayList<>();
+       List<Percorso>percorsi=new ArrayList<>();
      Session session= new NewHibernateUtil().getSessionFactory().openSession();
         session.beginTransaction();
         List<Percorso> result=session.createQuery("from Percorso").list();
         for(Percorso pr: result)
             percorsi.add(pr);
-        this.percorsi=percorsi;
+       
           session.getTransaction().commit();
        session.close();
         return percorsi;
@@ -107,13 +105,13 @@ private void caricaDati(){
     }
 
     public List<TipoTreno> getTipoTreno() {
-        List<TipoTreno> tipoTreno=new ArrayList<>();
+       List<TipoTreno> tipoTreno=new ArrayList<>();
          Session session= new NewHibernateUtil().getSessionFactory().openSession();
         session.beginTransaction();
         List<TipoTreno> result=session.createQuery("from TipoTreno").list();
         for(TipoTreno tp: result)
             tipoTreno.add(tp);
-        this.tipoTreno=tipoTreno;
+   
           session.getTransaction().commit();
        session.close();
         return tipoTreno;
@@ -124,15 +122,16 @@ private void caricaDati(){
     }
 
     public List<Collegamento> getCollegamenti() {
-       List<Collegamento> collegamenti=new ArrayList<>();
+      List<Collegamento> collegamenti=new ArrayList<>();
        Session session= new NewHibernateUtil().getSessionFactory().openSession();
         session.beginTransaction();
         List<Collegamento> result=session.createQuery("from Collegamento").list();
         for(Collegamento col: result)
-            collegamenti.add(col);
-        this.collegamenti=collegamenti;
+         collegamenti.add(col);
+        
           session.getTransaction().commit();
-       session.close();
+         session.close();
+        
         return collegamenti;
     }
 
@@ -181,10 +180,11 @@ private void caricaDati(){
      */
     public Deposito inserisciDeposito(int id_dep, String id_st, int num_posti) {
        List<Stazione> stazioni=getStazioni();
-        st=getStazione(id_st);
-
-        return st.creaDeposito(id_dep, num_posti);
-
+       Deposito dp=null; 
+       st=getStazione(id_st);
+       if(st.getDeposito()==null)
+       dp=  st.creaDeposito(id_dep, num_posti);
+       return dp;
     }
 
     public void confermaDeposito(Deposito dep) {
@@ -201,20 +201,22 @@ private void caricaDati(){
         Collegamento col = null;
         staA = getStazione(id_staA);
         staB = getStazione(id_staB);
-      if(staA !=null && staB != null)
+      if(staA !=null && staB != null && !isPresentcollegamento(id_collegamento,id_staA,id_staB))
         col = new Collegamento(id_collegamento, id_staA, id_staB, distanza, staA, staB);
         this.coll = col;
         return coll;
     }
 
     public void ConfermaCollegamento() {
-        List<Collegamento> collegamenti=getCollegamenti();
+        
+        if(coll!=null){
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         collegamenti.add(coll);
         session.save(coll);
         session.getTransaction().commit();
         session.close();
+        }
     }
 
     public Stazione getStazione(String id_sta) {
@@ -228,6 +230,20 @@ private void caricaDati(){
 
         return st;
     }
+    public boolean isPresentcollegamento(int id,String id_staA,String id_staB){
+         Session session = NewHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+       for(Collegamento col :getCollegamenti()){
+           col=(Collegamento) session.load(Collegamento.class, col.getId_collegamento());
+           if(col.getId_collegamento()==id || col.getStazione_b().getNome_stazione().toLowerCase().equals(id_staA.toLowerCase())
+            && col.getStazione_b().getNome_stazione().toLowerCase().equals(id_staB.toLowerCase()))
+           {session.close();
+               return true;
+           }
+       }  
+       session.close();
+        return false; 
+    }
 
     /**
      * **********************************
@@ -237,6 +253,7 @@ private void caricaDati(){
         TipoTreno tipo = null;
         if (isPresentTipo(id_tt,tt_name) == false) {
             tipo = new TipoTreno(id_tt, tt_name, posti_letto, np_2c, np_1c, velocita, prezzo_prima, prezzo_seconda);
+        System.out.println("inserisco comunque");
         }
         this.tt = tipo;
         return tipo;
@@ -245,7 +262,8 @@ private void caricaDati(){
     public boolean isPresentTipo(int id_tt , String tt_name) {
       List<TipoTreno> tipoTreno=getTipoTreno();
         for (TipoTreno tipo : tipoTreno) {
-            if (tipo.getId_tt() == id_tt && tipo.getTt_name().toLowerCase().equals(tt_name.toLowerCase())) {
+            if ( tipo.getTt_name().toLowerCase().equals(tt_name.toLowerCase())) {
+                System.out.println("inserisco comunque");
                 return true;
             }
         }
@@ -255,12 +273,14 @@ private void caricaDati(){
 
     public void ConfermaTipologiaTreno() {
   List<TipoTreno> tipoTreno=getTipoTreno();
+        if(tt!=null){
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         tipoTreno.add(this.tt);
         session.save(this.tt);
         session.getTransaction().commit();
         session.close();
+        }
     }
 
     public Treno InserisciTreno(int id_tr) {
@@ -291,7 +311,7 @@ private void caricaDati(){
     public List<Fermata> InserisciStazione(String id_staA, String id_staB) {
         List<Collegamento> collegamenti=getCollegamenti();
         List<Fermata> fermate=null;
-  if(getStazione(id_staB)!=null && getStazione(id_staA)!=null){
+  if(getStazione(id_staB)!=null && getStazione(id_staA)!=null && getStazione(id_staA).getDeposito()!=null){
         pr.setStaz_arr(id_staB);
         pr.setStaz_par(id_staA);
         
@@ -326,12 +346,13 @@ private void caricaDati(){
         List<Percorso> percorsi = new ArrayList();
         List<Percorso> per=getPercorsi();
         for (Percorso pr : per) {
-             System.out.println("sono nel pr"+pr.getId_per()+pr.getStaz_arr().toLowerCase());
+       
             if (pr.getStaz_par().toLowerCase().equals(idstaA.toLowerCase()) && pr.getStaz_arr().toLowerCase().equals(idstaB.toLowerCase())) {
                 percorsi.add(pr);
                 
             }
         }
+     
         return percorsi;
     }
 

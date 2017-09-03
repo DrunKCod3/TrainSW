@@ -80,11 +80,16 @@ public class Deposito implements java.io.Serializable {
      if(!isFull()){
         tr.setDeposito(this);
         treni.add(tr);
+        try{
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         session.saveOrUpdate(tr);
         session.getTransaction().commit();
         session.close();
+        }
+        catch(Exception e){
+            
+        }
      }
     }
 

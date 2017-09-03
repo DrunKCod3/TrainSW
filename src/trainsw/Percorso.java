@@ -34,11 +34,12 @@ public class Percorso {
         Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         String staz_succ=this.staz_par;
+      
         for (Collegamento collegamento : this.collegamenti) {
-         session.update(collegamento);
-        System.out.println("sono nel percoros" +this.staz_par + collegamento.getStazione_a().getNome_stazione());
+             collegamento = (Collegamento) session.load(Collegamento.class,collegamento.getId_collegamento());
+ 
             if(collegamento.getStazione_a().getNome_stazione().toLowerCase().equals(staz_succ.toLowerCase())  && !staz_succ.toLowerCase().equals(this.staz_arr.toLowerCase())){
-             System.out.println("collegamento.getStazione_a()"+collegamento.getStazione_a());
+            
                collegamenti.add(collegamento);
                Fermata fermata=new Fermata();
                fermata.setId_stazione(collegamento.getStazione_a().getId_stazione());
@@ -62,7 +63,10 @@ public class Percorso {
                fermate_temp.add(fermata);
              }
         }
+        session.getTransaction().commit();
         this.collegamenti=collegamenti;
+      
+     
         session.close();
         return fermate_temp;
     }
@@ -72,14 +76,15 @@ public class Percorso {
     }
 
     public void addcollegamenti(Collegamento col) {
+        
         collegamenti.add(col);
+        
     }
 
     public void addFermate(Fermata fr) {
-         
-      
+        if(!RicercaFermata(fr.getStazione().getNome_stazione()))
         this.fermate.add(fr);
-      
+         
     }
 
     public String getStaz_par() {
@@ -183,14 +188,18 @@ public class Percorso {
           Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
         
-      session.update(this);
-        for (Fermata fermata : getFermate()) {
-          
-            if (fermata.getStazione().getNome_stazione().toLowerCase().equals(id_sta.toLowerCase())) {
-                  session.close();
+    
+        for (Fermata fermata : this.fermate) {
+         Stazione   stazione =(Stazione) session.load(Stazione.class,fermata.getStazione().getId_stazione()); 
+            
+            if (stazione.getNome_stazione().toLowerCase().equals(id_sta.toLowerCase())) {
+                 
+                session.close();
                 return true;
             }
+          
         }
+        
           session.close();
         return false;
 
