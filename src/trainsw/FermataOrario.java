@@ -6,6 +6,7 @@
 package trainsw;
 
 import java.util.Date;
+import org.hibernate.Session;
 
 /**
  *
@@ -18,6 +19,8 @@ public class FermataOrario {
     private int id_tratta;
     private Tratta tratta;
     private Fermata fermata; 
+    private int np_1c;
+    private int np_2c;
     public FermataOrario() {
 
     }
@@ -26,6 +29,14 @@ public class FermataOrario {
         this.id = id;
         this.orario = orario;
         this.fermata = fermata;
+    }
+
+    public FermataOrario(int id, Date orario, Fermata fermata, int np_1c,int np_2c) {
+        this.id = id;
+        this.orario = orario;
+        this.fermata = fermata;
+        this.np_1c = np_1c;
+        this.np_2c = np_2c;
     }
 
     public Date getOrario() {
@@ -78,6 +89,43 @@ public class FermataOrario {
     public int getDistanzaParziale(){
        return  fermata.getDistanza_p();
     }
-   
+
+    public int getNp_1c() {
+        return np_1c;
+    }
+
+    public void setNp_1c(int np_1c) {
+        this.np_1c = np_1c;
+    }
+
+    public int getNp_2c() {
+        return np_2c;
+    }
+
+    public void setNp_2c(int np_2c) {
+        this.np_2c = np_2c;
+    }
+   public void aggiornaPosti(int classe){
+     Session session= NewHibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+        
+     if(classe==1)
+           if(np_1c>0)
+               np_1c--;
+       if(classe==2)
+           if(np_2c>0)
+               np_2c--;
+       session.update(this);
+       session.getTransaction().commit();
+       session.close();
+   }
+   public boolean verificaPosti(){
+       if((np_2c>0)||(np_1c>0)){
+           
+      
+           return true;
+       }
+    return false;
+   }
 
 }

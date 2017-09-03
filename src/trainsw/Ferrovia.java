@@ -387,7 +387,7 @@ private void caricaDati(){
         for (Percorso pr : per) {
             System.out.println(pr.getId_per());
             if (pr.RicercaFermata(id_sta_par) && pr.RicercaFermata(id_sta_arrivo)) {
-                tratte.addAll(pr.RicercaTrattaOrario(id_sta_par));
+                tratte.addAll(pr.RicercaTrattaOrario(id_sta_par,id_sta_arrivo));
             }
         }
        

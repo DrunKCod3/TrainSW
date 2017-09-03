@@ -107,5 +107,7 @@ public class Biglietto {
         
         session.close();
     }
-    
+    public void AggiornaPosti(){
+        tratta.AggiornaPosti(staz_par, staz_arr, classe);
+    }
 }

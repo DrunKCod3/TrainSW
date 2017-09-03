@@ -153,11 +153,11 @@ private List<Percorso> listper2;
                session.getTransaction().commit();
                 session.close();
            final JFrame tabfram = new JFrame("Scegli il percorso");
-           tabfram.setSize(600, 600);
-        
-          perTab.getColumnModel().getColumn(1).setMinWidth(500);
-          perTab.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-          perTab.setMaximumSize(null);
+           tabfram.setSize(900, 500);
+          perTab.getColumnModel().getColumn(0).setMinWidth(50);
+          perTab.getColumnModel().getColumn(1).setMinWidth(850);
+         
+          perTab.setSize(800, 800);
           perTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
          
 

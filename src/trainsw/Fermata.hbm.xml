@@ -18,7 +18,8 @@
     <id name="id" type="int">
             <column name="id" />
             <generator class="increment" />
-        </id>       
+        </id>   
+              
      <property name="orario" column="orario" not-null="false"/> 
         <many-to-one name="fermata" class="trainsw.Fermata"  not-null="true" lazy="false" fetch="join">
             <column name="id_fermata" />
@@ -26,6 +27,8 @@
         <many-to-one name="tratta" class="trainsw.Tratta"  not-null="true"  insert="false" fetch="join" lazy="false">
             <column name="id_tratta" />
         </many-to-one>
+         <property name="np_1c" column="np_1c" not-null="true"/> 
+          <property name="np_2c" column="np_2c" not-null="true"/>
     </class>
 </hibernate-mapping>
     

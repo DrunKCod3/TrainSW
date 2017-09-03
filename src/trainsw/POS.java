@@ -95,6 +95,7 @@ public class POS {
    }
 
     public void confermaBiglietto(){
+         biglietto_corrente.AggiornaPosti();
         biglietti_venduti.add(biglietto_corrente);
         
     }
@@ -136,6 +137,7 @@ public class POS {
         
     }
     public Tessera confermaBigliettoTessera(){
+        biglietto_corrente.AggiornaPosti();
         this.tessera_corrente.CalcolaPunti((float) biglietto_corrente.getPrezzo());
         biglietti_venduti.add(biglietto_corrente);
         return this.tessera_corrente;

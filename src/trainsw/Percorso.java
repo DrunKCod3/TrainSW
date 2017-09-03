@@ -205,7 +205,7 @@ public class Percorso {
 
     }
 
-    public List<Tratta> RicercaTrattaOrario(String id_sta_par) {
+    public List<Tratta> RicercaTrattaOrario(String id_sta_par,String id_sta_arr) {
         List<Tratta> tratte = new ArrayList<>();
             Session session = NewHibernateUtil.getSessionFactory().openSession();
         session.beginTransaction();
@@ -214,7 +214,7 @@ public class Percorso {
        
         for (Tratta tratta : getTratte()) {
           
-            if (tratta.ricercaFermata(id_sta_par)) {
+            if (tratta.ricercaFermata(id_sta_par ) && tratta.VerificaPosti(id_sta_par,id_sta_arr)) {
                 tratte.add(tratta);
             }
         }

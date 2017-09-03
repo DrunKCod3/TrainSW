@@ -78,12 +78,17 @@ public class TrattaTest {
        assertTrue("non è stata trovata una fermata",tratta.ricercaFermata("enna")); 
     }
      @Test
-    public void testgetDistanza(){
+    public void testVerificaPosti(){
            Tratta tratta=new  Tratta();
-       
+       Treno tr = new Treno(2, new TipoTreno(2, "treno notte", (short) 23, (short) 23, (short) 23, 23, 15, 16));
        tratta.addFermata(new Fermata(1, 0,1,new Stazione(1, 2,"catania_centrale", "catania")));
         tratta.addFermata(new Fermata(2, 30,2,new Stazione(2, 2, "catania_centrale", "messina")));
         tratta.addFermata(new Fermata(3, 49,3,new Stazione(3, 2, "catania_centrale", "palermo")));
-        assertEquals("la distanzaa è sbagliata", 49,tratta.getDistanza("palermo"));
+        tratta.inserisciTreno(tr);
+        assertTrue(" è sbagliata", tratta.VerificaPosti("catania","messina"));
+        tr = new Treno(2, new TipoTreno(2, "treno notte", (short) 0, (short) 0, (short) 0, 0, 0, 0));
+        tratta.inserisciTreno(tr);
+          assertFalse(" è sbagliata", tratta.VerificaPosti("catania","messina"));
     }
+    
 }
