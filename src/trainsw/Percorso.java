@@ -28,6 +28,10 @@ public class Percorso {
         
     }
 
+        public void addTratta(Tratta tra){
+        this.tratte.add(tra);
+    }
+        
     public List<Fermata> calcolaPercorso() {
         List<Fermata> fermate_temp = new ArrayList<>();
         List<Collegamento>collegamenti=new ArrayList<>();
