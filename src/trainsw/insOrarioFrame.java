@@ -144,16 +144,14 @@ Date anno = null;
                   // listTr.add();
                
                 
-                String[] columnNames = {"ID TRENO"
+                String[] columnNames = {"ID TRENO","Tipologia Treno"
                        };
                 
                 final JTable stTab = new JTable();
-                final DefaultTableModel dtm = new DefaultTableModel(0,0);
+                final DefaultTableModel dtm = new DefaultTableModel();
                 
                 dtm.setColumnIdentifiers(columnNames);
-                stTab.setModel(dtm);
-                
-             
+              
                 
                 for(Treno tr:listTr){
                    
@@ -164,6 +162,9 @@ Date anno = null;
         
                 
                 }
+            stTab.setModel(dtm);
+            stTab.setFillsViewportHeight(true);
+             
            final JFrame tabfram = new JFrame("Scegli un treno");
            tabfram.setSize(400, 150);
       
@@ -190,11 +191,7 @@ nextButton.addActionListener(new ActionListener() {
                        // Inserire treno nella tratta
                        Treno tr;
                            tr = listTr.get((int) stTab.getSelectedRow());
-                           
-                       
-                        
-                           
-                           
+         
                            
                            /* VIsualizzare Fermate */
                            
@@ -208,50 +205,52 @@ nextButton.addActionListener(new ActionListener() {
                
                    
                 
-                String[] columnNames = {"ID FERMATA"
-                     
-                       
-                       };
+                String[] columnNames = {"Stazione Fermata","Orario"};
                 
                 final JTable stTab1 = new JTable();
-                final DefaultTableModel dtm1 = new DefaultTableModel(0,0);
+                final DefaultTableModel dtm1 = new DefaultTableModel();
                 
                 dtm1.setColumnIdentifiers(columnNames);
-                stTab1.setModel(dtm);
-                stTab.setSize(500, 300);
+                stTab1.setModel(dtm1);
+                stTab1.setSize(500, 300);
+                
                  Session session = NewHibernateUtil.getSessionFactory().openSession();
                  session.beginTransaction();
                 for(FermataOrario fermOr :listFerm){
+                 Fermata   ferm=(Fermata) session.load(Fermata.class, fermOr.getFermata().getId_fer());
                 System.out.println(fermOr.getOrario().toString());
-                dtm1.addRow(new Object[] {
+                dtm1.addRow(new String[] {
                   //Aggiungi fermate alla lista
-                    fermOr.getId()
+                    
+                    ferm.getStazione().getNome_stazione(),fermOr.getOrario().toString()
                     
                 });
            
                 }
+                session.getTransaction().commit();
+                session.close();
                 
-           final JFrame tabfram1 = new JFrame("Visualizza Fermate della Tratta");
-           tabfram1.setSize(500, 400);
-      
+           final JFrame tabfram = new JFrame("Visualizza Fermate della Tratta");
+           tabfram.setSize(500, 500);
+           
                                       
       
-          stTab1.setSize(200, 500);
-
+         
+          
 
 JButton endButton1 = new JButton("Fine");
 JPanel panst1 = new JPanel(new FlowLayout());
-panst1.add(stTab);
+panst1.add(stTab1);
 
 panst1.add(endButton1);
-tabfram1.add(panst1);
-tabfram1.setVisible(true);
+tabfram.add(panst1);
+tabfram.setVisible(true);
 
 
              endButton1.addActionListener(new ActionListener() {
                        @Override
                        public void actionPerformed(ActionEvent e) {
-                           tabfram1.dispose();
+                           tabfram.dispose();
                            trainSW.ConfermaTratta();
                        }
                    });

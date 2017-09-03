@@ -15,7 +15,7 @@ private Stazione stazione_b;
 
     @Override
     public String toString() {
-        return "Collegamento{" + "id_collegamento=" + id_collegamento + ", id_stazione_a=" + id_stazione_a + ", id_stazione_b=" + id_stazione_b + ", distanza=" + distanza + ", stazione_a=" + stazione_a.getNome_stazione() + ", stazione_b=" + stazione_b.getNome_stazione() + '}';
+        return "Collegamento{" + "id_collegamento=" + id_collegamento + ", distanza=" + distanza + ", stazione_a=" + stazione_a.getNome_stazione() + ", stazione_b=" + stazione_b.getNome_stazione() + '}';
     }
     
 
