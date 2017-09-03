@@ -43,6 +43,8 @@ public class GUI extends javax.swing.JFrame {
     List<Fermata> listSt = new ArrayList<Fermata>();
     List<Tratta> listTrSA = new ArrayList<Tratta>();
     List<Promozione> promoList = new ArrayList<Promozione>();
+     Biglietto biglietto = new Biglietto();
+     Tessera tex1;
 
     Tessera tessera;
 
@@ -75,14 +77,14 @@ public class GUI extends javax.swing.JFrame {
         gestisciDep = new javax.swing.JMenuItem();
         gestisciColl = new javax.swing.JMenuItem();
         gestisciTr = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        gestisciPercorso = new javax.swing.JMenuItem();
+        gestisciTratta = new javax.swing.JMenuItem();
+        gestisciSoloAndata = new javax.swing.JMenuItem();
+        gestisciAbbonamento = new javax.swing.JMenuItem();
+        gestisciTessera = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        acquistoconTessera = new javax.swing.JMenuItem();
+        acquistoconPunti = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
@@ -138,63 +140,63 @@ public class GUI extends javax.swing.JFrame {
         });
         jMenu1.add(gestisciTr);
 
-        jMenuItem2.setText("Gestisci Percorso");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        gestisciPercorso.setText("Gestisci Percorso");
+        gestisciPercorso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                gestisciPercorsoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(gestisciPercorso);
 
-        jMenuItem1.setText("Gestisci Tratta");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        gestisciTratta.setText("Gestisci Tratta");
+        gestisciTratta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                gestisciTrattaActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(gestisciTratta);
 
-        jMenuItem3.setText("Gestisci Solo-Andata");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        gestisciSoloAndata.setText("Gestisci Solo-Andata");
+        gestisciSoloAndata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                gestisciSoloAndataActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem3);
+        jMenu1.add(gestisciSoloAndata);
 
-        jMenuItem4.setText("Gestisci Abbonamento");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        gestisciAbbonamento.setText("Gestisci Abbonamento");
+        gestisciAbbonamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                gestisciAbbonamentoActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(gestisciAbbonamento);
 
-        jMenuItem5.setText("Gestissci Tessera");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        gestisciTessera.setText("Gestissci Tessera");
+        gestisciTessera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                gestisciTesseraActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem5);
+        jMenu1.add(gestisciTessera);
 
         jMenu2.setText("Gestisci Acquisto");
 
-        jMenuItem7.setText("Acquisto con Punti");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        acquistoconTessera.setText("Acquisto con Tessera");
+        acquistoconTessera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                acquistoconTesseraActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        jMenu2.add(acquistoconTessera);
 
-        jMenuItem6.setText("Acquisto con Tessera");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        acquistoconPunti.setText("Acquisto con Punti");
+        acquistoconPunti.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                acquistoconPuntiActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(acquistoconPunti);
 
         jMenu1.add(jMenu2);
 
@@ -317,13 +319,13 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_gestisciDepActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void gestisciTrattaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciTrattaActionPerformed
 
         addTrattaFrame addTrframe = new addTrattaFrame();
         addTrframe.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_gestisciTrattaActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void gestisciSoloAndataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciSoloAndataActionPerformed
 
         final JFrame frame = new JFrame();
         JPanel pan = new JPanel();
@@ -426,12 +428,12 @@ public class GUI extends javax.swing.JFrame {
 
             }
         });
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_gestisciSoloAndataActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+    private void gestisciTesseraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciTesseraActionPerformed
         insClienteFrame inClienteframe = new insClienteFrame();
         inClienteframe.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_gestisciTesseraActionPerformed
 
     private void gestisciStActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciStActionPerformed
 
@@ -552,7 +554,7 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_gestisciTrActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void gestisciPercorsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciPercorsoActionPerformed
         trainSw.GestisciPercorso();
         
         final JFrame frame = new JFrame("Inserisci Percorso");
@@ -671,17 +673,17 @@ public class GUI extends javax.swing.JFrame {
      
 
 
-//GEN-LAST:event_jMenuItem2ActionPerformed
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+//GEN-LAST:event_gestisciPercorsoActionPerformed
+    private void gestisciAbbonamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciAbbonamentoActionPerformed
         /* Gestisci Abbonamento */
         gestAbbonamento gestAbbonamento1 = new gestAbbonamento();
         gestAbbonamento1.setVisible(true);
         
 
 
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_gestisciAbbonamentoActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void acquistoconTesseraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acquistoconTesseraActionPerformed
 
         JFrame insTess = new JFrame("Inserimento Tessera");
         JPanel panTess = new JPanel(new FlowLayout());
@@ -720,6 +722,7 @@ public class GUI extends javax.swing.JFrame {
                  * ********************************************
                  */
                 trainSw.InserisciTessera(tex1);
+                System.out.println(tex1);
                 final JFrame frame = new JFrame();
                 JPanel pan = new JPanel();
                 JLabel lab1 = new JLabel("Inserisci id stazioni");
@@ -824,12 +827,12 @@ public class GUI extends javax.swing.JFrame {
         });
 
 
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_acquistoconTesseraActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void acquistoconPuntiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acquistoconPuntiActionPerformed
         // TODO add your handling code here:
 
-        /* Inserimento Cliente Fittizio per simulare inserimento tessera */
+
         JFrame insTess = new JFrame("Inserisci id tessera");
         JPanel panTess = new JPanel(new FlowLayout());
         JLabel labTess = new JLabel("Inserisci id tessera");
@@ -848,7 +851,7 @@ public class GUI extends javax.swing.JFrame {
         buttonTess.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Tessera tex1 = null;
+                tex1 = null;
                 Integer id_tessera = new Integer(txtTess.getText());
                 for (Tessera tex : trainSw.getTessere_registrate()) {
                     if (tex.getId_tessera() == id_tessera) {
@@ -856,7 +859,10 @@ public class GUI extends javax.swing.JFrame {
                     }
                 }
                 if (tex1 != null) {
+                    System.out.println(tex1.toString());
                     trainSw.InserisciTessera(tex1);
+                   System.out.print(tex1);
+                
 
                     final JFrame frame = new JFrame("Acquista biglietto");
                     JLabel lab1 = new JLabel("Inserisci nome stazioni");
@@ -932,8 +938,9 @@ public class GUI extends javax.swing.JFrame {
                                     trattasx = listTrSA.get((int) perTab.getSelectedRow());
                                     int classe;
                                     classe = new Integer(txt_class.getText());
-                                    Biglietto biglietto;
+                                   
                                     biglietto = trainSw.scegliTratta(trattasx, classe);
+                                    System.out.println(biglietto);
 
                                     final JFrame confBiglietto = new JFrame("Visualizza Biglietto");
                                     JPanel pan = new JPanel(new FlowLayout());
@@ -1000,9 +1007,11 @@ public class GUI extends javax.swing.JFrame {
                                                     tabframPromo.dispose();
                                                     Promozione promo2;
                                                     promo2 = promoList.get((int) perTab.getSelectedRow());
-
+                                                    System.out.println(promo2);
                                                     final Double prezzoScont;
+                                    
                                                     prezzoScont = trainSw.AssociaPromozione(promo2);
+                                                    System.out.println(prezzoScont);
 
                                                     final JFrame confPrezzo = new JFrame("Conferma Prezzo");
                                                     JPanel panPrezzo = new JPanel(new FlowLayout());
@@ -1037,11 +1046,11 @@ public class GUI extends javax.swing.JFrame {
 
                         }
                     });
-
-                }
-            } }
+                    }
+                
+            } } 
         );
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_acquistoconPuntiActionPerformed
                 
     /**
      * @param args the command line arguments
@@ -1079,10 +1088,17 @@ public class GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem acquistoconPunti;
+    private javax.swing.JMenuItem acquistoconTessera;
+    private javax.swing.JMenuItem gestisciAbbonamento;
     private javax.swing.JMenuItem gestisciColl;
     private javax.swing.JMenuItem gestisciDep;
+    private javax.swing.JMenuItem gestisciPercorso;
+    private javax.swing.JMenuItem gestisciSoloAndata;
     private javax.swing.JMenuItem gestisciSt;
+    private javax.swing.JMenuItem gestisciTessera;
     private javax.swing.JMenuItem gestisciTr;
+    private javax.swing.JMenuItem gestisciTratta;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1093,13 +1109,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }
