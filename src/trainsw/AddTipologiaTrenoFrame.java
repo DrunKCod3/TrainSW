@@ -194,7 +194,7 @@ Treno treno = new Treno();
       pan1.add(confButtonTipo);
       confFrame.add(pan1);
       confFrame.setVisible(true);
-      confFrame.setSize(500, 100);        
+      confFrame.setSize(700, 100);        
      
       
       
@@ -241,7 +241,7 @@ Treno treno = new Treno();
          panCnT.add(confTbutton);
          confT.add(panCnT);
          
-         confT.setSize(500, 150);
+         confT.setSize(700, 150);
          confT.setVisible(true);
          
          confTbutton.addActionListener(new ActionListener() {
@@ -258,7 +258,7 @@ Treno treno = new Treno();
     JButton backIDST = new JButton("Annulla");
     
     gst3.setVisible(true);
-    gst3.setSize(130, 250);
+    gst3.setSize(200, 250);
     JPanel pan3 = new JPanel(new FlowLayout());
     pan3.setVisible(true);
   

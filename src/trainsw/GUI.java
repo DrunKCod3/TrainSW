@@ -10,6 +10,7 @@ import java.awt.FlowLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -174,7 +175,7 @@ public class GUI extends javax.swing.JFrame {
         });
         jMenu1.add(gestisciAbbonamento);
 
-        gestisciTessera.setText("Gestissci Tessera");
+        gestisciTessera.setText("Gestisci Tessera");
         gestisciTessera.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestisciTesseraActionPerformed(evt);
@@ -430,11 +431,13 @@ public class GUI extends javax.swing.JFrame {
                         JPanel pan = new JPanel(new FlowLayout());
                         JButton confButtonBiglietto = new JButton("Conferma");
                         JLabel bigliettoLab = new JLabel(biglietto.toString());
+                       
                         pan.add(bigliettoLab);
+                       
                         pan.add(confButtonBiglietto);
                         confBiglietto.add(pan);
                         confBiglietto.setVisible(true);
-                        confBiglietto.setSize(500, 100);
+                        confBiglietto.setSize(700, 100);
 
                         confButtonBiglietto.addActionListener(new ActionListener() {
                             @Override
@@ -452,8 +455,75 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_gestisciSoloAndataActionPerformed
 
     private void gestisciTesseraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciTesseraActionPerformed
-        insClienteFrame inClienteframe = new insClienteFrame();
+        
+        final JFrame gestisciTessera = new JFrame();
+        JPanel gestPan = new JPanel(new FlowLayout());
+        JButton addTess = new JButton("Aggiungi  tessera");
+        JButton viewTess = new JButton("Visualizza tessere ");
+        
+        gestPan.add(addTess);
+        gestPan.add(viewTess);
+        gestisciTessera.add(gestPan);
+        
+        gestisciTessera.setSize(200,150);
+        gestisciTessera.setVisible(true);
+        
+        addTess.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 insClienteFrame inClienteframe = new insClienteFrame();
         inClienteframe.setVisible(true);
+        gestisciTessera.dispose();
+            }
+        });
+       
+        
+        viewTess.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+        
+                
+                 JFrame viewObj = new JFrame("Visualizza Tessere");
+                JPanel pan = new JPanel(new FlowLayout());
+               
+                DefaultListModel demod = new DefaultListModel();
+                JList viewList = new JList(demod);
+                final JTable Tab = new JTable();
+                final DefaultTableModel dtm = new DefaultTableModel(0, 0);
+                viewObj.add(pan);
+                pan.add(viewList);
+                String[] columnNames = {"id tessera",
+                    "punti",
+                    " nome intestatario",
+                    " cognome intestatario",
+                    "data rilascio",
+                    "data scadenza"
+                };
+                viewObj.setSize(600, 350);
+                viewObj.setVisible(true);
+                dtm.setColumnIdentifiers(columnNames);
+                for (Tessera tessera : trainSw.getTessere_registrate()) {
+                    dtm.addRow(new Object[]{tessera.getId_tessera(),
+                        tessera.getPunti() , tessera.getCliente().getNome() ,
+                        tessera.getCliente().getCognome() ,
+                        tessera.getD_rilascio().toString(),
+                        tessera.getD_scadenza().toString()
+                    });
+
+                }
+                Tab.setModel(dtm);
+                pan.setVisible(true);
+                pan.add(new JScrollPane(Tab));
+            }
+
+                
+            
+            
+        });
+        
+        
+        
+        
     }//GEN-LAST:event_gestisciTesseraActionPerformed
 
     private void gestisciStActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gestisciStActionPerformed

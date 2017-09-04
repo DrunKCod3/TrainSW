@@ -146,7 +146,8 @@ TrainSW trainSW = TrainSW.getIstanza();
     }//GEN-LAST:event_annullaColl_buttonActionPerformed
 
     private void addColl_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addColl_buttonActionPerformed
-       Integer id_coll =  new Integer(txt_idColl.getText());
+      this.dispose();
+        Integer id_coll =  new Integer(txt_idColl.getText());
       String id_stazA =txt_collidstaA.getText();
       String id_stazB = txt_ColIdstaB.getText();
      Integer dist = new Integer(txt_distColl.getText());

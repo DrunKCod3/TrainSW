@@ -287,9 +287,28 @@ trainSW.InserisciDatiAnagrafici(txt_namecliente.getText(), txt_surnamecliente.ge
                           
                           Abbonamento abb = new Abbonamento();
                           abb = trainSW.ConfermaAbbonamento();
+                          String abbTxt = abb.toString();
+                          String clineTxt = abb.getCliente().toString();
+                     
+                          JFrame viewAbb = new JFrame("Visualizza Abbonamento");
+                          JPanel panAbb = new JPanel(new FlowLayout());
+                          JLabel abbLab = new JLabel(abbTxt);
+                          JLabel cliLab = new JLabel(clineTxt);
+                          abbLab.setSize(500, 400);
+                          abbLab.doLayout();
                           
-                          JOptionPane.showMessageDialog(insTipoAbb, abb.toString() + abb.getCliente().toString());
-                    }
+                          panAbb.add(cliLab);
+                          panAbb.add(abbLab);
+                          viewAbb.add(panAbb);
+                          viewAbb.setSize(1300, 100);
+                          viewAbb.setVisible(true);
+                    
+                          
+
+
+}
+
+               
                 });
                 
                 annullaAddTipoAb.addActionListener(new ActionListener() {
