@@ -23,27 +23,20 @@ public class FerroviaTest {
     @Test
     public void testconfermaStazione() {
                     
-                  ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
-                 
-                  ferrovia.confermaStazione();
-                  ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
-                  ferrovia.confermaStazione();
-            Stazione   st=ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
+                     ferrovia.inserisciStazione(1, 6, "via Giulio", "Trumpitello");
+            ferrovia.confermaStazione();
+           ferrovia.inserisciStazione(2, 6, "via Cesare", "Mascali");
+            ferrovia.confermaStazione();
+  
+      Stazione  st=     ferrovia.inserisciStazione(2, 6, "via Cesare", "Mascali");
               assertNull("la ferrovia è gia presente nell'archivio ",st);
               ferrovia.confermaStazione();
            
   
                
     }
-    @Test
-    public void testisPresent(){
-                 ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
-                 ferrovia.confermaStazione();
-                  ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
-                  ferrovia.confermaStazione();
-        assertEquals("la stazione non è presente",true,ferrovia.isPresent(1,"catania"));
-        assertFalse("la stazione è presente", ferrovia.isPresent(20,"genova"));
-    }
+  
+   
      @Test 
        public void testInserisciTipoTreno(){
         ferrovia.InserisciTipologiaTreno(1, "freccia rossa",(short) 1,(short) 1, (short)1, 1, 2, 3);
@@ -53,23 +46,26 @@ public class FerroviaTest {
        }
      @Test 
        public void testInserisciPercorso(){
-        ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
-        ferrovia.confermaStazione();
-        ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
-        ferrovia.confermaStazione();
-        ferrovia.inserisciStazione(3, 2, "catania_centrale", "palermo");
-        ferrovia.confermaStazione();
-         ferrovia.InserisciCollegamento(1,"catania" , "messina", 20);
-        ferrovia.ConfermaCollegamento();
-      ferrovia.InserisciCollegamento(2,"messina" , "palermo", 20);
-        ferrovia.ConfermaCollegamento();
+        ferrovia.inserisciStazione(1, 6, "via Giulio", "Trumpitello");
+     ferrovia.confermaStazione();
+     ferrovia.inserisciStazione(2, 6, "via Cesare", "Mascali");
+     ferrovia.confermaStazione();
+     ferrovia.inserisciStazione(3, 6, "via Augusto", "Giarre");
+     ferrovia.confermaStazione();
+      
+      ferrovia.InserisciCollegamento(1, "Trumpitello", "Mascali", 9 );
+      ferrovia.ConfermaCollegamento();
+      ferrovia.InserisciCollegamento(2, "Mascali", "Giarre", 14);
+       ferrovia.ConfermaCollegamento();
+     ferrovia.InserisciCollegamento(3, "Giarre", "Acireale", 23);
+      ferrovia.ConfermaCollegamento();
        
-       Deposito dep= ferrovia.inserisciDeposito(1, "catania", 20);
+       Deposito dep= ferrovia.inserisciDeposito(1, "Trumpitello", 20);
        ferrovia.confermaDeposito(dep);
         ferrovia.creaPercorso();
-       List<Fermata>fermata= ferrovia.InserisciStazione("catania", "messina");
+       List<Fermata>fermata= ferrovia.InserisciStazione("Trumpitello", "Mascali");
        assertEquals("le fermate non sono ",2,fermata.size());
-       fermata= ferrovia.InserisciStazione("messina", "palermo");
+       fermata= ferrovia.InserisciStazione("Mascali", "Giarre");
          assertNull("la stazione non è deposito ",fermata);
        fermata= ferrovia.InserisciStazione("catania", "genova");
        assertNull("le fermate non sono ",fermata);
@@ -79,30 +75,32 @@ public class FerroviaTest {
      @Test
    public void testInserisciCollegamento(){
       
-      ferrovia.inserisciStazione(1, 2, "catania_centrale" ,"catania");
-      ferrovia.confermaStazione();
-      ferrovia.inserisciStazione(2, 2, "catania_centrale", "messina");
-      ferrovia.confermaStazione();
-      ferrovia.inserisciStazione(3, 2, "catania_centrale", "palermo");
+     ferrovia.InserisciCollegamento(1, "Trumpitello", "Mascali", 9 );
+      ferrovia.ConfermaCollegamento();
+      ferrovia.InserisciCollegamento(2, "Mascali", "Giarre", 14);
+       ferrovia.ConfermaCollegamento();
+     ferrovia.InserisciCollegamento(3, "Giarre", "Acireale", 23);
+      ferrovia.ConfermaCollegamento();
       
-      
-        Collegamento collegamento=ferrovia.InserisciCollegamento(1,"catania" , "messina", 20);
+        Collegamento collegamento= ferrovia.InserisciCollegamento(3, "Giarre", "Acireale", 23);
         
 
         collegamento=ferrovia.InserisciCollegamento(1, "catania","messina", 20);
         assertNull("inserimento riuscito",collegamento);
                 
    }
+   @Test
    public void testFindPercorso(){
-       Percorso pr=new Percorso(1, "catania", "messina");
-       Percorso pr1=new Percorso(2,"catania","messina");
-       Percorso pr2=new Percorso(3,"catania","palermo");
-       List<Percorso> percorsi=ferrovia.getPercorsi();
-       percorsi.add(pr);
-       percorsi.add(pr1);
-       percorsi.add(pr2);
-       assertEquals("il valore non è corretto",2,ferrovia.findPercorso("catania" ,"messina").size());
-        assertEquals("il valore non è corretto",1,ferrovia.findPercorso("catania" ,"palermo").size());
+       ferrovia.creaPercorso();
+       ferrovia.InserisciStazione( "Trumpitello", "Mascali");
+       ferrovia.ConfermaPercorso();
+        
+      
+       assertEquals("il valore non è corretto",1,ferrovia.findPercorso("Trumpitello" ,"Mascali").size());
+       ferrovia.creaPercorso();
+       ferrovia.InserisciStazione( "Trumpitello", "Mascali");
+       ferrovia.ConfermaPercorso(); 
+       assertEquals("il valore non è corretto",2,ferrovia.findPercorso("Trumpitello" ,"Mascali").size());
         assertEquals("il valore non è corretto",0,ferrovia.findPercorso("roma" ,"palermo").size()); 
    }
 }
