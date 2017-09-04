@@ -6,6 +6,7 @@
 package trainsw;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JFrame;
@@ -224,10 +225,17 @@ public class TrainSW {
    
    public Tessera InserisciCliente(String nome,String cognome,String cf,Date data_n,char sesso){
        if(!isPresentCliente(cf)) {
-           cliente_corrente=new Cliente(nome, cognome, cf, data_n, sesso);
-           Date data_rilascio = new Date();
+           Date data_rilascio = new Date() ;
             Date data_scadenza=new Date();
-           data_scadenza.setTime(data_rilascio.getTime()+(30*24*60*60*1000));
+           
+           cliente_corrente=new Cliente(nome, cognome, cf, data_n, sesso);
+           
+            
+           Calendar cal = Calendar.getInstance();
+            data_rilascio = cal.getTime();
+            cal.add(Calendar.YEAR, 1); // to get previous year add -1
+            data_scadenza = cal.getTime();
+          
            tessera_corrente=new Tessera(tessere_registrate.size() + 1, data_rilascio, data_scadenza, 0, cliente_corrente);
            return tessera_corrente;
        }
@@ -257,6 +265,7 @@ public class TrainSW {
    public void InserisciTessera(Tessera tessera){
        if(tessera.verificaTessera())
        pos.InserisciTessera(tessera);
+       
    }
    public void confermaBigliettoTessera(){
        pos.confermaBigliettoTessera();

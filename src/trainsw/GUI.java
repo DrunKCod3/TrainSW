@@ -853,7 +853,7 @@ public class GUI extends javax.swing.JFrame {
                      * ********************************************
                      */
                     trainSw.InserisciTessera(tex1);
-                    System.out.println(tex1);
+
                     final JFrame frame = new JFrame();
                     JPanel pan = new JPanel();
                     JLabel lab1 = new JLabel("Inserisci id stazioni");
@@ -991,7 +991,7 @@ public class GUI extends javax.swing.JFrame {
                 if (tex1 != null) {
 
                     trainSw.InserisciTessera(tex1);
-
+                    System.out.println(tex1);
                     final JFrame frame = new JFrame("Acquista biglietto");
                     JLabel lab1 = new JLabel("Inserisci nome stazioni");
                     JPanel pan = new JPanel(new FlowLayout());

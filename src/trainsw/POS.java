@@ -134,6 +134,7 @@ public class POS {
     }
     public void  InserisciTessera(Tessera tessera){
         this.tessera_corrente=tessera;
+
         
     }
     public Tessera confermaBigliettoTessera(){
