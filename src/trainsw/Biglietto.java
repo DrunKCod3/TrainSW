@@ -18,7 +18,7 @@ public class Biglietto {
 
     @Override
     public String toString() {
-        return "Biglietto{" + "id_b=" + id_b + ", prezzo=" + prezzo + ", distanza=" + distanza + ", staz_par=" + staz_par + ", staz_arr=" + staz_arr + '}';
+        return "Biglietto{" + "id_b=" + id_b + ", prezzo=" + prezzo + ", distanza=" + distanza + ", staz_par=" + staz_par + ", staz_arr=" + staz_arr+" id Tratta=" + tratta.getId_tra()+" Treno= "+tratta.getTreno().getTt()+" Classe= "+classe+'}';
     }
 
     public Biglietto(Tratta tratta) {

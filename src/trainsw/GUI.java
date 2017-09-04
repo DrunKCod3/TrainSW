@@ -354,10 +354,11 @@ public class GUI extends javax.swing.JFrame {
 
                 String[] columnNames = {"ID Tratta",
                      "Tipo Treno",
-                    "Prezzo Base 1 Classe",
-                    "Prezzo Base 2 Classe",
                     "Posti disponibili prima",
                     "Posti disponibili seconda",
+                     "Prezzo Base 1 Classe",
+                    "Prezzo Base 2 Classe",
+                 
                     "Fermata",
                     "Orario"
                    
