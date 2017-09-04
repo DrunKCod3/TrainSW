@@ -187,6 +187,7 @@ public class Percorso {
         
 
     }
+    
 
     public boolean RicercaFermata(String id_sta) {
           Session session = NewHibernateUtil.getSessionFactory().openSession();

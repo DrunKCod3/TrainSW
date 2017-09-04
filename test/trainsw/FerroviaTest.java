@@ -50,9 +50,9 @@ public class FerroviaTest {
      ferrovia.confermaStazione();
      ferrovia.inserisciStazione(2, 6, "via Cesare", "Mascali");
      ferrovia.confermaStazione();
-     ferrovia.inserisciStazione(3, 6, "via Augusto", "Giarre");
-     ferrovia.confermaStazione();
-      
+
+      ferrovia.inserisciStazione(4, 6, "via Treppello", "Acireale");
+     ferrovia.confermaStazione(); 
       ferrovia.InserisciCollegamento(1, "Trumpitello", "Mascali", 9 );
       ferrovia.ConfermaCollegamento();
       ferrovia.InserisciCollegamento(2, "Mascali", "Giarre", 14);
