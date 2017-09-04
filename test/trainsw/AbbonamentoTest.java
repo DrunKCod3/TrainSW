@@ -27,6 +27,13 @@ public class AbbonamentoTest {
           abbonamento.calcolaPrezzo();
           
           assertEquals("il risultato è diverso", 3070, abbonamento.getPrezzo(), 0.1);
+          
+          
+          abbonamento.setTipo(tipo2);
+          abbonamento.calcolaPrezzo();
+          
+          assertEquals("il risultato è diverso",550 , abbonamento.getPrezzo(), 0.1);
+          
     }     
     
 }
