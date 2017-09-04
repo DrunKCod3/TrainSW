@@ -124,8 +124,6 @@ private List<Percorso> listper2;
          
                 String[] columnNames = {"ID Percorso",
                         "Nome Fermata"
-                       
-                        
                        };
                 
                 final JTable perTab = new JTable();
@@ -142,9 +140,7 @@ private List<Percorso> listper2;
                    for(Fermata fer :per1.getFermate()){
                     fer=(Fermata) session.load(Fermata.class,fer.getId_fer());   
                 dtm.addRow(new Object[] {
-                    per1.getId_per(),fer.getStazione().toString()
-                   
-                   
+                    per1.getId_per(),fer.getStazione().getNome_stazione()
                 });
                    }
                   

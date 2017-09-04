@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
@@ -144,8 +145,15 @@ Date anno = null;
                   // listTr.add();
                
                 
-                String[] columnNames = {"ID TRENO","Tipologia Treno"
-                       };
+                String[] columnNames = {"ID Treno",
+                    "Nome Tipologia",
+                    "Posti letto",
+                    "Posti Prima Classe",
+                    "Posti Seconda Classe",
+                    "Velocita",
+                    "Prezzo Prima",
+                    "Prezzo Seconda"
+                };
                 
                 final JTable stTab = new JTable();
                 final DefaultTableModel dtm = new DefaultTableModel();
@@ -157,17 +165,19 @@ Date anno = null;
                    
                 dtm.addRow(new Object[] {
                  //Aggiungi treni qui 
-                    tr.getId_tr(),tr.getTt().getTt_name()
+                tr.getId_tr(), tr.getTt().getTt_name(),  tr.getTt().getPosti_letto(),  tr.getTt().getNp_1c(),
+               tr.getTt().getNp_2c(),  tr.getTt().getVelocita(), tr.getTt().getPrezzo_prima(), tr.getTt().getPrezzo_seconda()
+                   
                 });
         
                 
                 }
             stTab.setModel(dtm);
-            stTab.setFillsViewportHeight(true);
-             
+           
+             stTab.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
            final JFrame tabfram = new JFrame("Scegli un treno");
-           tabfram.setSize(400, 150);
-      
+           tabfram.setSize(600, 450);
+           
                                       
           stTab.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
  
@@ -175,7 +185,7 @@ Date anno = null;
 JButton nextButton = new JButton("Avanti");
 JButton endButton = new JButton("Fine");
 JPanel panst = new JPanel(new FlowLayout());
-panst.add(stTab);
+panst.add(new JScrollPane(stTab));
 panst.add(nextButton);
 panst.add(endButton);
 tabfram.add(panst);
@@ -212,7 +222,7 @@ nextButton.addActionListener(new ActionListener() {
                 
                 dtm1.setColumnIdentifiers(columnNames);
                 stTab1.setModel(dtm1);
-                stTab1.setSize(500, 300);
+                 
                 
                  Session session = NewHibernateUtil.getSessionFactory().openSession();
                  session.beginTransaction();
@@ -229,19 +239,19 @@ nextButton.addActionListener(new ActionListener() {
                 }
                 session.getTransaction().commit();
                 session.close();
-                
+               
            final JFrame tabfram = new JFrame("Visualizza Fermate della Tratta");
            tabfram.setSize(500, 500);
            
                                       
-      
-         
+      stTab1.getColumnModel().getColumn(1).setResizable(true);
+      stTab1.getColumnModel().getColumn(1).setMinWidth(200);   
           
 
 JButton endButton1 = new JButton("Fine");
 JPanel panst1 = new JPanel(new FlowLayout());
 panst1.add(stTab1);
-
+panst1.setSize(500, 500);
 panst1.add(endButton1);
 tabfram.add(panst1);
 tabfram.setVisible(true);
